@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+        button{
+            background-color: red;
+            color: white;
+            font-size: 35px; 
+            border-radius: 12px;
+            }
+        table, th, td {
+            border: 1.5px solid black;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;    
+        }
+        input{
+            border-style: groove;
+            border-width: medium;
+        }
+        .topnav{
+            background-color: black;
+            font-size: 30px;
+        }
+        .topnav a:hover{
+            color: black;
+            background-color: white;
+        }
+        .topnav a.active{
+            color: white;
+            background-color: green;
+        }
+        .dropbtn{
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+        .dropdown{
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content{
+            display: none;
+            position: absolute;
+            background-color: white;
+            color: white;
+        }
+        .dropdown-content a{
+            color: black;
+            display: block;
+            text-decoration: none;
+        }
+        .dropdown-content a:hover {
+            background-color: whitesmoke; 
+            display: block
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn{
+            background-color: red;
+            color: whitesmoke;
+        }
+        .formfield{
+            width: 20%;
+        }
+
+        </style>
+    </head>
+    <body>
+        <fieldset class="navfield">
+        <div class="topnav">
+            <div class="dropdown">
+                <a class="dropbtn active">Home</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn">About</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn">Products</a>
+                <div class="dropdown-content">
+                    <a href="#">Engineering</a>
+                    <a href="#">Telecom</a>
+                    <a href="#">Energy</a>
+                    <a href="#">Finance</a>
+                    <a href="#">Consultancy</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn">Services</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn">Contact</a>
+            </div>
+        </div>
+        </fieldset>
+        <table>
+            <tr>
+                <td>quick</td>
+                <td colspan="2">brown fox</td>
+                <td>jumps</td>
+            </tr>
+            <tr>
+                <td rowspan="3">over the</td>
+                <td>lazy</td>
+                <td>dog</td>
+                <td>and</td>
+            </tr>
+            <tr>
+                <td>then</td>
+                <td>it</td>
+                <td>fall</td>
+            </tr>
+            <tr>
+                <td colspan="3">prey to a lion</td>
+            </tr>
+        </table>
+        <form method="post" action="">
+            <fieldset class="formfield">
+                <h2>* denotes mandotory</h2>
+                <p>Full name*:</p>
+                <p><input type="text" name="name" placeholder="FirstName LastName"></p>
+                <p>Email address*:</p>
+                <p><input type="email" name="email" placeholder="EMAIL ADDRESS"></p>
+                <p>Select tour package*:</p>
+                <p>
+                    <select name="package">
+                        <option value="goa">Goa</option>
+                        <option value="first">First</option>
+                    </select>
+                </p>
+                <p>Arrival date*:</p>
+                <p><input type="date" name="date" placeholder="m/d/y"></p>
+                <p>Number of person*:</p>
+                <p><input type="number" name="numofper" placeholder="UNKNOWN TYPE"></p>
+                <p>What would you want to avail?*</p>
+                <p><input type="checkbox" name="avail">Boarding</p>
+                <p><input type="checkbox" name="avail">Fooding</p>
+                <p><input type="checkbox" name="avail">Sight Seeing</p>
+                <p>Discount Coupon code:</p>
+                <p><input type="text" name="coupon" placeholder="UNKNOWN TYPE"></p>
+                <p>Term and conditions*:</p>
+                <p>
+                    <input type="radio" name="term" value="agree">I agree
+                    <input type="radio" name="term" value="agree">I disagree
+                </p>
+                <input type="submit" name="submit" value="Complete reservation">
+            </fieldset>
+        </form>
+        <button>Subcribe Now</button>
+    </body>
+</html>

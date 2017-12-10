@@ -5,8 +5,6 @@
 package DBConnector;
 
 import java.sql.*;
-import java.util.*;
-import com.mysql.jdbc.Driver;
 import java.io.InputStream;
 
 /**
