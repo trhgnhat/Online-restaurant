@@ -5,7 +5,7 @@
  */
 package DBConnector;
 
-import DO.CourseDO;
+import DO.FoodDO;
 import DO.MemberDO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -103,8 +103,8 @@ public class DatabaseService {
         sqlConnectionManager.closeConnection();
         
     }
-    public ArrayList<CourseDO> getAttendedCourses(String memberID){
-        ArrayList<CourseDO> listOfCourses = new ArrayList<CourseDO>();
+    public ArrayList<FoodDO> getAttendedCourses(String memberID){
+        ArrayList<FoodDO> listOfCourses = new ArrayList<FoodDO>();
         String sqlStatement = "SELECT course.ID, course.Name FROM course, study\n" +
                         "WHERE course.ID = study.CourseID AND study.MemberID='" + memberID + "'";
         sqlConnectionManager.openConnection();
@@ -113,12 +113,12 @@ public class DatabaseService {
             while(rs.next()){
                 String id = rs.getString("id");
                 String name = rs.getString("name");
-                CourseDO course = new CourseDO(id, name);
+                FoodDO course = new FoodDO(id, name);
                 listOfCourses.add(course);
         
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CourseDO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FoodDO.class.getName()).log(Level.SEVERE, null, ex);
         }
        sqlConnectionManager.closeConnection();   
         return listOfCourses;
