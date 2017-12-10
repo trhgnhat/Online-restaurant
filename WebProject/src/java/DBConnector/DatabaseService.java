@@ -5,7 +5,7 @@
  */
 package DBConnector;
 
-import DO.FoodDO;
+import DO.CourseDO;
 import DO.MemberDO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,8 +33,8 @@ public class DatabaseService {
     public void createMember(MemberDO member) {
    
         String sqlStatement ="INSERT INTO MEMBER VALUES('" + member.getId() + "','"
-                + member.getUsername()+"',"
-                + member.getPassword()+" )";
+                + member.getName()+"',"
+                + member.getGpa()+" )";
         
         //System.out.println("SQL: " + sqlStatement );
         
@@ -48,8 +48,8 @@ public class DatabaseService {
    
         String sqlStatement ="UPDATE MEMBER "
                 + "SET id='" + member.getId() + "', " 
-                + "name='"+ member.getUsername()+"', "
-                + "password=" + member.getPassword() 
+                + "name='"+ member.getName()+"', "
+                + "password=" + member.getGpa() 
                 + " WHERE id='"+memberId+"'";
         
         System.out.println("SQL: " + sqlStatement );
@@ -57,6 +57,7 @@ public class DatabaseService {
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
+      
     }
     
     public ArrayList<MemberDO> getAllMembers(){
@@ -83,7 +84,7 @@ public class DatabaseService {
                 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MemberDO.class.getUsername()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -102,9 +103,9 @@ public class DatabaseService {
         sqlConnectionManager.closeConnection();
         
     }
-    public ArrayList<FoodDO> getAttendedCourses(String memberID){
-        ArrayList<FoodDO> listOfCourses = new ArrayList<FoodDO>();
-        String sqlStatement = "SELECT course.ID, course.Username FROM course, study\n" +
+    public ArrayList<CourseDO> getAttendedCourses(String memberID){
+        ArrayList<CourseDO> listOfCourses = new ArrayList<CourseDO>();
+        String sqlStatement = "SELECT course.ID, course.Name FROM course, study\n" +
                         "WHERE course.ID = study.CourseID AND study.MemberID='" + memberID + "'";
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
@@ -112,12 +113,12 @@ public class DatabaseService {
             while(rs.next()){
                 String id = rs.getString("id");
                 String name = rs.getString("name");
-                FoodDO course = new FoodDO(id, name);
+                CourseDO course = new CourseDO(id, name);
                 listOfCourses.add(course);
         
             }
         } catch (SQLException ex) {
-            Logger.getLogger(FoodDO.class.getUsername()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CourseDO.class.getName()).log(Level.SEVERE, null, ex);
         }
        sqlConnectionManager.closeConnection();   
         return listOfCourses;

@@ -9,23 +9,22 @@ package DO;
  *
  * @author junnguyen
  */
-public class FoodDO {
+public class CourseDO {
     
-    private int id;
+    private String id;
     private String name;
-    private float price;
 
-    public FoodDO(int id, String name, float price) {
+
+    public CourseDO(String id, String name) {
         this.id = id;
         this.name = name;
-        this.price = price;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -35,14 +34,5 @@ public class FoodDO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-    
+    }   
 }

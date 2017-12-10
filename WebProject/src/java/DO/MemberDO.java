@@ -5,68 +5,43 @@
  */
 package DO;
 //Database Object
-
-import java.util.ArrayList;
-
 /**
  *
  * @author junnguyen
  */
 public class MemberDO {
-
-    private int id;
-
+    
+    private String id;
     private String username;
-
     private String password;
 
-    private ArrayList info;
-    /*ArrayList info contains:
-        0/name - Full Name of the account owner
-        1/address 
-        2/phone
-        3/email
-        4/point - Cumulative points (for booking table)
-        5/credit_card
-     */
-    
-    public MemberDO(int id, String username, String password, ArrayList info) {
+    public MemberDO(String id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.info = info;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getUsername() {
+    public String getName() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setName(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getGpa() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setGpa(String password) {
         this.password = password;
     }
-
-    public ArrayList getInfo() {
-        return info;
-    }
-
-    public void setInfo(ArrayList info) {
-        this.info = info;
-    }
-
 }
