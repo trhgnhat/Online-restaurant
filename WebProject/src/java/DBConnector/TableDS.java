@@ -5,7 +5,7 @@
  */
 package DBConnector;
 
-import DO.FoodDO;
+import DO.TableDO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,72 +16,70 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class FoodDS {
-
+public class TableDS {
     private MySqlConnectionManager sqlConnectionManager;
 
-    public FoodDS() {
+    public TableDS() {
         sqlConnectionManager = new MySqlConnectionManager(
                 "localhost", "3306", "restaurant_website", "root", "crazy123");
     }
 
-    public void createFood(FoodDO food) {
-        String sqlStatement = "INSERT INTO food VALUES(" + Integer.toString(food.getId()) + ",'"
-                + food.getName() + "',"
-                + Float.toString(food.getPrice()) + " )";
+    public void createTable(TableDO table) {
+        String sqlStatement = "INSERT INTO table VALUES(" + Integer.toString(table.getId()) + ","
+                + Integer.toString(table.getSeat()) + ","
+                + Integer.toString(table.getStatus()) + " )";
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
     }
 
-    public ArrayList getAllFoods() {
-        ArrayList<FoodDO> foods = new ArrayList<FoodDO>();
+    public ArrayList getAllTables() {
+        ArrayList<TableDO> tables = new ArrayList<TableDO>();
 
-        String sqlStatement = "SELECT * FROM food";
-
-        sqlConnectionManager.openConnection();
-        ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
-        try {
-            while (rs.next()) {
-                int db_id = rs.getInt("id");
-                foods.add(getFood(db_id));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(FoodDO.class.getName()).log(Level.SEVERE, null, ex);
-            foods = null;
-        }
-        sqlConnectionManager.closeConnection();
-        return foods;
-    }
-
-    public FoodDO getFood(int id) {
-        FoodDO food = null;
-        String sqlStatement = "SELECT * FROM food WHERE id=" + Integer.toString(id);
+        String sqlStatement = "SELECT * FROM table";
 
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
         try {
             while (rs.next()) {
                 int db_id = rs.getInt("id");
-                String db_name = rs.getString("name");
-                float db_price = rs.getFloat("price");
-                food = new FoodDO(db_id, db_name, db_price);
+                tables.add(getTable(db_id));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(FoodDO.class.getName()).log(Level.SEVERE, null, ex);
-            food = null;
+            Logger.getLogger(TableDO.class.getName()).log(Level.SEVERE, null, ex);
+            tables = null;
         }
         sqlConnectionManager.closeConnection();
-        return food;
+        return tables;
     }
 
-    public void updateFood(FoodDO food) {
+    public TableDO getTable(int id) {
+        TableDO table = null;
+        String sqlStatement = "SELECT * FROM table WHERE id=" + Integer.toString(id);
 
-        String sqlStatement = "UPDATE food "
+        sqlConnectionManager.openConnection();
+        ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
+        try {
+            while (rs.next()) {
+                int db_id = rs.getInt("id");
+                int db_seat = rs.getInt("seat");
+                int db_status = rs.getInt("status");
+                table = new TableDO(db_id, db_seat, db_status);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TableDO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sqlConnectionManager.closeConnection();
+        return table;
+    }
+
+    public void updateTable(TableDO table) {
+
+        String sqlStatement = "UPDATE table "
                 + "SET "
-                + "name='" + food.getName() + "', "
-                + "price=" + Float.toString(food.getPrice())
-                + " WHERE id=" + Integer.toString(food.getId()) + "";
+                + "seat='" + table.getSeat() + "', "
+                + "status=" + Float.toString(table.getStatus())
+                + " WHERE id=" + Integer.toString(table.getId()) + "";
 
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);

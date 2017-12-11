@@ -23,55 +23,27 @@ public class MemberDS {
                 "localhost", "3306", "restaurant_website", "root", "crazy123");  
     }
     
+    /************************
+    !!!      REGISTER     !!!    
+    ************************/
     public void createMember(MemberDO member) {
-        String sqlStatement ="INSERT INTO member VALUES('" + Integer.toString(member.getId()) + "','"
-                + member.getUsername()+"',"
-                + member.getPassword()+" )";
-        createMemberINFO(member);
+        String sqlStatement ="INSERT INTO member VALUES(" + Integer.toString(member.getId()) + ",'"
+                + member.getUsername()+"','"
+                + member.getPassword()+"','"
+                + member.getName()+"','"
+                + member.getAddress()+"','"
+                + member.getPhone()+"','"
+                + member.getEmail()+"',"
+                + Integer.toString(member.getPoint()) + ",'"
+                + member.getCreditCard()+"')";
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
     }
-    
-    public void createMemberINFO(MemberDO member) {
-        String value = "";
-        for(int i = 0; i < member.getInfo().size(); i++){
-            value += "'" + member.getInfo().get(i).toString() + "'";
-            if(i < (member.getInfo().size()-1)){
-                value += ", ";
-            }
-        }
-        String sqlStatement ="INSERT INTO memberINFO VALUES(" + value + ")";
-        sqlConnectionManager.openConnection();
-        sqlConnectionManager.ExecuteUpdate(sqlStatement);
-        sqlConnectionManager.closeConnection();
-    }
-    
-    public ArrayList getMemberINFO(int id){
-        ArrayList info = new ArrayList();
-        
-        String sqlStatement ="SELECT * FROM memberINFO WHERE id='" + id + "';";
-        
-        sqlConnectionManager.openConnection();
-        ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
-        try {
-            while(rs.next()){
-                String db_name = rs.getString("name");
-                String db_address = rs.getString("address");
-                String db_phone = rs.getString("phone");
-                String db_email = rs.getString("email");
-                int db_point = rs.getInt("point");
-                String db_credit = rs.getString("credit_card");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
-            info = null;
-        }
-        sqlConnectionManager.closeConnection();
-        return info;
-    }
-    
-    public MemberDO getMember(String username, String password) {
+    /************************
+    !!!      LOGIN        !!!    
+    ************************/
+    public MemberDO getMember(String username, String password) { 
         MemberDO member = null;
         String sqlStatement ="SELECT * FROM member WHERE username='" + username +"'and password='" + password + "';" ;
         
@@ -82,7 +54,13 @@ public class MemberDS {
                 int db_id = rs.getInt("id");
                 String db_username = rs.getString("username");
                 String db_password = rs.getString("password");
-                member = new MemberDO(db_id, db_username, db_password, getMemberINFO(db_id));
+                String db_name = rs.getString("name");
+                String db_address = rs.getString("address");
+                String db_phone = rs.getString("phone");
+                String db_email = rs.getString("email");
+                int db_point = rs.getInt("point");
+                String db_creditCard = rs.getString("credit_card");
+                member = new MemberDO(db_id, db_username, db_password, db_name, db_address, db_phone, db_email, db_point, db_creditCard);
             }
         } catch (SQLException ex) {
             Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,13 +69,64 @@ public class MemberDS {
         sqlConnectionManager.closeConnection();
         return member;
     }
-    
-    public void updateMemberINFO(String memberId, MemberDO member) {
-   
-        String sqlStatement ="UPDATE memberINFO "
-                + "name='"+ member.getUsername()+"', "
-                + "password=" + member.getPassword() 
-                + " WHERE id='"+memberId+"'";
+    public ArrayList getAllMembers() {
+        ArrayList<MemberDO> members = new ArrayList<MemberDO>();
+
+        String sqlStatement = "SELECT * FROM member";
+
+        sqlConnectionManager.openConnection();
+        ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
+        try {
+            while (rs.next()) {
+                int db_id = rs.getInt("id");
+                members.add(getMember(db_id));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
+            members = null;
+        }
+        sqlConnectionManager.closeConnection();
+        return members;
+    }
+    public MemberDO getMember(int id) { 
+        MemberDO member = null;
+        String sqlStatement ="SELECT * FROM member WHERE id=" + id;
+        
+        sqlConnectionManager.openConnection();
+        ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
+        try {
+            while(rs.next()){
+                int db_id = rs.getInt("id");
+                String db_username = rs.getString("username");
+                String db_password = rs.getString("password");
+                String db_name = rs.getString("name");
+                String db_address = rs.getString("address");
+                String db_phone = rs.getString("phone");
+                String db_email = rs.getString("email");
+                int db_point = rs.getInt("point");
+                String db_creditCard = rs.getString("credit_card");
+                member = new MemberDO(db_id, db_username, db_password, db_name, db_address, db_phone, db_email, db_point, db_creditCard);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
+            member = null;
+        }
+        sqlConnectionManager.closeConnection();
+        return member;
+    }
+    /*************************
+    !!! UPDATE RMATION !!!
+    *************************/
+    public void updateMember(MemberDO member) {
+        String sqlStatement ="UPDATE member "
+                + "SET "
+                + "name='"+ member.getName()+"', "
+                + "address='"+ member.getAddress()+"', "
+                + "phone='"+ member.getPhone()+"', "
+                + "email='"+ member.getEmail()+"', "
+                + "point="+ Integer.toString(member.getPoint()) + ", "
+                + "credit_card='"+ member.getCreditCard()+"' "
+                + " WHERE id=" + Integer.toString(member.getId()) + "";
         
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);

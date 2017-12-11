@@ -8,6 +8,7 @@ package DO;
 
 import java.util.ArrayList;
 
+
 /**
  *
  * @author junnguyen
@@ -15,26 +16,25 @@ import java.util.ArrayList;
 public class MemberDO {
 
     private int id;
-
     private String username;
-
     private String password;
+    private String name;
+    private String address;
+    private String phone;
+    private String email;
+    private int point;
+    private String credit_card;
 
-    private ArrayList info;
-    /*ArrayList info contains:
-        0/name - Full Name of the account owner
-        1/address 
-        2/phone
-        3/email
-        4/point - Cumulative points (for booking table)
-        5/credit_card
-     */
-    
-    public MemberDO(int id, String username, String password, ArrayList info) {
+    public MemberDO(int id, String username, String password, String name, String address, String phone, String email, int point, String credit_card) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.info = info;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.point = point;
+        this.credit_card = credit_card;
     }
 
     public int getId() {
@@ -61,12 +61,52 @@ public class MemberDO {
         this.password = password;
     }
 
-    public ArrayList getInfo() {
-        return info;
+    public String getName() {
+        return name;
     }
 
-    public void setInfo(ArrayList info) {
-        this.info = info;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
+    public String getCreditCard() {
+        return credit_card;
+    }
+
+    public void setCreditCard(String credit_card) {
+        this.credit_card = credit_card;
+    }
+    
 }
