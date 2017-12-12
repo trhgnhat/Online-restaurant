@@ -14,11 +14,13 @@ public class FoodDO {
     private int id;
     private String name;
     private float price;
+    private String category;
 
-    public FoodDO(int id, String name, float price) {
+    public FoodDO(int id, String name, float price, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.category = category;
     }
 
     public int getId() {
@@ -44,5 +46,14 @@ public class FoodDO {
     public void setPrice(float price) {
         this.price = price;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     
 }

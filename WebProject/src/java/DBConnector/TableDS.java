@@ -9,6 +9,7 @@ import DO.TableDO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,8 +34,8 @@ public class TableDS {
         sqlConnectionManager.closeConnection();
     }
 
-    public ArrayList getAllTables() {
-        ArrayList<TableDO> tables = new ArrayList<TableDO>();
+    public List getAllTables() {
+        List<TableDO> tables = new ArrayList<>();
 
         String sqlStatement = "SELECT * FROM table";
 
@@ -47,7 +48,6 @@ public class TableDS {
             }
         } catch (SQLException ex) {
             Logger.getLogger(TableDO.class.getName()).log(Level.SEVERE, null, ex);
-            tables = null;
         }
         sqlConnectionManager.closeConnection();
         return tables;

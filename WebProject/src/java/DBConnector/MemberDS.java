@@ -8,6 +8,7 @@ import DO.MemberDO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -69,8 +70,8 @@ public class MemberDS {
         sqlConnectionManager.closeConnection();
         return member;
     }
-    public ArrayList getAllMembers() {
-        ArrayList<MemberDO> members = new ArrayList<MemberDO>();
+    public List getAllMembers() {
+        List<MemberDO> members = new ArrayList<>();
 
         String sqlStatement = "SELECT * FROM member";
 
@@ -83,7 +84,6 @@ public class MemberDS {
             }
         } catch (SQLException ex) {
             Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
-            members = null;
         }
         sqlConnectionManager.closeConnection();
         return members;
@@ -109,7 +109,6 @@ public class MemberDS {
             }
         } catch (SQLException ex) {
             Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
-            member = null;
         }
         sqlConnectionManager.closeConnection();
         return member;

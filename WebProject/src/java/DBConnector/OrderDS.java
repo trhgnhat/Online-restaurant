@@ -4,85 +4,91 @@
  * and open the template in the editor.
  */
 package DBConnector;
-import DO.BookingDO;
+
+import DO.BillDO;
 import DO.MemberDO;
+import DO.OrderDO;
 import DO.TableDO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Admin
  */
-public class BookingDS {
+public class OrderDS {
+
     private MySqlConnectionManager sqlConnectionManager;
 
-    public BookingDS() {
+    public OrderDS() {
         sqlConnectionManager = new MySqlConnectionManager(
                 "localhost", "3306", "restaurant_website", "root", "crazy123");
     }
 
-    public void createBooking(BookingDO booking) {
-        String sqlStatement = "INSERT INTO booking VALUES(" + Integer.toString(booking.getId()) + ","
-                + Integer.toString(booking.getTable().getId()) + ","
-                + Integer.toString(booking.getMember().getId()) + ", "
-                + booking.getBooked_date().toString() + ","
-                + booking.getBooked_time().toString() + ","
-                + booking.getExpired_time().toString() + ")";
+    public void createOrder(OrderDO order) {
+
+        String sqlStatement = "INSERT INTO order VALUES(" + Integer.toString(order.getId()) + ","
+                + Integer.toString(order.getMember().getId()) + ","
+                + Integer.toString(order.getTable().getId()) + ","
+                + Integer.toString(order.getBill().getId()) + ")";
+        
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
     }
 
-    public List getAllBookings() {
-        List<BookingDO> bookings = new ArrayList<>();
+    public List getAllOrders() {
+        List<OrderDO> orders = new ArrayList<>();
 
-        String sqlStatement = "SELECT * FROM booking";
+        String sqlStatement = "SELECT * FROM order";
 
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
         try {
             while (rs.next()) {
                 int db_id = rs.getInt("id");
-                bookings.add(getBooking(db_id));
+                orders.add(getOrder(db_id));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookingDO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderDO.class.getName()).log(Level.SEVERE, null, ex);
         }
         sqlConnectionManager.closeConnection();
-        return bookings;
+        return orders;
     }
 
-    public BookingDO getBooking(int id) {
-        BookingDO booking = null;
-        String sqlStatement = "SELECT * FROM booking WHERE id=" + Integer.toString(id);
+    public OrderDO getOrder(int id) {
+        OrderDO order = null;
+
+        String sqlStatement = "SELECT * FROM order WHERE id=" + Integer.toString(id);
 
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
         try {
             while (rs.next()) {
                 int db_id = rs.getInt("id");
-                LocalDate db_date = rs.getTimestamp("booking_date").toLocalDateTime().toLocalDate();
-                LocalTime db_time = rs.getTimestamp("booking_time").toLocalDateTime().toLocalTime();
                 MemberDO db_member = new MemberDS().getMember(rs.getInt("member_id"));
                 TableDO db_table = new TableDS().getTable(rs.getInt("table_id"));
-                booking = new BookingDO(db_id, db_member, db_table, db_date, db_time);
+                BillDO db_bill = new BillDS().getBill(rs.getInt("bill_id"));
+                LocalDateTime db_date_time = rs.getTimestamp("date_time").toLocalDateTime();
+                float db_total_price = rs.getFloat("total_price");
+                order = new OrderDO(db_id, db_member, db_table, db_bill, db_date_time, db_total_price);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookingDO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderDO.class.getName()).log(Level.SEVERE, null, ex);
         }
         sqlConnectionManager.closeConnection();
-        return booking;
+        return order;
     }
 
-    public void deleteBooking(BookingDO booking) {
+    public void deleteOrder(OrderDO order) {
 
-        String sqlStatement = "DELETE FROM booking"
-                + " WHERE id=" + Integer.toString(booking.getId()) + "";
+        String sqlStatement = "DELETE FROM order"
+                + " WHERE id=" + Integer.toString(order.getId()) + "";
 
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
