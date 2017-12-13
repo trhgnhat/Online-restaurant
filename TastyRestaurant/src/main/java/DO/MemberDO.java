@@ -36,6 +36,17 @@ public class MemberDO {
         this.point = point;
         this.credit_card = credit_card;
     }
+    
+    public MemberDO(String username, String password, String name, String address, String phone, String email, int point, String credit_card) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.point = point;
+        this.credit_card = credit_card;
+    }
 
     public int getId() {
         return id;

@@ -28,6 +28,9 @@ public class MemberDS {
     !!!      REGISTER     !!!    
     ************************/
     public void createMember(MemberDO member) {
+        String new_id = "";
+        for (Object memberdo : getAllMembers()){
+        }
         String sqlStatement ="INSERT INTO member VALUES(" + Integer.toString(member.getId()) + ",'"
                 + member.getUsername()+"','"
                 + member.getPassword()+"','"
@@ -64,13 +67,13 @@ public class MemberDS {
                 member = new MemberDO(db_id, db_username, db_password, db_name, db_address, db_phone, db_email, db_point, db_creditCard);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
             member = null;
+            Logger.getLogger(MemberDO.class.getName()).log(Level.SEVERE, null, ex);
         }
         sqlConnectionManager.closeConnection();
         return member;
     }
-    public List getAllMembers() {
+    public List<MemberDO> getAllMembers() {
         List<MemberDO> members = new ArrayList<>();
 
         String sqlStatement = "SELECT * FROM member";
