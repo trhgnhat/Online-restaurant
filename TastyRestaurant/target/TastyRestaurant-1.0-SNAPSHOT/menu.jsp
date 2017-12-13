@@ -1,3 +1,10 @@
+<%-- 
+    Document   : menu
+    Created on : Dec 12, 2017, 11:34:38 PM
+    Author     : nnta.zip
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -6,7 +13,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Offers</title>
+        <title>Menu</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -44,8 +51,99 @@ and open the template in the editor.
 
         <div class="main-container">
             <div class="container">
-                <div class="tab-content" id="offers"> 
-                </div>  
+                <div class="tab-content" id="menu"> 
+
+                    <!--
+                       Sidebar menu
+                    -->
+                    <div class="row">
+                        <div class="column1">
+                            <div class="sideBarMenu">
+                                <p class="footTitle">Menu</p>
+                                <ul class="list-unstyled">
+                                    <li class="borderSideBar"><a href="menu.jsp">Appetizer</a>
+                                    </li>
+                                    <li class="borderSideBar">Main Dishes
+                                        <ul style="circle" id="foodCategories">
+                                            <li><a href="beefCategory.jsp">Beef</a>
+                                            </li>
+                                            <li><a href="chickenCategory.jsp">Chicken</a>
+                                            </li>
+                                            <li><a href="fishCategory.jsp">Fish</a>
+                                            </li>
+                                            <li><a href="porkCategory.jsp">Pork</a>
+                                            </li>
+                                            <li><a href="seaFoodCategory.jsp">Sea food</a>
+                                            </li>
+                                            <li><a href="italianCategory.jsp">Italian dishes</a>
+                                            </li>
+                                            <li><a href="asianCategory.jsp">Asian dishes</a>
+                                            </li>
+                                            <li><a href="hamburgerCategory.jsp">Hamburger</a>
+                                        </ul>
+                                    </li>      
+                                    <li class="borderSideBar"><a href="beverageCategory.jsp">Beverage</a>
+                                    </li>
+                                    <li class="borderSideBar"><a href="dessertCategory.jsp">Dessert</a>
+                                    </li>
+                                </ul>
+                            </div>    
+                        </div>
+                        <!--
+                        End Sidebar menu
+                        -->
+
+                        <!--
+                            Product
+                        -->
+                        <div class="col-lg-5">
+                            <div class="tab-content" id="appetizer">
+                                <div class="productStandard">
+                                    <div class="panel">
+<!--                                        <img src="img/appetizerExample.jpg" alt=""/>-->
+                                    </div>
+                                    <div class="foodOrder">
+<!--                                    <div class="nameOfFood"></div>
+                                    <div class="priceOfFood"></div>
+                                    <form id="addFood">
+                                        <div class="quantityFood"></div>
+                                        <button type="submit" name="addFood" value="ADD"></button>
+                                    </form>-->
+                                    </div>
+                                </div>
+                                
+                                <div class="productStandard">
+                                    <div class="panel">
+<!--                                        <img src="img/appetizerExample.jpg" alt=""/>-->
+                                    </div>
+                                    <div class="foodOrder">
+<!--                                    <div class="nameOfFood"></div>
+                                    <div class="priceOfFood"></div>
+                                    <form id="addFood">
+                                        <div class="quantityFood"></div>
+                                        <button type="submit" name="addFood" value="ADD"></button>
+                                    </form>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                            End Product
+                        -->
+
+                        <!--
+                            Vertical Banner
+                        -->
+                        <div class="column3">
+                            <a href="#">
+                                <img class="img-rounded" src="img/exampleBanner-vertical.png" alt=""/>
+                            </a>
+                        </div>
+                        <!--
+                            End Vertical Banner
+                        -->
+                    </div>
+                </div>
             </div>
         </div>
                 

@@ -327,7 +327,7 @@ li a:hover{
 }
 
                             /******************
-                             !!! MENU.HTML !!!
+                             !!! MENU.JSP !!!
                             ******************/
 .sideBarMenu{
     font-family: "Flama Condensed Medium", sans-serif;
@@ -344,6 +344,7 @@ li a:hover{
 #menu .row{
     width: 1140px;
     margin: 0;
+    min-height: 865px;
 }
 
 .row .column1{
@@ -404,4 +405,44 @@ li a:hover{
 
 #beefMenu .row .col-lg-5{
     background-color: pink;
+}
+
+
+                            /******************
+                             !!! APPETIZER.JSP !!!
+                            ******************/
+.row .col-lg-5{
+    margin-top: 15px;
+}
+
+.row .col-lg-5 .tab-content{
+
+}
+
+.productStandard{
+    background-color: pink;
+    min-height: 220px;
+    width: 95%;
+}
+
+.productStandard .panel{
+    background-color: red;
+    width: 40%;
+    min-height: 200px;
+    margin: 10px;
+    position: relative;
+    top: 10px;
+}
+
+.productStandard .foodOrder{
+    background-color: #FFFF00;
+    margin-left: 260px;
+    width: 53%;
+    min-height: 200px;
+    position: relative;
+    top: -200px;
+}
+
+.panel .nameOfFood{
+    
 }

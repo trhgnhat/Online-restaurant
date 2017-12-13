@@ -32,7 +32,7 @@ and open the template in the editor.
                 <div class="welcomeBar">
                     <ul class="headBar">
                         <li class=" headBarHome"><a href="homepage.html">Tasty Restaurant</a></li>
-                        <li class=" headBarElement"><a href="menu.html">
+                        <li class=" headBarElement"><a href="menu.jsp">
                                 <span class="glyphicon glyphicon-cutlery"></span>Menu</a></li>
                         <li class=" headBarElement"><a href="offers.html">
                                 <span class="glyphicon glyphicon-tags"></span>Offers</a></li>
@@ -52,59 +52,78 @@ and open the template in the editor.
         <div class="main-container">
             <div class="container">
                 <div class="tab-content" id="menu"> 
-                    
-                 <!--
-                    Sidebar menu
-                 -->
-                <div class="row">
-                    <div class="column1">
-                        <div class="sideBarMenu">
-                            <p class="footTitle">Menu</p>
-                            <ul class="list-unstyled">
-                                <li class="borderSideBar"><a href="menu.html">Appetizer</a>
-                                </li>
-                                <li class="borderSideBar">Main Dishes
-                                    <ul style="circle" id="foodCategories">
-                                        <li><a href="#">Beef</a>
-                                        </li>
-                                        <li><a href="#">Chicken</a>
-                                        </li>
-                                        <li><a href="#">Fish</a>
-                                        </li>
-                                        <li><a href="#">Pork</a>
-                                        </li>
-                                        <li><a href="#">Sea food</a>
-                                        </li>
-                                        <li><a href="#">Italian dishes</a>
-                                        </li>
-                                        <li><a href="#">Asian dishes</a>
-                                        </li>
-                                        <li><a href="#">Hamburger</a>
-                                    </ul>
-                                </li>      
-                                <li class="borderSideBar"><a href="#">Beverage</a>
-                                </li>
-                                <li class="borderSideBar"><a href="#">Dessert</a>
-                                </li>
-                            </ul>
-                        </div>    
-                    </div>
 
-                    <div class="col-lg-5">
-                        <div class="tab-content" id="beefMenu">
-                            <h1 style="color: #000000">eat beef</h1>
+                    <!--
+                       Sidebar menu
+                    -->
+                    <div class="row">
+                        <div class="column1">
+                            <div class="sideBarMenu">
+                                <p class="footTitle">Menu</p>
+                                <ul class="list-unstyled">
+                                    <li class="borderSideBar"><a href="menu.jsp">Appetizer</a>
+                                    </li>
+                                    <li class="borderSideBar">Main Dishes
+                                        <ul style="circle" id="foodCategories">
+                                            <li><a href="beefCategory.jsp">Beef</a>
+                                            </li>
+                                            <li><a href="chickenCategory.jsp">Chicken</a>
+                                            </li>
+                                            <li><a href="fishCategory.jsp">Fish</a>
+                                            </li>
+                                            <li><a href="porkCategory.jsp">Pork</a>
+                                            </li>
+                                            <li><a href="seaFoodCategory.jsp">Sea food</a>
+                                            </li>
+                                            <li><a href="italianCategory.jsp">Italian dishes</a>
+                                            </li>
+                                            <li><a href="asianCategory.jsp">Asian dishes</a>
+                                            </li>
+                                            <li><a href="hamburgerCategory.jsp">Hamburger</a>
+                                        </ul>
+                                    </li>      
+                                    <li class="borderSideBar"><a href="beverageCategory.jsp">Beverage</a>
+                                    </li>
+                                    <li class="borderSideBar"><a href="dessertCategory.jsp">Dessert</a>
+                                    </li>
+                                </ul>
+                            </div>    
                         </div>
+                        <!--
+                        End Sidebar menu
+                        -->
+
+                        <!--
+                            Product
+                        -->
+                        <div class="col-lg-5">
+                            <div class="tab-content" id="beefMenu">
+                                <h1>eat beef</h1>
+                            </div>
+                        </div>
+                        <!--
+                            End Product
+                        -->
+
+                        <!--
+                            Vertical Banner
+                        -->
+                        <div class="column3">
+                            <a href="#">
+                                <img class="img-rounded" src="img/exampleBanner-vertical.png" alt=""/>
+                            </a>
+                        </div>
+                        <!--
+                            End Vertical Banner
+                        -->
                     </div>
-                    
-                    <div class="column3"></div>
-                 </div>
-                 <!--
-                    End Sidebar menu
-                 -->
+                    <!--
+                       End Sidebar menu
+                    -->
                 </div>
             </div>
         </div>
-                
+
         <!--
             Footer
         -->
