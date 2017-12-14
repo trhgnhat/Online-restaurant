@@ -106,15 +106,33 @@ and open the template in the editor.
                                 </div>
                                 <hr>
                                 <div class="signUp">
-                                    <a href="register.jsp">
+                                    <a>
+                                    
                                         <h2>I'm a new customer.</h2>
-                                        <h3>Create an account</h3>
+                                        <h3 onclick="openRegisterForm()">Create an account</h3>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!--
+                        Register form
+                    -->
+                    <div id="registerForm" class="overlay">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeRegisterForm()">&times;</a>
+                        <div class="overlay-content">
+<!--                            <a href="#">About</a>
+                            <a href="#">Services</a>
+                            <a href="#">Clients</a>
+                            <a href="#">Contact</a>-->
+                        </div>
+                    </div>
+                    <span style="font-size:30px;cursor:pointer" onclick="openRegisterForm()">&#9776; open</span>
+                    <!--
+                        Register form
+                    -->
+
                     <!--
                         Display news
                     -->

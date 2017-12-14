@@ -8,10 +8,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pageAction.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
-    </body>
+        <form>
+<!--            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group">  -->
+                <input type="password" class="form-control" id="password" name="password">
+<!--            </div>-->
+        </for>
+</body>
 </html>

@@ -10,4 +10,5 @@ DBConnector\MySqlConnectionManager.class
 DBConnector\TableDS.class
 DO\BookingDO.class
 DBConnector\MemberDS.class
+Controller\Account.class
 DBConnector\OrderDS.class
