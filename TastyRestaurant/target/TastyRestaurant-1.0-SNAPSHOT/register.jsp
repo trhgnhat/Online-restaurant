@@ -30,8 +30,8 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" name="address" />
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email" required />
                             </div>
                         </td>
                     </tr>
@@ -45,8 +45,8 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <label for="phone">Phone number</label>
-                                <input type="text" class="form-control" name="phone" required />
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" name="address" />
                             </div>
                         </td>
                     </tr>
@@ -58,7 +58,12 @@
                                 <input type="password" class="form-control" name="password" required />
                             </div>
                         </td>
-                        <td></td>
+                        <td>
+                            <div class="form-group">
+                                <label for="phone">Phone number</label>
+                                <input type="text" class="form-control" name="phone" required />
+                            </div>
+                        </td>
                     </tr>
                     
                     <tr>
