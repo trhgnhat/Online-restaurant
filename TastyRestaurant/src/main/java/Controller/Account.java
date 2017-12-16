@@ -90,12 +90,12 @@ public class Account extends HttpServlet {
         if(action.equals("register")){
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            String name = request.getParameter("name");
+            String name = request.getParameter("fullname");
             String address = request.getParameter("address");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String credit_card = request.getParameter("credit_card");
-            int id = new MemberDS().getAllMembers().get(new MemberDS().getAllMembers().size()-1).getId();
+            int id = new MemberDS().getAllMembers().get(new MemberDS().getAllMembers().size()-1).getId() + 1;
             MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
             new MemberDS().createMember(member);
         }
