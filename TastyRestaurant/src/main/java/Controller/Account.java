@@ -86,7 +86,9 @@ public class Account extends HttpServlet {
                 }
             }
         }
-
+        if (action.equals("logout")) {
+            request.getSession().invalidate();
+        }
         if (action.equals("register")) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
