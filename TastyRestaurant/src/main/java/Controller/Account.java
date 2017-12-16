@@ -95,7 +95,7 @@ public class Account extends HttpServlet {
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String credit_card = request.getParameter("credit_card");
-            int id = 2;
+            int id = new MemberDS().getAllMembers().size()+1;
             MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
             if (new MemberDS().createMember(member) == null) {
                 out.println("<script type=\"text/javascript\">");
