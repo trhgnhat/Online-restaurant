@@ -17,13 +17,67 @@
         <script type="text/javascript" src="pageAction.js"></script>
     </head>
     <body>
-        <form>
-<!--            <div class="form-group">
-                <input type="text" class="form-control" id="username" name="username">
-            </div>
-            <div class="form-group">  -->
-                <input type="password" class="form-control" id="password" name="password">
-<!--            </div>-->
-        </for>
-</body>
+        <div class="container">
+            <h2>Register</h2>
+            <form action="" method="post">
+                <table class="registerForm">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="fullname">Full name</label>  
+                                <input type="text" class="form-control" name="fullname" required />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" name="address" />
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" name="username" required />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label for="phone">Phone number</label>
+                                <input type="text" class="form-control" name="phone" required />
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" required />
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="rePassword">Re-enter password</label>
+                                <input type="password" class="form-control" name="rePassword" required />
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    </table>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="remember"> I agree to the <a id="termOfService">terms of service</a></label>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+               
+            </form>
+        </div>
+
+    </body>
 </html>
