@@ -19,7 +19,7 @@
     <body>
         <div class="container">
             <h2>Register</h2>
-            <form action="" method="post">
+            <form action="Account?action=register" method="post">
                 <table class="registerForm">
                     <tr>
                         <td>

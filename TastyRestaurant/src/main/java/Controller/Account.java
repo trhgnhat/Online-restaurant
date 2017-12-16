@@ -86,8 +86,8 @@ public class Account extends HttpServlet {
                 }
             }
         }
-        
-        if(action.equals("register")){
+
+        if (action.equals("register")) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String name = request.getParameter("fullname");
@@ -95,9 +95,19 @@ public class Account extends HttpServlet {
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String credit_card = request.getParameter("credit_card");
-            int id = new MemberDS().getAllMembers().get(new MemberDS().getAllMembers().size()-1).getId() + 1;
+            int id = 2;
             MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
-            new MemberDS().createMember(member);
+            if (new MemberDS().createMember(member) == null) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Register success!');");
+                out.println("location='homepage.html';");
+                out.println("</script>");
+            } else {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('" + new MemberDS().createMember(member) + "');");
+                out.println("location='register.jsp';");
+                out.println("</script>");
+            }
         }
     }
 

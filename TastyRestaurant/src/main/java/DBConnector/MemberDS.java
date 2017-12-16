@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package DBConnector;
+
 import DO.MemberDO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,50 +12,62 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Admin
  */
 public class MemberDS {
-    
+
     private MySqlConnectionManager sqlConnectionManager;
 
     public MemberDS() {
         sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "crazy123");  
+                "localhost", "3306", "restaurant_website", "root", "crazy123");
     }
-    
-    /************************
-    !!!      REGISTER     !!!    
-    ************************/
-    public void createMember(MemberDO member) {
+
+    /**
+     * **********************
+     * !!! REGISTER !!! **********************
+     */
+    public String createMember(MemberDO member) {
         String new_id = "";
-        for (Object memberdo : getAllMembers()){
+        if (!getAllMembers().isEmpty()) {
+            for (MemberDO memberdo : getAllMembers()) {
+                if (memberdo.getEmail().equals(member.getEmail())) {
+                    return "Email invalid";
+                } else if (memberdo.getUsername().equals(member.getUsername())) {
+                    return "Username invalid";
+                }
+            }
         }
-        String sqlStatement ="INSERT INTO member VALUES(" + Integer.toString(member.getId()) + ",'"
-                + member.getUsername()+"','"
-                + member.getPassword()+"','"
-                + member.getName()+"','"
-                + member.getAddress()+"','"
-                + member.getPhone()+"','"
-                + member.getEmail()+"',"
+        String sqlStatement = "INSERT INTO member VALUES(" + Integer.toString(member.getId()) + ",'"
+                + member.getUsername() + "','"
+                + member.getPassword() + "','"
+                + member.getName() + "','"
+                + member.getAddress() + "','"
+                + member.getPhone() + "','"
+                + member.getEmail() + "',"
                 + Integer.toString(member.getPoint()) + ",'"
-                + member.getCreditCard()+"')";
+                + member.getCreditCard() + "')";
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
+        return null;
     }
-    /************************
-    !!!      LOGIN        !!!    
-    ************************/
-    public MemberDO getMember(String username, String password) { 
+
+    /**
+     * **********************
+     * !!! LOGIN !!! **********************
+     */
+    public MemberDO getMember(String username, String password) {
         MemberDO member = null;
-        String sqlStatement ="SELECT * FROM member WHERE username='" + username +"'and password='" + password + "';" ;
-        
+        String sqlStatement = "SELECT * FROM member WHERE username='" + username + "'and password='" + password + "';";
+
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
         try {
-            while(rs.next()){
+            while (rs.next()) {
                 int db_id = rs.getInt("id");
                 String db_username = rs.getString("username");
                 String db_password = rs.getString("password");
@@ -73,6 +86,7 @@ public class MemberDS {
         sqlConnectionManager.closeConnection();
         return member;
     }
+
     public List<MemberDO> getAllMembers() {
         List<MemberDO> members = new ArrayList<>();
 
@@ -91,14 +105,15 @@ public class MemberDS {
         sqlConnectionManager.closeConnection();
         return members;
     }
-    public MemberDO getMember(int id) { 
+
+    public MemberDO getMember(int id) {
         MemberDO member = null;
-        String sqlStatement ="SELECT * FROM member WHERE id=" + id;
-        
+        String sqlStatement = "SELECT * FROM member WHERE id=" + id;
+
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
         try {
-            while(rs.next()){
+            while (rs.next()) {
                 int db_id = rs.getInt("id");
                 String db_username = rs.getString("username");
                 String db_password = rs.getString("password");
@@ -116,20 +131,22 @@ public class MemberDS {
         sqlConnectionManager.closeConnection();
         return member;
     }
-    /*************************
-    !!! UPDATE RMATION !!!
-    *************************/
+
+    /**
+     * ***********************
+     * !!! UPDATE RMATION !!! ***********************
+     */
     public void updateMember(MemberDO member) {
-        String sqlStatement ="UPDATE member "
+        String sqlStatement = "UPDATE member "
                 + "SET "
-                + "name='"+ member.getName()+"', "
-                + "address='"+ member.getAddress()+"', "
-                + "phone='"+ member.getPhone()+"', "
-                + "email='"+ member.getEmail()+"', "
-                + "point="+ Integer.toString(member.getPoint()) + ", "
-                + "credit_card='"+ member.getCreditCard()+"' "
+                + "name='" + member.getName() + "', "
+                + "address='" + member.getAddress() + "', "
+                + "phone='" + member.getPhone() + "', "
+                + "email='" + member.getEmail() + "', "
+                + "point=" + Integer.toString(member.getPoint()) + ", "
+                + "credit_card='" + member.getCreditCard() + "' "
                 + " WHERE id=" + Integer.toString(member.getId()) + "";
-        
+
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
