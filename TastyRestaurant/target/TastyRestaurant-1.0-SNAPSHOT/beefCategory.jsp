@@ -65,26 +65,26 @@ and open the template in the editor.
                                     </li>
                                     <li class="borderSideBar">Main Dishes
                                         <ul style="circle" id="foodCategories">
-                                            <li><a href="beefCategory.jsp">Beef</a>
+                                            <li><a onclick="showMenu('beef');" href="#">Beef</a>
                                             </li>
-                                            <li><a href="chickenCategory.jsp">Chicken</a>
+                                            <li><a onclick="showMenu('chicken');" href="#">Chicken</a>
                                             </li>
-                                            <li><a href="fishCategory.jsp">Fish</a>
+                                            <li><a onclick="showMenu('fish');" href="#">Fish</a>
                                             </li>
-                                            <li><a href="porkCategory.jsp">Pork</a>
+                                            <li><a onclick="showMenu('pork');" href="#">Pork</a>
                                             </li>
-                                            <li><a href="seaFoodCategory.jsp">Sea food</a>
+                                            <li><a onclick="showMenu('seafood');" href="#">Sea food</a>
                                             </li>
-                                            <li><a href="italianCategory.jsp">Italian dishes</a>
+                                            <li><a onclick="showMenu('italianDish');" href="#">Italian dishes</a>
                                             </li>
-                                            <li><a href="asianCategory.jsp">Asian dishes</a>
+                                            <li><a onclick="showMenu('asianDish');" href="#">Asian dishes</a>
                                             </li>
-                                            <li><a href="hamburgerCategory.jsp">Hamburger</a>
+                                            <li><a onclick="showMenu('hamburger');" href="#">Hamburger</a>
                                         </ul>
                                     </li>      
-                                    <li class="borderSideBar"><a href="beverageCategory.jsp">Beverage</a>
+                                    <li class="borderSideBar"><a onclick="showMenu('beverage');" href="#">Beverage</a>
                                     </li>
-                                    <li class="borderSideBar"><a href="dessertCategory.jsp">Dessert</a>
+                                    <li class="borderSideBar"><a onclick="showMenu('dessert');" href="#">Dessert</a>
                                     </li>
                                 </ul>
                             </div>    
@@ -97,8 +97,51 @@ and open the template in the editor.
                             Product
                         -->
                         <div class="col-lg-5">
-                            <div class="tab-content" id="beefMenu">
-                                <h1>eat beef</h1>
+                            
+                            
+                            
+                            <div class="tab-content">
+                                
+                                <div class="tabContent" id="beef">
+                                    <h1>eat beef</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="chicken">
+                                    <h1>eat chicken</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="fish">
+                                    <h1>eat fish</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="pork">
+                                    <h1>eat pork</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="seafood">
+                                    <h1>eat seafood</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="italianDish">
+                                    <h1>eat italian</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="asianDish">
+                                    <h1>eat asian</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="hamburger">
+                                    <h1>eat ham</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="beverage">
+                                    <h1>drink</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="dessert">
+                                    <h1>eat dessert</h1>
+                                
+                                </div>
                             </div>
                         </div>
                         <!--

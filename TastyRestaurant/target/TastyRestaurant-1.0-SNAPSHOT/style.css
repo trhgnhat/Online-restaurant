@@ -24,6 +24,7 @@ and open the template in the editor.
 .header{
     max-width: 100%;
     height: auto;
+    position: relative;
 }
 
 #introduction{
@@ -118,6 +119,22 @@ and open the template in the editor.
 .signUp a:hover{
     color: #45484d;
     text-decoration: none;
+}
+
+.stay{
+    display: inline-block;
+    position: relative;
+    max-height: 20px;
+    width: 100%;
+}
+
+.topBar a{
+    padding: 5px;
+    color: #000000;
+}
+
+.stay .topBar{
+    float: right;
 }
 
 #introduction .panel{
@@ -391,7 +408,7 @@ li a:hover{
 
 #menu .column3{
     position: absolute;
-    top: 55px;
+    top: 78px;
     margin-left: 834px;
     margin-top: 15px;
     margin-bottom: 20px;
@@ -400,7 +417,7 @@ li a:hover{
 #menu .row .col-lg-5{
     margin-left: 220px;
     position: absolute;
-    top: 55px;
+    top: 78px;
 }
 
 #beefMenu .row .col-lg-5{
@@ -411,12 +428,27 @@ li a:hover{
                             /******************
                              !!! APPETIZER.JSP !!!
                             ******************/
+
+                            
+.tabContent{
+    display: none;
+}
+                            
 .row .col-lg-5{
     margin-top: 15px;
 }
 
 .row .col-lg-5 .tab-content{
 
+}
+
+.col-lg-5 .tab-content .row{
+
+}
+
+#productStandard{
+    max-width: 603px;
+    max-height: 220px;
 }
 
 .productStandard{

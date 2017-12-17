@@ -1,13 +1,14 @@
 <%-- 
-    Document   : porkCategory
-    Created on : Dec 12, 2017, 11:23:37 PM
+    Document   : booking
+    Created on : Dec 17, 2017, 11:09:34 PM
     Author     : nnta.zip
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Menu</title>
+        <title>Support</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -20,7 +21,14 @@
         <!--
             Header
         -->
-        
+        <div class="stay">
+            <div class="container">
+                <div class="topBar">
+                    <a href="#">Log In</a>
+                    <a href="#">Sign up</a>
+                </div>
+            </div>
+        </div>
         <div class="header">
             <div class="container">
                 <div class="welcomeBar">
@@ -28,96 +36,31 @@
                         <li class=" headBarHome"><a href="homepage.html">Tasty Restaurant</a></li>
                         <li class=" headBarElement"><a href="menu.jsp">
                                 <span class="glyphicon glyphicon-cutlery"></span>Menu</a></li>
+                        <li class=" headBarElement"><a href="booking.jsp">
+                                <span class="glyphicon glyphicon-calendar"></span>Booking</a></li>
                         <li class=" headBarElement"><a href="offers.html">
-                                <span class="glyphicon glyphicon-tags"></span>Offers</a></li>
+                                <span class="glyphicon glyphicon-tags"></span>Offers</a></li> 
                         <li class=" headBarElement"><a href="myAccount.html">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
-                        <li class=" headBarElement"><a href="support.html">
-                                <span class="glyphicon glyphicon-earphone"></span>Support</a></li>
+<!--                        <li class=" headBarElement"><a href="support.html">
+                                <span class="glyphicon glyphicon-earphone"></span>Support</a></li>-->
                     </ul>
                 </div>
             </div>
         </div>
-
+        
         <!--    
             Main
         -->
-
+        
         <div class="main-container">
             <div class="container">
-                <div class="tab-content" id="menu"> 
-
-                    <!--
-                       Sidebar menu
-                    -->
-                    <div class="row">
-                        <div class="column1">
-                            <div class="sideBarMenu">
-                                <p class="footTitle">Menu</p>
-                                <ul class="list-unstyled">
-                                    <li class="borderSideBar"><a href="menu.jsp">Appetizer</a>
-                                    </li>
-                                    <li class="borderSideBar">Main Dishes
-                                        <ul style="circle" id="foodCategories">
-                                            <li><a href="beefCategory.jsp">Beef</a>
-                                            </li>
-                                            <li><a href="chickenCategory.jsp">Chicken</a>
-                                            </li>
-                                            <li><a href="fishCategory.jsp">Fish</a>
-                                            </li>
-                                            <li><a href="porkCategory.jsp">Pork</a>
-                                            </li>
-                                            <li><a href="seaFoodCategory.jsp">Sea food</a>
-                                            </li>
-                                            <li><a href="italianCategory.jsp">Italian dishes</a>
-                                            </li>
-                                            <li><a href="asianCategory.jsp">Asian dishes</a>
-                                            </li>
-                                            <li><a href="hamburgerCategory.jsp">Hamburger</a>
-                                        </ul>
-                                    </li>      
-                                    <li class="borderSideBar"><a href="beverageCategory.jsp">Beverage</a>
-                                    </li>
-                                    <li class="borderSideBar"><a href="dessertCategory.jsp">Dessert</a>
-                                    </li>
-                                </ul>
-                            </div>    
-                        </div>
-                        <!--
-                        End Sidebar menu
-                        -->
-
-                        <!--
-                            Product
-                        -->
-                        <div class="col-lg-5">
-                            <div class="tab-content" id="porkMenu">
-                                <h1>eat pork</h1>
-                            </div>
-                        </div>
-                        <!--
-                            End Product
-                        -->
-
-                        <!--
-                            Vertical Banner
-                        -->
-                        <div class="column3">
-                            <a href="#">
-                                <img class="img-rounded" src="img/exampleBanner-vertical.png" alt=""/>
-                            </a>
-                        </div>
-                        <!--
-                            End Vertical Banner
-                        -->
-                    </div>
-                    <!--
-                       End Sidebar menu
-                    -->
+                <div class="tab-content" id="support">
+                    
                 </div>
             </div>
         </div>
-
+                
         <!--
             Footer
         -->

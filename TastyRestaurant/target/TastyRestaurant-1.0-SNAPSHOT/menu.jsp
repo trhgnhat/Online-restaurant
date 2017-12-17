@@ -26,7 +26,14 @@ and open the template in the editor.
         <!--
             Header
         -->
-        
+        <div class="stay">
+            <div class="container">
+                <div class="topBar">
+                    <a href="#">Log In</a>
+                    <a href="#">Sign up</a>
+                </div>
+            </div>
+        </div>
         <div class="header">
             <div class="container">
                 <div class="welcomeBar">
@@ -34,12 +41,14 @@ and open the template in the editor.
                         <li class=" headBarHome"><a href="homepage.html">Tasty Restaurant</a></li>
                         <li class=" headBarElement"><a href="menu.jsp">
                                 <span class="glyphicon glyphicon-cutlery"></span>Menu</a></li>
+                        <li class=" headBarElement"><a href="booking.jsp">
+                                <span class="glyphicon glyphicon-calendar"></span>Booking</a></li>
                         <li class=" headBarElement"><a href="offers.html">
-                                <span class="glyphicon glyphicon-tags"></span>Offers</a></li>
+                                <span class="glyphicon glyphicon-tags"></span>Offers</a></li> 
                         <li class=" headBarElement"><a href="myAccount.html">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
-                        <li class=" headBarElement"><a href="support.html">
-                                <span class="glyphicon glyphicon-earphone"></span>Support</a></li>
+<!--                        <li class=" headBarElement"><a href="support.html">
+                                <span class="glyphicon glyphicon-earphone"></span>Support</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -65,26 +74,26 @@ and open the template in the editor.
                                     </li>
                                     <li class="borderSideBar">Main Dishes
                                         <ul style="circle" id="foodCategories">
-                                            <li><a href="beefCategory.jsp">Beef</a>
+                                            <li><a onclick="showMenu('beef');" href="#">Beef</a>
                                             </li>
-                                            <li><a href="chickenCategory.jsp">Chicken</a>
+                                            <li><a onclick="showMenu('chicken');" href="#">Chicken</a>
                                             </li>
-                                            <li><a href="fishCategory.jsp">Fish</a>
+                                            <li><a onclick="showMenu('fish');" href="#">Fish</a>
                                             </li>
-                                            <li><a href="porkCategory.jsp">Pork</a>
+                                            <li><a onclick="showMenu('pork');" href="#">Pork</a>
                                             </li>
-                                            <li><a href="seaFoodCategory.jsp">Sea food</a>
+                                            <li><a onclick="showMenu('seafood');" href="#">Sea food</a>
                                             </li>
-                                            <li><a href="italianCategory.jsp">Italian dishes</a>
+                                            <li><a onclick="showMenu('italianDish');" href="#">Italian dishes</a>
                                             </li>
-                                            <li><a href="asianCategory.jsp">Asian dishes</a>
+                                            <li><a onclick="showMenu('asianDish');" href="#">Asian dishes</a>
                                             </li>
-                                            <li><a href="hamburgerCategory.jsp">Hamburger</a>
+                                            <li><a onclick="showMenu('hamburger');" href="#">Hamburger</a>
                                         </ul>
                                     </li>      
-                                    <li class="borderSideBar"><a href="beverageCategory.jsp">Beverage</a>
+                                    <li class="borderSideBar"><a onclick="showMenu('beverage');" href="#">Beverage</a>
                                     </li>
-                                    <li class="borderSideBar"><a href="dessertCategory.jsp">Dessert</a>
+                                    <li class="borderSideBar"><a onclick="showMenu('dessert');" href="#">Dessert</a>
                                     </li>
                                 </ul>
                             </div>    
@@ -97,33 +106,54 @@ and open the template in the editor.
                             Product
                         -->
                         <div class="col-lg-5">
-                            <div class="tab-content" id="appetizer">
-                                <div class="productStandard">
-                                    <div class="panel">
-<!--                                        <img src="img/appetizerExample.jpg" alt=""/>-->
+                            <div class="tab-content">
+
+                                <div id="productStandard">
+                                    <div class="col-lg-4">
+                                        <img src="img/appetizerExample.jpg" alt=""/>
                                     </div>
-                                    <div class="foodOrder">
-<!--                                    <div class="nameOfFood"></div>
-                                    <div class="priceOfFood"></div>
-                                    <form id="addFood">
-                                        <div class="quantityFood"></div>
-                                        <button type="submit" name="addFood" value="ADD"></button>
-                                    </form>-->
-                                    </div>
+                                    <div class="col-lg-7"></div>
                                 </div>
                                 
-                                <div class="productStandard">
-                                    <div class="panel">
-<!--                                        <img src="img/appetizerExample.jpg" alt=""/>-->
-                                    </div>
-                                    <div class="foodOrder">
-<!--                                    <div class="nameOfFood"></div>
-                                    <div class="priceOfFood"></div>
-                                    <form id="addFood">
-                                        <div class="quantityFood"></div>
-                                        <button type="submit" name="addFood" value="ADD"></button>
-                                    </form>-->
-                                    </div>
+                                <div class="tabContent" id="beef">
+                                    <h1>eat beef</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="chicken">
+                                    <h1>eat chicken</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="fish">
+                                    <h1>eat fish</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="pork">
+                                    <h1>eat pork</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="seafood">
+                                    <h1>eat seafood</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="italianDish">
+                                    <h1>eat italian</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="asianDish">
+                                    <h1>eat asian</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="hamburger">
+                                    <h1>eat ham</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="beverage">
+                                    <h1>drink</h1>
+                                
+                                </div>
+                                <div class="tabContent" id="dessert">
+                                    <h1>eat dessert</h1>
+                                
                                 </div>
                             </div>
                         </div>
