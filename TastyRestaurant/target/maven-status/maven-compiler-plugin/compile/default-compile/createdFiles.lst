@@ -4,11 +4,14 @@ DO\FoodDO.class
 DBConnector\BillDS.class
 DO\MemberDO.class
 DO\BillDO.class
+Enscrypt\EncryptDecrypt.class
 DO\TableDO.class
 DO\OrderDO.class
 DBConnector\MySqlConnectionManager.class
 DBConnector\TableDS.class
 DO\BookingDO.class
 DBConnector\MemberDS.class
+test.class
 Controller\Account.class
 DBConnector\OrderDS.class
+Controller\Transaction.class

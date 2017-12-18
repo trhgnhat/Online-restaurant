@@ -112,7 +112,11 @@ and open the template in the editor.
                                     <div class="col-lg-4">
                                         <img src="img/appetizerExample.jpg" alt=""/>
                                     </div>
-                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-7">
+                                        <h2>Food Title</h2>
+                                        <h3>Food price</h3>
+                                        <button>
+                                    </div>
                                 </div>
                                 
                                 <div class="tabContent" id="beef">
