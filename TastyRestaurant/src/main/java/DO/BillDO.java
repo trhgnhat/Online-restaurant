@@ -13,13 +13,17 @@ import java.util.List;
  * @author Admin
  */
 public class BillDO {
+
     private int id;
-    private List<FoodDO> food = new ArrayList<>();
-    private List<Integer> quantity = new ArrayList<>();
-    private List<Float> price = new ArrayList<>();
+    private List<FoodDO> food;
+    private List<Integer> quantity;
+    private List<Float> price;
 
     public BillDO(int id) {
         this.id = id;
+        this.food = new ArrayList<>();
+        this.quantity = new ArrayList<>();
+        this.price = new ArrayList<>();
     }
 
     public int getId() {
@@ -34,7 +38,7 @@ public class BillDO {
         return food;
     }
 
-    public void setFood(ArrayList<FoodDO> food) {
+    public void setFood(List<FoodDO> food) {
         this.food = food;
     }
 
@@ -42,7 +46,7 @@ public class BillDO {
         return quantity;
     }
 
-    public void setQuantity(ArrayList<Integer> quantity) {
+    public void setQuantity(List<Integer> quantity) {
         this.quantity = quantity;
     }
 
@@ -50,7 +54,7 @@ public class BillDO {
         return price;
     }
 
-    public void setPrice(ArrayList<Float> price) {
+    public void setPrice(List<Float> price) {
         this.price = price;
     }
 }

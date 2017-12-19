@@ -23,6 +23,9 @@ public class FoodDO {
         this.category = category;
     }
 
+    public FoodDO() {
+    }
+
     public int getId() {
         return id;
     }

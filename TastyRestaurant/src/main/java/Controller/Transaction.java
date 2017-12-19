@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import DBConnector.BillDS;
+import DBConnector.FoodDS;
+import DO.BillDO;
+import DO.FoodDO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,21 +67,85 @@ public class Transaction extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        if (session.getAttribute("member") == null){
+        if (session.getAttribute("member") == null) {
             // Link to Login page
-        }
-        else{
+            response.sendRedirect("login.jsp");
+        } else {
             String action = request.getParameter("action");
-            
+
             //Booking
-            if(action.equals("booking")){
-                
+            if (action.equals("booking")) {
+
+            } //Order
+            else if (action.equals("order")) {
+                int id = new BillDS().getAllBills().size() + 1;
+                BillDO bill = new BillDO(id);
+                request.getSession().setAttribute("bill", bill);
+            } //Add food into Cart (or Bill)
+            else if (action.equals("addFood")) {
+                BillDO bill = (BillDO) request.getSession().getAttribute("bill");
+                //if The bill is empty
+                if (bill.getFood().isEmpty()) {
+                    //#1
+//                List<FoodDO> foods = (List<FoodDO>) bill.getFood();
+//                List<Integer> quantities = (List<Integer>) bill.getQuantity();
+//                List<Float> prices = (List<Float>) bill.getPrice();
+//                
+//                FoodDO food = new FoodDS().getFood(Integer.parseInt(request.getParameter("foodID")));
+//                int quantity = Integer.parseInt(request.getParameter("quantity"));
+//                float price = Float.parseFloat(request.getParameter("quantity"));
+//                
+//                foods.add(food);
+//                quantities.add(quantity);
+//                prices.add(price);
+//                
+//                bill.setFood(foods);
+//                bill.setQuantity(quantities);
+//                bill.setPrice(prices);
+                    //Similar to this
+                    //#2
+                    bill.getFood().add(new FoodDS().getFood(Integer.parseInt(request.getParameter("foodID"))));
+                    bill.getQuantity().add(Integer.parseInt(request.getParameter("quantity")));
+                    bill.getPrice().add(Float.parseFloat(request.getParameter("price")) * Integer.parseInt(request.getParameter("quantity")));
+
+                }//Check duplication
+                else {
+                    boolean isExisted = false;
+                    for (int i = 0; i < bill.getFood().size(); i++) {
+                        //If the food already exist in the bill
+                        if (bill.getFood().get(i).equals(new FoodDS().getFood(Integer.parseInt(request.getParameter("foodID"))))) {
+                            isExisted = true;
+                            bill.getFood().add(bill.getFood().get(i));
+                            bill.getQuantity().add(bill.getQuantity().get(i) + Integer.parseInt(request.getParameter("quantity")));
+                            bill.getPrice().add(Float.parseFloat(request.getParameter("price")) * Integer.parseInt(request.getParameter("quantity")));
+                            bill.getFood().remove(i);
+                            bill.getQuantity().remove(i);
+                            bill.getPrice().remove(i);
+                            break;
+                        }
+                    }
+                    if (!isExisted) {
+                        bill.getFood().add(new FoodDS().getFood(Integer.parseInt(request.getParameter("foodID"))));
+                        bill.getQuantity().add(Integer.parseInt(request.getParameter("quantity")));
+                        bill.getPrice().add(Float.parseFloat(request.getParameter("price")) * Integer.parseInt(request.getParameter("quantity")));
+                    }
+                }
+                request.getSession().setAttribute("bill", bill);
             }
-            else if(action.equals("order")){
+            else if(action.equals("deleteFood")){
+                BillDO bill = (BillDO) request.getSession().getAttribute("bill");
+                FoodDO food = new FoodDS().getFood(Integer.parseInt(request.getParameter("FoodID")));
+                for (int i = 0; i < bill.getFood().size(); i++){
+                    if(bill.getFood().get(i).equals(food)){
+                        bill.getFood().remove(i);
+                        bill.getQuantity().remove(i);
+                        bill.getPrice().remove(i);
+                        break;
+                    }
+                }
                 
             }
         }
-
     }
 
     /**
