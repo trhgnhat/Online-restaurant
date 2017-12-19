@@ -26,7 +26,7 @@ public class TableDS {
     }
 
     public void createTable(TableDO table) {
-        String sqlStatement = "INSERT INTO table VALUES(" + Integer.toString(table.getId()) + ","
+        String sqlStatement = "INSERT INTO tables VALUES(" + Integer.toString(table.getId()) + ","
                 + Integer.toString(table.getSeat()) + ","
                 + Integer.toString(table.getStatus()) + " )";
         sqlConnectionManager.openConnection();
@@ -37,7 +37,7 @@ public class TableDS {
     public List getAllTables() {
         List<TableDO> tables = new ArrayList<>();
 
-        String sqlStatement = "SELECT * FROM table";
+        String sqlStatement = "SELECT * FROM tables";
 
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
@@ -55,7 +55,7 @@ public class TableDS {
 
     public TableDO getTable(int id) {
         TableDO table = null;
-        String sqlStatement = "SELECT * FROM table WHERE id=" + Integer.toString(id);
+        String sqlStatement = "SELECT * FROM tables WHERE id=" + Integer.toString(id);
 
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
@@ -75,7 +75,7 @@ public class TableDS {
 
     public void updateTable(TableDO table) {
 
-        String sqlStatement = "UPDATE table "
+        String sqlStatement = "UPDATE tables "
                 + "SET "
                 + "seat='" + table.getSeat() + "', "
                 + "status=" + Float.toString(table.getStatus())

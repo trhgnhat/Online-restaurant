@@ -4,6 +4,10 @@
     Author     : Admin
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="DBConnector.OrderDS"%>
+<%@page import="DO.OrderDO"%>
+<%@page import="java.util.List"%>
 <%@page import="DO.MemberDO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +25,7 @@
     <body>
         <%
             MemberDO member = (MemberDO) request.getSession().getAttribute("member");
-            if (member == null) { 
+            if (member == null) {
                 out.println("it is null"); // When user has not login yet
                 // Should create a login.jsp and when this case happend, link to login.jsp
             } else {
@@ -34,6 +38,7 @@
                 out.println(member.getPoint());
                 out.println(member.getCreditCard());
             }
+            List<OrderDO> orders = new OrderDS().getOrdersByMemberID(member.getId());
         %>
         <div class="stay">
             <div class="container">
@@ -43,7 +48,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!--
             Header
         -->
@@ -88,7 +93,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a onclick="showMenu('viewMyOrder');"href="#">Recent Orders</a>
+                                        <a onclick="showMenu('viewMyHistory');"href="#">History</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -108,29 +113,43 @@
                                 <table class="table">
                                     <tr>
                                         <th>Full name</th>
-                                        <td>Anh Nguyen</td>
+                                        <td><%out.println(member.getUsername());%></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <th>Username</th>
-                                        <td>trhgnhat</td>
+                                        <td><%out.println(member.getName());%></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <th>Email</th>
-                                        <td>nnta.zip@blabla.boziphihi</td>
+                                        <td><%out.println(member.getEmail());%></td>
+                                        <td><button type="" name="changeEmail">Change Email</button></td>
                                     </tr>
                                     <tr>
                                         <th>Password</th>
-                                        <td>
-                                            <button type="" name="changePassword">Change Password</button>
-                                        </td>
+                                        <td><%out.println(member.getPassword());%></td>
+                                        <td><button type="" name="changePassword">Change Password</button></td>
                                     </tr>
                                     <tr>
                                         <th>Address</th>
-                                        <td>Bo's heart</td>
+                                        <td><%out.println(member.getAddress());%></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <th>Phone number</th>
-                                        <td>+841216796234</td>
+                                        <td><%out.println(member.getPhone());%></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Points</th>
+                                        <td><%out.println(member.getPoint());%></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Credit Card</th>
+                                        <td><%out.println(member.getCreditCard());%></td>
+                                        <td></td>
                                     </tr>
                                 </table>
                             </div>
@@ -146,21 +165,21 @@
                                 <table id="editDetails">
                                     <tr>
                                         <td>
-                                            <input class="form-control" type="text" name="" value="old_fullname" placeholder="Full Name" required />
+                                            <input class="form-control" type="text" name="" value="<%out.println(member.getName());%>" placeholder="Full Name" required />
                                         </td>
                                         <td>
-                                            <input class="form-control" type="text" name="" value="old_username" disabled />
+                                            <input class="form-control" type="text" name="" value="<%out.println(member.getAddress());%>" placeholder="Address" disabled />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
 
-                                            <input class="form-control" type="text" name="" value="old_phoneNumber" placeholder="Phone Number" required />
+                                            <input class="form-control" type="text" name="" value="<%out.println(member.getPhone());%>" placeholder="Phone Number" required />
 
                                         </td>
                                         <td>
 
-                                            <input class="form-control" type="text" name="" value="old_email" disabled />
+                                            <input class="form-control" type="text" name="" value="<%out.println(member.getCreditCard());%>" placeholder="Credit Card" disabled />
 
                                         </td>
                                     </tr>
@@ -195,10 +214,28 @@
                         View My order tab
                         *******************
                         --> 
-                        <div class="tabContent" id="viewMyOrder">
-                            <h1>My Order</h1>
+                        <div class="tabContent" id="viewMyHistory">
+                            <div class="col-lg-9">
+                                <table class="table">
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Bill ID</th>
+                                        <th>Table ID</th>
+                                        <th>Date</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                    <%
+                                        for (OrderDO order : orders) {
+                                            out.print("<tr><td>" + order.getId() + "</td>");
+                                            out.print("<td>" + order.getBill().getId() + "</td>");
+                                            out.print("<td>" + order.getTable().getId() + "</td>");
+                                            out.print("<td>" + order.getDate_time() + "</td>");
+                                            out.print("<td>" + order.getTotal_price() + "$</td></tr>");
+                                        }
+                                    %>
+                                </table>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
