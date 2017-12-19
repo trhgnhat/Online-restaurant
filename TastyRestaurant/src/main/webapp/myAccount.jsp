@@ -35,6 +35,15 @@
                 out.println(member.getCreditCard());
             }
         %>
+        <div class="stay">
+            <div class="container">
+                <div class="topBar">
+                    <a href="#">Log In</a>
+                    <a href="#">Sign up</a>
+                </div>
+            </div>
+        </div>
+        
         <!--
             Header
         -->
@@ -64,7 +73,133 @@
         <div class="main-container">
             <div class="container">
                 <div class="tab-content" id="myAccount">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a onclick="showMenu('viewMyAccount');" href="#">My Account</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a onclick="showMenu('changeDetails');" href="#">Edit My Details</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a onclick="showMenu('viewMyOrder');"href="#">Recent Orders</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">Log out</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>                        
+                        <!--
+                        *******************
+                        View My Account tab
+                        *******************
+                        -->                       
+                        <div class="tabContent" id="viewMyAccount">
+                            <div class="col-lg-9">
+                                <table class="table">
+                                    <tr>
+                                        <th>Full name</th>
+                                        <td>Anh Nguyen</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Username</th>
+                                        <td>trhgnhat</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>nnta.zip@blabla.boziphihi</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Password</th>
+                                        <td>
+                                            <button type="" name="changePassword">Change Password</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address</th>
+                                        <td>Bo's heart</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone number</th>
+                                        <td>+841216796234</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!--
+                        *******************
+                        Edit My Details tab
+                        *******************
+                        --> 
+                        <div class="tabContent" id="changeDetails">
+                            <h3>Edit details</h3>
+                            <form>
+                                <table id="editDetails">
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" type="text" name="" value="old_fullname" placeholder="Full Name" required />
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" name="" value="old_username" disabled />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
 
+                                            <input class="form-control" type="text" name="" value="old_phoneNumber" placeholder="Phone Number" required />
+
+                                        </td>
+                                        <td>
+
+                                            <input class="form-control" type="text" name="" value="old_email" disabled />
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h4>Change Password</h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input class="form-control" type="password" name="" placeholder="Confirm your present password" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" type="password" name="" placeholder="New password" />
+                                        </td>
+                                        <td>
+                                            <input class="form-control" tyer="password" name="" placeholder="Confirm new password" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-default" type="submit" name="">Save My Details</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <!--
+                        *******************
+                        View My order tab
+                        *******************
+                        --> 
+                        <div class="tabContent" id="viewMyOrder">
+                            <h1>My Order</h1>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         </div>

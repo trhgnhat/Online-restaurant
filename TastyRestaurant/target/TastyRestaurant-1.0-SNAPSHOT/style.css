@@ -542,3 +542,12 @@ li a:hover{
     font-size: 14px;
     display: inline;
 }
+
+
+                        /*****************
+                          MY ACCOUNT . JSP
+                         *****************/
+#editDetails{
+    width: 73.5%;
+    border: 10px;
+}
