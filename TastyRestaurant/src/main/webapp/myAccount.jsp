@@ -24,21 +24,16 @@
     </head>
     <body>
         <%
-            MemberDO member = (MemberDO) request.getSession().getAttribute("member");
-            if (member == null) {
-                out.println("it is null"); // When user has not login yet
-                // Should create a login.jsp and when this case happend, link to login.jsp
+            if (request.getSession().getAttribute("member") == null) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Please Login first');");
+                out.println("location='homepage.html';");
+                out.println("</script>");
+//                response.sendRedirect("homepage.html");
             } else {
-                out.println(member.getId());
-                out.println(member.getUsername());
-                out.println(member.getPassword());
-                out.println(member.getAddress());
-                out.println(member.getPhone());
-                out.println(member.getEmail());
-                out.println(member.getPoint());
-                out.println(member.getCreditCard());
-            }
-            List<OrderDO> orders = new OrderDS().getOrdersByMemberID(member.getId());
+                MemberDO member = (MemberDO) request.getSession().getAttribute("member");
+                List<OrderDO> orders = new OrderDS().getOrdersByMemberID(member.getId());
+
         %>
         <div class="stay">
             <div class="container">
@@ -322,6 +317,6 @@
         </div>
         <!--
             End Footer
-        -->
+        --><%}%>
     </body>
 </html>

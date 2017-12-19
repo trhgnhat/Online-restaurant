@@ -25,6 +25,9 @@ public class MemberDO {
     private int point;
     private String credit_card;
 
+    public MemberDO() {
+    }
+
     public MemberDO(int id, String username, String password, String name, String address, String phone, String email, int point, String credit_card) {
         this.id = id;
         this.username = username;
