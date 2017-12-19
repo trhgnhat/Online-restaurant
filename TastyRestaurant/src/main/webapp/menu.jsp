@@ -45,7 +45,7 @@ and open the template in the editor.
                                 <span class="glyphicon glyphicon-calendar"></span>Booking</a></li>
                         <li class=" headBarElement"><a href="offers.html">
                                 <span class="glyphicon glyphicon-tags"></span>Offers</a></li> 
-                        <li class=" headBarElement"><a href="myAccount.html">
+                        <li class=" headBarElement"><a href="myAccount.jsp">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
 <!--                        <li class=" headBarElement"><a href="support.html">
                                 <span class="glyphicon glyphicon-earphone"></span>Support</a></li>-->
