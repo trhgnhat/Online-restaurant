@@ -127,18 +127,34 @@ and open the template in the editor.
                         <!--
                             Product
                         -->
-                        <div class="col-lg-5">
+                        <div class="column2">
                             <div class="tab-content">
                                 <div class="tabContent" id="beef">
-                                    <%                                        List<FoodDO> foods = new FoodDS().getFoodsByCategory("beef");
-                                        for (FoodDO food : foods) {
-                                            out.println("<div id=\"productStandard\">");
-                                            out.println("<div class=\"col-lg-4\">");
+                                    <%   
+                                        List<FoodDO> foods = new FoodDS().getFoodsByCategory("beef");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
                                             out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
                                             out.println("</div>");
-                                            out.println("<div class=\"col-lg-7\">");
-                                            out.println("<h2>" + food.getName() + "</h2>");
-                                            out.println("<h3>" + food.getPrice() + "</h3>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
@@ -147,50 +163,295 @@ and open the template in the editor.
                                 <div class="tabContent" id="chicken">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("chicken");
-                                        for (FoodDO food : foods) {
-                                            out.println("<div id=\"productStandard\">");
-                                            out.println("<div class=\"col-lg-4\">");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
                                             out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
                                             out.println("</div>");
-                                            out.println("<div class=\"col-lg-7\">");
-                                            out.println("<h2>" + food.getName() + "</h2>");
-                                            out.println("<h3>" + food.getPrice() + "</h3>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                    %>
+                                        %>
+//                                    <%
+//                                        foods = new FoodDS().getFoodsByCategory("chicken");
+//                                        for (FoodDO food : foods) {
+//                                            out.println("<div id=\"productStandard\">");
+//                                            out.println("<div class=\"col-lg-4\">");
+//                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+//                                            out.println("</div>");
+//                                            out.println("<div class=\"col-lg-7\">");
+//                                            out.println("<h2>" + food.getName() + "</h2>");
+//                                            out.println("<h3>" + food.getPrice() + "</h3>");
+//                                            out.println("</div>");
+//                                            out.println("</div>");
+//                                        }
+//                                    %>
                                 </div>
                                 <div class="tabContent" id="fish">
-                                    <h1>eat fish</h1>
-
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("fish");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                        %>
                                 </div>
                                 <div class="tabContent" id="pork">
-                                    <h1>eat pork</h1>
-
+                                   <%
+                                        foods = new FoodDS().getFoodsByCategory("pork");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                        %>
                                 </div>
                                 <div class="tabContent" id="seafood">
-                                    <h1>eat seafood</h1>
-
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("seafood");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                        %>
                                 </div>
                                 <div class="tabContent" id="italianDish">
-                                    <h1>eat italian</h1>
-
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("italian");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                        %>
                                 </div>
                                 <div class="tabContent" id="asianDish">
-                                    <h1>eat asian</h1>
-
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("asian");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                        %>
                                 </div>
                                 <div class="tabContent" id="hamburger">
-                                    <h1>eat ham</h1>
-
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("hamburger");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                        %>
                                 </div>
                                 <div class="tabContent" id="beverage">
-                                    <h1>drink</h1>
-
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("beverage");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                        %>
                                 </div>
                                 <div class="tabContent" id="dessert">
-                                    <h1>eat dessert</h1>
-
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("dessert");
+                                        for(FoodDO food : foods){
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                        %>
                                 </div>
                             </div>
                         </div>
@@ -204,17 +465,17 @@ and open the template in the editor.
                         <%
                             if (request.getSession().getAttribute("member") == null) {
                         %>
-                                <div class="column3">
-                                    <a href="#">
-                                        <img class="img-rounded" src="img/exampleBanner-vertical.png" alt=""/>
-                                    </a>
-                                </div>
+                        <div class="column3">
+                            <a href="#">
+                                <img class="img-rounded" src="img/exampleBanner-vertical.png" alt=""/>
+                            </a>
+                        </div>
                         <%
-                            } else {
+                        } else {
                         %>
-                                <div class="column3">
-                                    Login in
-                                </div>
+                        <div class="column3">
+                            Login in
+                        </div>
                         <%
                             }
                         %>

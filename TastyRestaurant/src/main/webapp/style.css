@@ -414,7 +414,7 @@ li a:hover{
     margin-bottom: 20px;
 }
 
-#menu .row .col-lg-5{
+/*#menu .row .col-lg-5{
     margin-left: 220px;
     position: absolute;
     top: 78px;
@@ -424,7 +424,91 @@ li a:hover{
     background-color: pink;
 }
 
+.tabContent .col-lg-5{
+    width: 100%;
+    max-height: 220px;
+    margin: 0;
+}*/
 
+#menu .row .column2{
+    margin-left: 220px;
+    position: absolute;
+    top: 78px;
+    margin-top: 17px;
+    width: 40%;
+}
+
+#beefMenu .row .column2{
+    background-color: pink;
+}
+
+.tabContent .column2{
+    width: auto;
+    max-height: 220px;
+    margin: 0;
+}
+
+/*#productStandard{
+    margin-left: 0;
+}*/
+
+#productStandard .panel{
+    max-height: 250px;
+    background: -moz-linear-gradient(top, #ffe066, #e6b800); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffe066), to(#e6b800)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffe066, #e6b800); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffe066, #e6b800); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffe066, #e6b800); /* IE10+ */
+    background: linear-gradient(to bottom, #ffe066, #e6b800); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#ffe066, endColorstr=#e6b800); /* IE6-9 */
+
+}
+
+#productStandard .panel .panel-body{
+    max-height: 250px;
+}
+
+.col-xs-3 .foodPicture{
+    padding: auto;
+}
+
+.tabContent .col-lg-5{
+    width: 100%;
+    height: auto;
+}
+
+.foodPic{
+    max-height: 200px;
+    max-width: 280px;
+}
+
+.foodName p{
+    max-width: 280px;
+    font-size: 34px;
+    font-weight: bold;
+    color: #9f0202;
+    font-family: "Flama Condensed Medium", sans-serif;
+    text-shadow: 0 0 1px #e40a0a;
+}
+
+.foodPrice p{
+    max-width: 280px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #a25716;
+    font-family: "Flama Condensed Medium", sans-serif;
+}
+
+.addFood{
+    max-width: 250px;
+    border-radius: 3px;
+    border: 1px solid #e40a0a;
+    color: #a25716;
+    background-color: #ffd666;
+    align-content: center;
+    font-size: 22px;
+    font-family: "Flama Condensed Medium", sans-serif;
+}
                             /******************
                              !!! APPETIZER.JSP !!!
                             ******************/
@@ -434,9 +518,9 @@ li a:hover{
     display: none;
 }
                             
-.row .col-lg-5{
+/*.row .col-lg-5{
     margin-top: 15px;
-}
+}*/
 
 .row .col-lg-5 .tab-content{
 
@@ -446,7 +530,7 @@ li a:hover{
 
 }
 
-#productStandard{
+/*#productStandard{
     max-width: 603px;
     max-height: 220px;
 }
@@ -473,7 +557,7 @@ li a:hover{
     min-height: 200px;
     position: relative;
     top: -200px;
-}
+}*/
 
 .panel .nameOfFood{
     
