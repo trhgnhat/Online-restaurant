@@ -29,3 +29,22 @@ function showMenu(target)  {
     targets.style.display = isVisible ? "none" : "block";
     return false;
 }
+
+function previewImg(){
+    var preview = document.querySelector('img');//Select the query named img
+    var file = document.querySelector('input[type=file]').file[0];
+    var reader = new FileReader();
+    
+    reader.onloadend = function(){
+        preview.src = reader.result;
+    }
+    
+    if (file){
+        reader.readAsDataURL(file);
+    } else{
+        preview.src = "";
+    }
+    
+}
+
+previewFile();
