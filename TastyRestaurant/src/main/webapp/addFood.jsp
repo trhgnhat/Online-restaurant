@@ -47,29 +47,35 @@
         </div>
         
         <div class="col-lg-10">
-            <div class="menuBtn">
-                <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
-                <button class="btn btn-edit"><span class="glyphicon glyphicon-floppy-save"></span>Save & Close</button>
-            </div>
-            <div class="editPane">
-                <form>
+            <form method="post" action="Menu?action=addFood">
+                <div class="menuBtn">
+                    <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
+                    <button class="btn btn-edit"><span class="glyphicon glyphicon-floppy-save"></span>Save & Close</button>
+                </div>
+                <div class="editPane">
                     <table class="form-table">
+                        <tr>
+                            <td>Food ID</td>
+                            <td>
+                                <input class="form-control" type="text" name="addFoodId" required />
+                            </td>
+                        </tr>
                         <tr>
                             <td>Food name</td>
                             <td>
-                                <input class="form-control" type="text" name="" required />
+                                <input class="form-control" type="text" name="addFoodName" required />
                             </td>
                         </tr>
                         <tr>
                             <td>Price</td>
                             <td>
-                                <input class="form-control" type="text" name="" required />
+                                <input class="form-control" type="text" name="addFoodPrice" required />
                             </td>
                         </tr>
                         <tr>
                             <td>Category</td>
                             <td>
-                                <input class="form-control" type="text" name="" required />
+                                <input class="form-control" type="text" name="addFoodCategory" required />
                             </td>
                         </tr>
                         <tr>
@@ -77,12 +83,12 @@
                             <td>
                                 <div class="foodImg">
                                     <div class="foodPreview">
-<!--                                        ************************
-                                        PLACE FOOD IMAGE HERE!!!
-                                        ************************-->
+                                        <!--                                        ************************
+                                                                                PLACE FOOD IMAGE HERE!!!
+                                                                                ************************-->
                                         <img src="" alt="Food Image preview ..."/>
                                     </div>
-                                    
+
                                     <div class="btn-inline">
                                         <input class="browseBtn" type="file" value="Browse" onchange="previewImg();" />
                                         <button class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span>Remove</button>
@@ -91,7 +97,7 @@
                             </td>
                         </tr>
                     </table>
-                </form>
+            </form>
             </div>
         </div>
     </body>

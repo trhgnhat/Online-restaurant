@@ -4,6 +4,9 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="DBConnector.FoodDS"%>
+<%@page import="DO.FoodDO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -72,24 +75,27 @@
                     ******SHOW MENU LIST******
                     GENERATE THIS <TR> ELEMENT
                     **************************-->
-                    
-                    <tr>
-                        <th>
-                            <input type="checkbox" name="" />
-                        </th>
-                        <td>
-                            <a href="editKitchen.jsp">
-                                <button class="btn btn-edit">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </a>
-                        </td>
-                        <td>Buffalo Wings</td>
-                        <td>$6.00</td>
-                        <td>Chicken</td>
-                        <td>Chic01</td>
-                    </tr>
-                    
+                    <%
+                        List<FoodDO> foods = new FoodDS().getAllFoods();
+                        for (FoodDO food : foods){
+                           out.println("<tr>");
+                           out.println("<td>");
+                           out.println("<input type=\"checkbox\" name=\"\" />");
+                           out.println("</td>");
+                           out.println("<td>");
+                           out.println("<a href=\"editKitchen.jsp\">");
+                           out.println("<button class=\"btn btn-edit\">");
+                           out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
+                           out.println("</button>");
+                           out.println("</a>");
+                           out.println("</td>");
+                           out.println("<td>" + food.getName() + "</td>");
+                           out.println("<td>" + food.getPrice() + "</td>");
+                           out.println("<td>" + food.getCategory() + "</td>");
+                           out.println("<td>" + food.getId() + "</td>");
+                           out.println("</tr>");               
+                        }
+                    %>
                 </table>
             </div>
         </div>
