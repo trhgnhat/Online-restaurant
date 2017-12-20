@@ -24,11 +24,11 @@
                
             </div>
             <ul>
-                <li><a href="#"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-cutlery"></span>Kitchen</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-stats"></span>Sales</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span>Restaurant</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Users</a></li>
+                <li><a href="manager.jsp"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
+                <li><a href="kitchenManager.jsp"><span class="glyphicon glyphicon-cutlery"></span>Kitchen</a></li>
+                <li><a href="saleManager.jsp"><span class="glyphicon glyphicon-stats"></span>Sales</a></li>
+                <li><a href="restaurantManager.jsp"><span class="glyphicon glyphicon-map-marker"></span>Restaurant</a></li>
+                <li><a href="userManager.jsp"><span class="glyphicon glyphicon-user"></span>Users</a></li>
             </ul>
         </div>
         <div class="col-lg-10">
@@ -44,6 +44,18 @@
                     </ul>
                 </div>
             </nav>
+        </div>
+        
+        <div class="col-lg-10">
+<!--            <div class="active" id="dashboard">dashboard</div>
+            <div class="tabContent" id="kitchen">kitchen
+            
+            
+            
+            </div>
+            <div class="tabContent" id="sales">sales</div>
+            <div class="tabContent" id="restaurantLocation">restaurant</div>
+            <div class="tabContent" id="userManagement">user</div>-->
         </div>
     </body>
 </html>

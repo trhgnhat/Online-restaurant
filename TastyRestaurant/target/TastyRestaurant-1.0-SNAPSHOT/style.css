@@ -599,3 +599,41 @@ li a:hover{
 #sideBar{
     padding: 0px;
 }
+
+
+                        /*****************
+                          kitchen . JSP
+                         *****************/
+
+.menuBtn{
+    display: inline;
+}
+
+.btn-edit{
+    background-color: #FFFFFF;
+    border: 1px solid #66ccff;
+}
+
+.btn-edit:hover{
+    background-color: #337ab7;
+    color: #FFFFFF;
+}
+
+.menuList .table{
+    margin-top: 20px;
+}
+
+.btn-inline{
+    display: inline;
+}
+
+.form-table td{
+    width: 50%;
+}
+
+.browseBtn{
+/*    color:#FFFFFF;
+    background-color: #337ab7;*/
+    padding: auto;
+    margin: auto;
+}
