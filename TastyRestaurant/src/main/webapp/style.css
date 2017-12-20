@@ -637,3 +637,104 @@ li a:hover{
     padding: auto;
     margin: auto;
 }
+
+                        /*****************
+                          manager . JSP
+                         *****************/
+
+#dashboardItem {
+/*    color: #D9534F;*/
+}
+
+.row .glyphicon-stats{
+    font-size: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    color: #FFFFFF;
+}
+
+.stat-icon-red{
+    background-color: #d9534f;
+    width: 80px;
+    height: 60px;
+    padding: auto;
+}
+
+.dashboardItemRed{
+    display: block;
+    font-size: 21px;
+    color: #d9534f;
+}
+
+#rowDash{
+    margin: 0;
+    padding: 0;
+}
+
+.row .glyphicon-user{
+    font-size: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    color: #FFFFFF;
+}
+
+.stat-icon-blue{
+    background-color: #66ccff;
+    width: 80px;
+    height: 60px;
+    padding: auto;
+}
+
+.dashboardItemBlue{
+    display: block;
+    font-size: 21px;
+    color: #66ccff;
+}
+
+.row .glyphicon-shopping-cart{
+    font-size: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    color: #FFFFFF;
+}
+
+.stat-icon-green{
+    background-color: #5CB85C;
+    width: 80px;
+    height: 60px;
+    padding: auto;
+}
+
+.dashboardItemGreen{
+    display: block;
+    font-size: 21px;
+    color: #5CB85C;
+}
+
+.row .glyphicon-calendar{
+    font-size: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    color: #FFFFFF;
+}
+
+.stat-icon-indigo{
+    background-color: #337ab7;
+    width: 80px;
+    height: 60px;
+    padding: auto;
+}
+
+.dashboardItemIndigo{
+    display: block;
+    font-size: 21px;
+    color: #337ab7;
+}
+
+#dashboardDescript{
+    font-size: 16px;
+}

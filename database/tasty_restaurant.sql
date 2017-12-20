@@ -18,7 +18,7 @@
 --
 -- Table structure for table `bill`
 --
-
+USE restaurant_website
 DROP TABLE IF EXISTS `bill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

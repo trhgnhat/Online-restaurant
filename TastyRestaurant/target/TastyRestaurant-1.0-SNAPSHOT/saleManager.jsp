@@ -47,15 +47,52 @@
         </div>
         
         <div class="col-lg-10">
-<!--            <div class="active" id="dashboard">dashboard</div>
-            <div class="tabContent" id="kitchen">kitchen
-            
-            
-            
+            <div>
+                <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Delete</button>
             </div>
-            <div class="tabContent" id="sales">sales</div>
-            <div class="tabContent" id="restaurantLocation">restaurant</div>
-            <div class="tabContent" id="userManagement">user</div>-->
+            <div class="orderList">
+                <table class="table">
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="" />
+                        </th>
+                        <th></th>
+                        <th>Order ID</th>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Table</th>
+                        <th>Total</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                    </tr>
+                    
+<!--                    **************************
+                    ******SHOW MENU LIST******
+                    GENERATE THIS <TR> ELEMENT
+                    **************************-->
+                    
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="" />
+                        </th>
+                        <td>
+                            <a href="editKitchen.jsp">
+                                <button class="btn btn-edit">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </a>
+                        </td>
+                        <td>OrderID here</td>
+                        <td>trhgnhat</td>
+                        <td>Served</td>
+                        <td>no.3</td>
+                        <td>7.25</td>
+                        <td>17:00</td>
+                        <td>12/18/2017</td>
+                    </tr>
+                    
+                </table>
+            </div>
         </div>
     </body>
 </html>
