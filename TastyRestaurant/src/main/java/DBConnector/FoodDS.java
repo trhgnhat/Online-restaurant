@@ -75,6 +75,24 @@ public class FoodDS {
         sqlConnectionManager.closeConnection();
         return food;
     }
+    public List getFoodsByCategory(String category) {
+        List<FoodDO> foods = new ArrayList<>();
+
+        String sqlStatement = "SELECT * FROM food WHERE category='" + category +"'";
+
+        sqlConnectionManager.openConnection();
+        ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
+        try {
+            while (rs.next()) {
+                int db_id = rs.getInt("id");
+                foods.add(getFood(db_id));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FoodDO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sqlConnectionManager.closeConnection();
+        return foods;
+    }
 
     public void updateFood(FoodDO food) {
 
