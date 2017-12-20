@@ -4,6 +4,9 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="DBConnector.FoodDS"%>
+<%@page import="DO.FoodDO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -21,8 +24,27 @@ and open the template in the editor.
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
+        <script>
+            function showFood(category) {
+                var tabContents = document.getElementsByClassName("tabContent");
+                var category = document.getElementById(category);
+                var isVisible = category.style.display == "block";
+
+                //hide all
+                for (var i = 0; i < tabContents.length; i++) {
+                    tabContents[i].style.display = "none";
+                }
+
+                //toggle current
+                category.style.display = isVisible ? "none" : "block";
+                return false;
+            }
+        </script>
     </head>
     <body>
+        <%
+
+        %>
         <!--
             Header
         -->
@@ -47,8 +69,8 @@ and open the template in the editor.
                                 <span class="glyphicon glyphicon-tags"></span>Offers</a></li> 
                         <li class=" headBarElement"><a href="myAccount.jsp">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
-<!--                        <li class=" headBarElement"><a href="support.html">
-                                <span class="glyphicon glyphicon-earphone"></span>Support</a></li>-->
+                        <!--                        <li class=" headBarElement"><a href="support.html">
+                                                        <span class="glyphicon glyphicon-earphone"></span>Support</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -107,57 +129,68 @@ and open the template in the editor.
                         -->
                         <div class="col-lg-5">
                             <div class="tab-content">
-
-                                <div id="productStandard">
-                                    <div class="col-lg-4">
-                                        <img src="img/appetizerExample.jpg" alt=""/>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <h2>Food Title</h2>
-                                        <h3>Food price</h3>
-                                        <button>
-                                    </div>
-                                </div>
-                                
                                 <div class="tabContent" id="beef">
-                                    <h1>eat beef</h1>
-                                
+                                    <%                                        List<FoodDO> foods = new FoodDS().getFoodsByCategory("beef");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div id=\"productStandard\">");
+                                            out.println("<div class=\"col-lg-4\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-lg-7\">");
+                                            out.println("<h2>" + food.getName() + "</h2>");
+                                            out.println("<h3>" + food.getPrice() + "</h3>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
                                 </div>
                                 <div class="tabContent" id="chicken">
-                                    <h1>eat chicken</h1>
-                                
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("chicken");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div id=\"productStandard\">");
+                                            out.println("<div class=\"col-lg-4\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-lg-7\">");
+                                            out.println("<h2>" + food.getName() + "</h2>");
+                                            out.println("<h3>" + food.getPrice() + "</h3>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
                                 </div>
                                 <div class="tabContent" id="fish">
                                     <h1>eat fish</h1>
-                                
+
                                 </div>
                                 <div class="tabContent" id="pork">
                                     <h1>eat pork</h1>
-                                
+
                                 </div>
                                 <div class="tabContent" id="seafood">
                                     <h1>eat seafood</h1>
-                                
+
                                 </div>
                                 <div class="tabContent" id="italianDish">
                                     <h1>eat italian</h1>
-                                
+
                                 </div>
                                 <div class="tabContent" id="asianDish">
                                     <h1>eat asian</h1>
-                                
+
                                 </div>
                                 <div class="tabContent" id="hamburger">
                                     <h1>eat ham</h1>
-                                
+
                                 </div>
                                 <div class="tabContent" id="beverage">
                                     <h1>drink</h1>
-                                
+
                                 </div>
                                 <div class="tabContent" id="dessert">
                                     <h1>eat dessert</h1>
-                                
+
                                 </div>
                             </div>
                         </div>
@@ -168,11 +201,24 @@ and open the template in the editor.
                         <!--
                             Vertical Banner
                         -->
-                        <div class="column3">
-                            <a href="#">
-                                <img class="img-rounded" src="img/exampleBanner-vertical.png" alt=""/>
-                            </a>
-                        </div>
+                        <%
+                            if (request.getSession().getAttribute("member") == null) {
+                        %>
+                                <div class="column3">
+                                    <a href="#">
+                                        <img class="img-rounded" src="img/exampleBanner-vertical.png" alt=""/>
+                                    </a>
+                                </div>
+                        <%
+                            } else {
+                        %>
+                                <div class="column3">
+                                    Login in
+                                </div>
+                        <%
+                            }
+                        %>
+
                         <!--
                             End Vertical Banner
                         -->
@@ -180,11 +226,11 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-                
+
         <!--
             Footer
         -->
-        
+
         <div class="footer">
             <div class="jumbotron">
                 <div class="container">
@@ -219,7 +265,7 @@ and open the template in the editor.
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <div class="col-sm-4">
                             <p class="footTitle">Support</p>
                             <ul class="list-unstyled">
@@ -233,21 +279,21 @@ and open the template in the editor.
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <div class="col-sm-4">
                             <p class="footTitle">Follow us</p>
                             <div class="col-sm-1">
                                 <img src="img/footer-icon.png" alt=""/>
                             </div>
                             <div class="col-sm-3">
-                            <ul class="list-unstyled" id="followUs">
-                                <li><a href="#">Facebook</a>
-                                </li> 
-                                <li><a href="#">Youtube</a>
-                                </li>
-                                <li><a href="#">Instagram</a>
-                                </li>
-                            </ul>
+                                <ul class="list-unstyled" id="followUs">
+                                    <li><a href="#">Facebook</a>
+                                    </li> 
+                                    <li><a href="#">Youtube</a>
+                                    </li>
+                                    <li><a href="#">Instagram</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
