@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<BackupProfile Ver="1.0">
-  <General ConnectionName="MySQL" DatabaseName="restaurant_website" SchemaName="" Compressed="True" LockAllTables="False" UseSpecifyFileName="False" FileName="" Comments="Tasty Restaurant"/>
-</BackupProfile>
