@@ -34,6 +34,16 @@ CREATE TABLE `bill` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `bill`
+--
+
+LOCK TABLES `bill` WRITE;
+/*!40000 ALTER TABLE `bill` DISABLE KEYS */;
+INSERT INTO `bill` VALUES (1,1,2,20),(1,2,3,76.5),(2,1,3,30);
+/*!40000 ALTER TABLE `bill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `booking`
 --
 
@@ -56,6 +66,15 @@ CREATE TABLE `booking` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `booking`
+--
+
+LOCK TABLES `booking` WRITE;
+/*!40000 ALTER TABLE `booking` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `food`
 --
 
@@ -71,6 +90,16 @@ CREATE TABLE `food` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `food`
+--
+
+LOCK TABLES `food` WRITE;
+/*!40000 ALTER TABLE `food` DISABLE KEYS */;
+INSERT INTO `food` VALUES (1,'Fried Chicken',10,'chicken',NULL),(2,'Beefsteak',25.5,'beef',NULL),(3,'Buffalo Wings',6,'chicken',NULL);
+/*!40000 ALTER TABLE `food` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `member`
@@ -92,6 +121,16 @@ CREATE TABLE `member` (
   PRIMARY KEY (`id`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `member`
+--
+
+LOCK TABLES `member` WRITE;
+/*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES (1,'trhgnhat','123456','Truong Hoang Nhat','197/4 Linh Trung','0905515888','trhgnhat@gmail.com',10,'225565464'),(2,'nnta.zip','123456','Nhat Hoang Truong','197/4 Linh Trung street, Linh Trung ward, Thu Duc district, Room 403','905515888','nnta.zip@gmail.com',0,'null'),(3,'narutont','123456','truong hoang nhat','58A le quy don','905515888','trhgnhat.97@gmail.com',0,'null'),(4,'narutont123','123456','truong hoang nhat','58A le quy don','905515888','trhgnhat1997@gmail.com',0,'null');
+/*!40000 ALTER TABLE `member` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `ordering`
@@ -118,6 +157,16 @@ CREATE TABLE `ordering` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `ordering`
+--
+
+LOCK TABLES `ordering` WRITE;
+/*!40000 ALTER TABLE `ordering` DISABLE KEYS */;
+INSERT INTO `ordering` VALUES (1,1,1,1,'2017-12-19 11:02:46',96.5),(2,1,1,2,'2017-12-19 23:04:07',30);
+/*!40000 ALTER TABLE `ordering` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tables`
 --
 
@@ -131,6 +180,16 @@ CREATE TABLE `tables` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tables`
+--
+
+LOCK TABLES `tables` WRITE;
+/*!40000 ALTER TABLE `tables` DISABLE KEYS */;
+INSERT INTO `tables` VALUES (1,4,0);
+/*!40000 ALTER TABLE `tables` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -141,4 +200,4 @@ CREATE TABLE `tables` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-20 18:37:16
+-- Dump completed on 2017-12-20 19:02:14
