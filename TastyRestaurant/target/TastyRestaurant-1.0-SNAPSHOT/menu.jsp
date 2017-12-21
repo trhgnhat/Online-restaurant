@@ -471,23 +471,12 @@ and open the template in the editor.
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="col-md-9"><em>Baked Rodopa Sheep Feta</em></h4></td>
+                                        <td class="col-md-5"><em>Baked Rodopa Sheep Feta</em></h4></td>
                                         <td class="col-md-1" style="text-align: center"> 2 </td>
                                         <td class="col-md-1 text-center">$13</td>
                                         <td class="col-md-1 text-center">$26</td>
                                     </tr>
-                                    <tr>
-                                        <td class="col-md-9"><em>Lebanese Cabbage Salad</em></h4></td>
-                                        <td class="col-md-1" style="text-align: center"> 1 </td>
-                                        <td class="col-md-1 text-center">$8</td>
-                                        <td class="col-md-1 text-center">$8</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-9"><em>Baked Tart with Thyme and Garlic</em></h4></td>
-                                        <td class="col-md-1" style="text-align: center"> 3 </td>
-                                        <td class="col-md-1 text-center">$16</td>
-                                        <td class="col-md-1 text-center">$48</td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td>   </td>
                                         <td>   </td>
@@ -495,16 +484,12 @@ and open the template in the editor.
                                             <p>
                                                 <strong>Subtotal: </strong>
                                             </p>
-                                            <p>
-                                                <strong>Tax: </strong>
-                                            </p></td>
+                                        </td>
                                         <td class="text-center">
                                             <p>
                                                 <strong>$6.94</strong>
                                             </p>
-                                            <p>
-                                                <strong>$6.94</strong>
-                                            </p></td>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>   </td>
