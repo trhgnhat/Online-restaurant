@@ -4,6 +4,7 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="DO.BillDO"%>
 <%@page import="DBConnector.FoodDS"%>
 <%@page import="DO.FoodDO"%>
 <%@page import="java.util.List"%>
@@ -24,22 +25,6 @@ and open the template in the editor.
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
-        <script>
-            function showFood(category) {
-                var tabContents = document.getElementsByClassName("tabContent");
-                var category = document.getElementById(category);
-                var isVisible = category.style.display == "block";
-
-                //hide all
-                for (var i = 0; i < tabContents.length; i++) {
-                    tabContents[i].style.display = "none";
-                }
-
-                //toggle current
-                category.style.display = isVisible ? "none" : "block";
-                return false;
-            }
-        </script>
     </head>
     <body>
         <%
@@ -130,9 +115,8 @@ and open the template in the editor.
                         <div class="column2">
                             <div class="tab-content">
                                 <div class="tabContent" id="beef">
-                                    <%   
-                                        List<FoodDO> foods = new FoodDS().getFoodsByCategory("beef");
-                                        for(FoodDO food : foods){
+                                    <%                                        List<FoodDO> foods = new FoodDS().getFoodsByCategory("beef");
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -150,7 +134,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -163,7 +152,7 @@ and open the template in the editor.
                                 <div class="tabContent" id="chicken">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("chicken");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -181,7 +170,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -189,12 +183,12 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                                 <div class="tabContent" id="fish">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("fish");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -212,7 +206,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -220,12 +219,12 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                                 <div class="tabContent" id="pork">
-                                   <%
+                                    <%
                                         foods = new FoodDS().getFoodsByCategory("pork");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -243,7 +242,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -251,12 +255,12 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                                 <div class="tabContent" id="seafood">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("seafood");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -274,7 +278,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + food.getId() + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + food.getPrice() + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -282,12 +291,12 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                                 <div class="tabContent" id="italianDish">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("italian");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -305,7 +314,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -313,12 +327,12 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                                 <div class="tabContent" id="asianDish">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("asian");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -336,7 +350,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -344,12 +363,12 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                                 <div class="tabContent" id="hamburger">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("hamburger");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -367,7 +386,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -375,12 +399,12 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                                 <div class="tabContent" id="beverage">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("beverage");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -398,7 +422,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -406,12 +435,12 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                                 <div class="tabContent" id="dessert">
                                     <%
                                         foods = new FoodDS().getFoodsByCategory("dessert");
-                                        for(FoodDO food : foods){
+                                        for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
                                             out.println("<div class=\"panel-body\">");
@@ -429,7 +458,12 @@ and open the template in the editor.
                                             out.println("<p>Price: $" + food.getPrice() + "</p>");
                                             out.println("</div>");
                                             out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
                                             out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
                                             out.println("</div>");
                                             out.println(" </div>");
                                             out.println("</div>");
@@ -437,7 +471,7 @@ and open the template in the editor.
                                             out.println("</div>");
                                             out.println("</div>");
                                         }
-                                        %>
+                                    %>
                                 </div>
                             </div>
                         </div>
@@ -470,32 +504,28 @@ and open the template in the editor.
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%
+                                        session = request.getSession();
+                                        BillDO bill = (BillDO) session.getAttribute("bill");
+                                        float total = 0;
+                                        for (int i = 0; i < bill.getFood().size(); i++) {
+                                    %>
                                     <tr>
-                                        <td class="col-md-5"><em>Baked Rodopa Sheep Feta</em></h4></td>
-                                        <td class="col-md-1" style="text-align: center"> 2 </td>
-                                        <td class="col-md-1 text-center">$13</td>
-                                        <td class="col-md-1 text-center">$26</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>   </td>
-                                        <td>   </td>
-                                        <td class="text-right">
-                                            <p>
-                                                <strong>Subtotal: </strong>
-                                            </p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>
-                                                <strong>$6.94</strong>
-                                            </p>
-                                        </td>
-                                    </tr>
+                                        <td class="col-md-5"><em><%out.println(bill.getFood().get(i).getName());%></em></h4></td>
+                                        <td class="col-md-1" style="text-align: center"><%out.println(bill.getQuantity().get(i));%></td>
+                                        <td class="col-md-1 text-center">$<%out.println(bill.getFood().get(i).getPrice());%></td>
+                                        <td class="col-md-1 text-center">$<%out.println(bill.getPrice().get(i));%></td>
+                                    </tr>        
+
+                                    <%
+                                            total += bill.getPrice().get(i);
+                                        }
+                                    %>                                    
                                     <tr>
                                         <td>   </td>
                                         <td>   </td>
                                         <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                                        <td class="text-center text-danger"><h4><strong>$31.53</strong></h4></td>
+                                        <td class="text-center text-danger"><h4><strong>$<%out.println(total);%></strong></h4></td>
                                     </tr>
                                 </tbody>
                             </table>

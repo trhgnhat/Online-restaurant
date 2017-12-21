@@ -83,6 +83,9 @@ public class Transaction extends HttpServlet {
                 request.getSession().setAttribute("bill", bill);
             } //Add food into Cart (or Bill)
             else if (action.equals("addFood")) {
+                if (request.getSession().getAttribute("bill") == null) {
+                    request.getSession().setAttribute("bill", new BillDO(new BillDS().getAllBills().size() + 1));
+                }
                 BillDO bill = (BillDO) request.getSession().getAttribute("bill");
                 //if The bill is empty
                 if (bill.getFood().isEmpty()) {
@@ -93,7 +96,7 @@ public class Transaction extends HttpServlet {
 //                
 //                FoodDO food = new FoodDS().getFood(Integer.parseInt(request.getParameter("foodID")));
 //                int quantity = Integer.parseInt(request.getParameter("quantity"));
-//                float price = Float.parseFloat(request.getParameter("quantity"));
+//                float price = Float.parseFloat(request.getParameter("price"));
 //                
 //                foods.add(food);
 //                quantities.add(quantity);
@@ -107,20 +110,26 @@ public class Transaction extends HttpServlet {
                     bill.getFood().add(new FoodDS().getFood(Integer.parseInt(request.getParameter("foodID"))));
                     bill.getQuantity().add(Integer.parseInt(request.getParameter("quantity")));
                     bill.getPrice().add(Float.parseFloat(request.getParameter("price")) * Integer.parseInt(request.getParameter("quantity")));
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("location='menu.jsp';");
+                    out.println("</script>");
 
                 }//Check duplication
                 else {
                     boolean isExisted = false;
                     for (int i = 0; i < bill.getFood().size(); i++) {
                         //If the food already exist in the bill
-                        if (bill.getFood().get(i).equals(new FoodDS().getFood(Integer.parseInt(request.getParameter("foodID"))))) {
+                        if (bill.getFood().get(i).getId() == Integer.parseInt(request.getParameter("foodID"))) {
                             isExisted = true;
                             bill.getFood().add(bill.getFood().get(i));
                             bill.getQuantity().add(bill.getQuantity().get(i) + Integer.parseInt(request.getParameter("quantity")));
-                            bill.getPrice().add(Float.parseFloat(request.getParameter("price")) * Integer.parseInt(request.getParameter("quantity")));
+                            bill.getPrice().add(Float.parseFloat(request.getParameter("price")) * (bill.getQuantity().get(i) + Integer.parseInt(request.getParameter("quantity"))));
                             bill.getFood().remove(i);
                             bill.getQuantity().remove(i);
                             bill.getPrice().remove(i);
+                            out.println("<script type=\"text/javascript\">");
+                            out.println("location='menu.jsp';");
+                            out.println("</script>");
                             break;
                         }
                     }
@@ -128,22 +137,27 @@ public class Transaction extends HttpServlet {
                         bill.getFood().add(new FoodDS().getFood(Integer.parseInt(request.getParameter("foodID"))));
                         bill.getQuantity().add(Integer.parseInt(request.getParameter("quantity")));
                         bill.getPrice().add(Float.parseFloat(request.getParameter("price")) * Integer.parseInt(request.getParameter("quantity")));
+                        out.println("<script type=\"text/javascript\">");
+                        out.println("location='menu.jsp';");
+                        out.println("</script>");
                     }
                 }
                 request.getSession().setAttribute("bill", bill);
-            }
-            else if(action.equals("deleteFood")){
+            } else if (action.equals("deleteFood")) {
                 BillDO bill = (BillDO) request.getSession().getAttribute("bill");
                 FoodDO food = new FoodDS().getFood(Integer.parseInt(request.getParameter("FoodID")));
-                for (int i = 0; i < bill.getFood().size(); i++){
-                    if(bill.getFood().get(i).equals(food)){
+                for (int i = 0; i < bill.getFood().size(); i++) {
+                    if (bill.getFood().get(i).equals(food)) {
                         bill.getFood().remove(i);
                         bill.getQuantity().remove(i);
                         bill.getPrice().remove(i);
+                        out.println("<script type=\"text/javascript\">");
+                        out.println("location='menu.jsp';");
+                        out.println("</script>");
                         break;
                     }
                 }
-                
+
             }
         }
     }

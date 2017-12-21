@@ -26,6 +26,9 @@ public class BillDO {
         this.price = new ArrayList<>();
     }
 
+    public BillDO() {
+    }
+
     public int getId() {
         return id;
     }
