@@ -54,7 +54,7 @@ public class Menu extends HttpServlet {
                 if (newFoodName.equals(food.getName())) {
                     flag = true;
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Name' " + food.getName() + " 'already exists!!');");
+                    out.println("alert('Name " + food.getName() + " already exists!!');");
                     out.println("location='addFood.jsp';");
                     out.println("</script>");
                 }
