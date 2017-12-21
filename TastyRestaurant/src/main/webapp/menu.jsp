@@ -511,6 +511,7 @@ and open the template in the editor.
                                         for (int i = 0; i < bill.getFood().size(); i++) {
                                     %>
                                     <tr>
+<<<<<<< HEAD
                                         <td class="col-md-5"><em><%out.println(bill.getFood().get(i).getName());%></em></h4></td>
                                         <td class="col-md-1" style="text-align: center"><%out.println(bill.getQuantity().get(i));%></td>
                                         <td class="col-md-1 text-center">$<%out.println(bill.getFood().get(i).getPrice());%></td>
@@ -521,11 +522,37 @@ and open the template in the editor.
                                             total += bill.getPrice().get(i);
                                         }
                                     %>                                    
+=======
+                                        <td class="col-md-5"><em>Food Name</em></h4></td>
+                                        <td class="col-md-1" style="text-align: center"> Quantity </td>
+                                        <td class="col-md-1 text-center">Food Price</td>
+                                        <td class="col-md-1 text-center">total</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>   </td>
+                                        <td>   </td>
+                                        <td class="text-right">
+                                            <p>
+                                                <strong>Subtotal: </strong>
+                                            </p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p>
+                                                <strong>subtotal</strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+>>>>>>> 7850ea3b3b05f769c70a9bdf9abe605f4e418990
                                     <tr>
                                         <td>   </td>
                                         <td>   </td>
                                         <td class="text-right"><h4><strong>Total: </strong></h4></td>
+<<<<<<< HEAD
                                         <td class="text-center text-danger"><h4><strong>$<%out.println(total);%></strong></h4></td>
+=======
+                                        <td class="text-center text-danger"><h4><strong>total</strong></h4></td>
+>>>>>>> 7850ea3b3b05f769c70a9bdf9abe605f4e418990
                                     </tr>
                                 </tbody>
                             </table>

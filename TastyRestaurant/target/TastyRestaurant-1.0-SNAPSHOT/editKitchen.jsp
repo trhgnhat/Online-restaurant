@@ -4,6 +4,10 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="DBConnector.FoodDS"%>
+<%@page import="DO.FoodDO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,12 +51,13 @@
         </div>
         
         <div class="col-lg-10">
-            <div class="menuBtn">
-                <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
-                <button class="btn btn-edit"><span class="glyphicon glyphicon-floppy-save"></span>Save & Close</button>
-            </div>
+
             <div class="editPane">
                 <form>
+                    <div class="menuBtn">
+                        <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
+                        <button class="btn btn-edit"><span class="glyphicon glyphicon-floppy-save"></span>Save & Close</button>
+                    </div>
                     <table class="form-table">
                         <tr>
                             <td>Food name</td>
