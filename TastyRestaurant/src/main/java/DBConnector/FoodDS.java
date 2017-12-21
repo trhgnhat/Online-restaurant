@@ -23,7 +23,7 @@ public class FoodDS {
 
     public FoodDS() {
         sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "nntadotzip");
+                "localhost", "3306", "restaurant_website", "root", "crazy123");
     }
 
     public void createFood(FoodDO food) {
@@ -36,7 +36,7 @@ public class FoodDS {
         sqlConnectionManager.closeConnection();
     }
 
-    public List getAllFoods() {
+    public List<FoodDO> getAllFoods() {
         List<FoodDO> foods = new ArrayList<>();
 
         String sqlStatement = "SELECT * FROM food";
