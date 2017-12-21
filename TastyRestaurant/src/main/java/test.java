@@ -5,8 +5,10 @@
  */
 
 
+import DBConnector.FoodDS;
 import DBConnector.MemberDS;
 import DBConnector.OrderDS;
+import DO.FoodDO;
 import DO.MemberDO;
 import DO.OrderDO;
 import Enscrypt.EncryptDecrypt;
@@ -63,18 +65,22 @@ public class test {
 //        numbers.add(2);
 //        numbers.add(3);
 //        System.out.println(numbers);
-        MemberDO member = new MemberDS().getMember(1);
-        List<OrderDO> orders = new OrderDS().getOrdersByMemberID(member.getId());
-//        List<OrderDO> orders = new OrderDS().getAllOrders();
-        for (OrderDO order : orders){
-            System.out.println(order.getId());
-            System.out.println(order.getBill().getId());
-            System.out.println(order.getMember().getId());
-            System.out.println(order.getTable().getId());
-            System.out.println(order.getDate_time());
-            System.out.println(order.getTotal_price());
-            System.out.println(order.getClass());
-            System.out.println("***********************************************");
+//        MemberDO member = new MemberDS().getMember(1);
+//        List<OrderDO> orders = new OrderDS().getOrdersByMemberID(member.getId());
+////        List<OrderDO> orders = new OrderDS().getAllOrders();
+//        for (OrderDO order : orders){
+//            System.out.println(order.getId());
+//            System.out.println(order.getBill().getId());
+//            System.out.println(order.getMember().getId());
+//            System.out.println(order.getTable().getId());
+//            System.out.println(order.getDate_time());
+//            System.out.println(order.getTotal_price());
+//            System.out.println(order.getClass());
+//            System.out.println("***********************************************");
+//        }
+        FoodDS foods = new FoodDS();
+        for (FoodDO food : foods.getAllFoods()){
+            System.out.println(food.getId());
         }
     }
 }

@@ -55,12 +55,6 @@
                 <div class="editPane">
                     <table class="form-table">
                         <tr>
-                            <td>Food ID</td>
-                            <td>
-                                <input class="form-control" type="text" name="addFoodId" required />
-                            </td>
-                        </tr>
-                        <tr>
                             <td>Food name</td>
                             <td>
                                 <input class="form-control" type="text" name="addFoodName" required />
