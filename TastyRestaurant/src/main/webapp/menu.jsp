@@ -471,10 +471,10 @@ and open the template in the editor.
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="col-md-5"><em>Baked Rodopa Sheep Feta</em></h4></td>
-                                        <td class="col-md-1" style="text-align: center"> 2 </td>
-                                        <td class="col-md-1 text-center">$13</td>
-                                        <td class="col-md-1 text-center">$26</td>
+                                        <td class="col-md-5"><em>Food Name</em></h4></td>
+                                        <td class="col-md-1" style="text-align: center"> Quantity </td>
+                                        <td class="col-md-1 text-center">Food Price</td>
+                                        <td class="col-md-1 text-center">total</td>
                                     </tr>
                                     
                                     <tr>
@@ -487,7 +487,7 @@ and open the template in the editor.
                                         </td>
                                         <td class="text-center">
                                             <p>
-                                                <strong>$6.94</strong>
+                                                <strong>subtotal</strong>
                                             </p>
                                         </td>
                                     </tr>
@@ -495,7 +495,7 @@ and open the template in the editor.
                                         <td>   </td>
                                         <td>   </td>
                                         <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                                        <td class="text-center text-danger"><h4><strong>$31.53</strong></h4></td>
+                                        <td class="text-center text-danger"><h4><strong>total</strong></h4></td>
                                     </tr>
                                 </tbody>
                             </table>
