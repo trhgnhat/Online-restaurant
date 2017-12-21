@@ -30,7 +30,8 @@ public class FoodDS {
         String sqlStatement = "INSERT INTO food VALUES(" + Integer.toString(food.getId()) + ",'"
                 + food.getName() + "',"
                 + Float.toString(food.getPrice()) + ",'"
-                + food.getCategory() + "')";
+                + food.getCategory() + "',"
+                + "null" + ")";
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
