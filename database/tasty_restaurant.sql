@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: restaurant_website
 -- ------------------------------------------------------
--- Server version	5.7.18-log
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,7 +18,7 @@
 --
 -- Table structure for table `bill`
 --
-USE restaurant_website
+
 DROP TABLE IF EXISTS `bill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -97,7 +97,7 @@ CREATE TABLE `food` (
 
 LOCK TABLES `food` WRITE;
 /*!40000 ALTER TABLE `food` DISABLE KEYS */;
-INSERT INTO `food` VALUES (1,'Fried Chicken',10,'chicken',NULL),(2,'Beefsteak',25.5,'beef',NULL),(3,'Buffalo Wings',6,'chicken',NULL);
+INSERT INTO `food` VALUES (1,'Fried Chicken',10,'chicken',NULL),(2,'Beefsteak',25.5,'beef',NULL),(3,'Buffalo Wings',6,'chicken',NULL),(4,'Fried Fish',4,'fish',NULL),(5,'Raw Salmon',10,'fish',NULL),(6,'Roast Beef',15,'beef',NULL),(7,'Steamed Pork',8,'pork',NULL),(8,'Lobster',70,'seafood',NULL),(9,'King Crab',70,'seafood',NULL),(10,'Spaghetti',7,'italian',NULL),(11,'Chinese Fried Rice',6,'asian',NULL),(12,'Shrimp Burger',5,'hamburger',NULL),(13,'Coke',1.25,'beverage',NULL),(14,'Spite',1.25,'beverage',NULL),(15,'Chocolate Ice-cream',5,'dessert',NULL),(16,'Vanilla Ice-creame',5,'dessert',NULL);
 /*!40000 ALTER TABLE `food` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,4 +200,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-20 19:02:14
+-- Dump completed on 2017-12-21  8:23:05

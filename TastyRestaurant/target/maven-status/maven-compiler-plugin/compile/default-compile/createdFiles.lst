@@ -9,6 +9,7 @@ DO\TableDO.class
 DO\OrderDO.class
 DBConnector\MySqlConnectionManager.class
 DBConnector\TableDS.class
+Controller\Menu.class
 DO\BookingDO.class
 DBConnector\MemberDS.class
 test.class
