@@ -46,6 +46,12 @@ public class Account extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        request.getSession().invalidate();
+        out.println("<script type=\"text/javascript\">");
+        out.println("location='homepage.jsp';");
+        out.println("</script>");
+
     }
 
     /**
@@ -76,7 +82,7 @@ public class Account extends HttpServlet {
                     request.getSession().setAttribute("member", member);
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Login Success !');");
-                    out.println("location='menu.jsp';");
+                    out.println("location='homepage.jsp';");
                     out.println("</script>");
                 } else {
                     out.println("<script type=\"text/javascript\">");
@@ -86,9 +92,6 @@ public class Account extends HttpServlet {
                 }
             }
         }
-        if (action.equals("logout")) {
-            request.getSession().invalidate();
-        }
         if (action.equals("register")) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
@@ -97,7 +100,8 @@ public class Account extends HttpServlet {
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String credit_card = request.getParameter("credit_card");
-            int id = new MemberDS().getAllMembers().size()+1;
+            String checkTerms = request.getParameter("termOfService");
+            int id = new MemberDS().getAllMembers().size() + 1;
             MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
             if (new MemberDS().createMember(member) == null) {
                 out.println("<script type=\"text/javascript\">");

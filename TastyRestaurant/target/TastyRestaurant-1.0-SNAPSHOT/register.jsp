@@ -16,7 +16,7 @@
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
     </head>
-    <body>
+    <body onload="checkTerm()">
         <div class="container">
             <h2>Register</h2>
             <form action="Account?action=register" method="post">
@@ -35,7 +35,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td>
                             <div class="form-group">
@@ -50,7 +50,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td>
                             <div class="form-group">
@@ -65,7 +65,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td>
                             <div class="form-group">
@@ -75,12 +75,11 @@
                         </td>
                         <td></td>
                     </tr>
-                    </table>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="remember"> I agree to the <a id="termOfService">terms of service</a></label>
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-               
+                </table>
+                <div class="checkbox">
+                    <label><input type="checkbox" id="termOfService" value="agree" on> I agree to the <a id="termOfService">terms of service</a></label>
+                </div>
+                <button type="submit" class="btn btn-default" id="registerBtn">Submit</button>
             </form>
         </div>
 

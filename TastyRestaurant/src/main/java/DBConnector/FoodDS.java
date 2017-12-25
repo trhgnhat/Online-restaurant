@@ -23,7 +23,7 @@ public class FoodDS {
 
     public FoodDS() {
         sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "nntadotzip");
+                "localhost", "3306", "restaurant_website", "root", "crazy123");
     }
 
     public void createFood(FoodDO food) {
@@ -100,8 +100,16 @@ public class FoodDS {
         String sqlStatement = "UPDATE food "
                 + "SET "
                 + "name='" + food.getName() + "', "
-                + "price=" + Float.toString(food.getPrice())
+                + "price=" + Float.toString(food.getPrice()) + ", "
                 + "category='" + food.getCategory() + "' "
+                + " WHERE id=" + Integer.toString(food.getId()) + "";
+
+        sqlConnectionManager.openConnection();
+        sqlConnectionManager.ExecuteUpdate(sqlStatement);
+        sqlConnectionManager.closeConnection();
+    }
+    public void deleteFood(FoodDO food) {
+        String sqlStatement = "DELETE FROM food "
                 + " WHERE id=" + Integer.toString(food.getId()) + "";
 
         sqlConnectionManager.openConnection();

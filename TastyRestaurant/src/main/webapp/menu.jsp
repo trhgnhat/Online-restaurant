@@ -27,17 +27,21 @@ and open the template in the editor.
         <script type="text/javascript" src="pageAction.js"></script>
     </head>
     <body>
-        <%
-
-        %>
         <!--
             Header
         -->
         <div class="stay">
             <div class="container">
                 <div class="topBar">
-                    <a href="#">Log In</a>
-                    <a href="#">Sign up</a>
+                    <%
+                        if(request.getSession().getAttribute("member") == null || request.getSession() == null){
+                            out.print("<a href=\"login.html\">Log In</a>");
+                            out.print("<a href=\"register.jsp\">Sign Up</a>");
+                        }
+                        else{
+                            out.print("<a href=\"Account\">Log Out</a>");
+                        }
+                    %>
                 </div>
             </div>
         </div>
@@ -45,12 +49,12 @@ and open the template in the editor.
             <div class="container">
                 <div class="welcomeBar">
                     <ul class="headBar">
-                        <li class=" headBarHome"><a href="homepage.html">Tasty Restaurant</a></li>
+                        <li class=" headBarHome"><a href="homepage.jsp">Tasty Restaurant</a></li>
                         <li class=" headBarElement"><a href="menu.jsp">
                                 <span class="glyphicon glyphicon-cutlery"></span>Menu</a></li>
                         <li class=" headBarElement"><a href="booking.jsp">
                                 <span class="glyphicon glyphicon-calendar"></span>Booking</a></li>
-                        <li class=" headBarElement"><a href="offers.html">
+                        <li class=" headBarElement"><a href="offer.jsp">
                                 <span class="glyphicon glyphicon-tags"></span>Offers</a></li> 
                         <li class=" headBarElement"><a href="myAccount.jsp">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
@@ -77,7 +81,7 @@ and open the template in the editor.
                             <div class="sideBarMenu">
                                 <p class="footTitle">Menu</p>
                                 <ul class="list-unstyled">
-                                    <li class="borderSideBar"><a href="menu.jsp">Appetizer</a>
+                                    <li class="borderSideBar"><a onclick="showMenu('appetizer');" href="#">Appetizer</a>
                                     </li>
                                     <li class="borderSideBar">Main Dishes
                                         <ul style="circle" id="foodCategories">
@@ -114,8 +118,45 @@ and open the template in the editor.
                         -->
                         <div class="column2">
                             <div class="tab-content">
+                                <div class="tabContent" id="appetizer">
+                                    <%                                        
+                                        List<FoodDO> foods = new FoodDS().getFoodsByCategory("appetizer");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
                                 <div class="tabContent" id="beef">
-                                    <%                                        List<FoodDO> foods = new FoodDS().getFoodsByCategory("beef");
+                                    <%                                        
+                                        foods = new FoodDS().getFoodsByCategory("beef");
                                         for (FoodDO food : foods) {
                                             out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                             out.println("<div class=\"panel panel-default\">");
@@ -511,7 +552,6 @@ and open the template in the editor.
                                         for (int i = 0; i < bill.getFood().size(); i++) {
                                     %>
                                     <tr>
-<<<<<<< HEAD
                                         <td class="col-md-5"><em><%out.println(bill.getFood().get(i).getName());%></em></h4></td>
                                         <td class="col-md-1" style="text-align: center"><%out.println(bill.getQuantity().get(i));%></td>
                                         <td class="col-md-1 text-center">$<%out.println(bill.getFood().get(i).getPrice());%></td>
@@ -522,45 +562,15 @@ and open the template in the editor.
                                             total += bill.getPrice().get(i);
                                         }
                                     %>                                    
-=======
-                                        <td class="col-md-5"><em>Food Name</em></h4></td>
-                                        <td class="col-md-1" style="text-align: center"> Quantity </td>
-                                        <td class="col-md-1 text-center">Food Price</td>
-                                        <td class="col-md-1 text-center">total</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>   </td>
-                                        <td>   </td>
-                                        <td class="text-right">
-                                            <p>
-                                                <strong>Subtotal: </strong>
-                                            </p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>
-                                                <strong>subtotal</strong>
-                                            </p>
-                                        </td>
-                                    </tr>
->>>>>>> 7850ea3b3b05f769c70a9bdf9abe605f4e418990
                                     <tr>
                                         <td>   </td>
                                         <td>   </td>
                                         <td class="text-right"><h4><strong>Total: </strong></h4></td>
-<<<<<<< HEAD
-                                        <td class="text-center text-danger"><h4><strong>$<%out.println(total);%></strong></h4></td>
-=======
-                                        <td class="text-center text-danger"><h4><strong>total</strong></h4></td>
->>>>>>> 7850ea3b3b05f769c70a9bdf9abe605f4e418990
+                                        <td class="text-center text-danger"><h4><strong>$<%out.println(total);}//else "{"%></strong></h4></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <%
-                            }
-                        %>
-
                         <!--
                             End Vertical Banner
                         -->

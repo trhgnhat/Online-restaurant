@@ -17,6 +17,13 @@
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
+        <%
+            if (request.getSession().getAttribute("isLoggedIn") != "TRUE") {
+                out.println("<script type=\"text/javascript\">");
+                out.println("location='managerLogin.jsp';");
+                out.println("</script>");
+            }
+        %>
     </head>
     <body>
         <div class="col-lg-2" id="sideBar">

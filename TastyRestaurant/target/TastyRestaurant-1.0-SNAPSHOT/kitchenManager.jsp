@@ -20,6 +20,13 @@
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
+        <%
+            if (request.getSession().getAttribute("isLoggedIn") != "TRUE") {
+                out.println("<script type=\"text/javascript\">");
+                out.println("location='managerLogin.jsp';");
+                out.println("</script>");
+            }
+        %>
     </head>
     <body>
         <div class="col-lg-2" id="sideBar">
@@ -56,13 +63,13 @@
                         <span class="glyphicon glyphicon-plus"></span>New
                     </button>
                 </a>
-                <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteFood"><span class="glyphicon glyphicon-trash"></span>Delete</button>
             </div>
             <div class="menuList">
                 <table class="table">
                     <tr>
                         <th>
-                            <input type="checkbox" name="" />
+                            <input type="checkbox" id="checkAll" onchange="checkAll(this, 'foodCheckBox')" />
                         </th>
                         <th></th>
                         <th>Name</th>
@@ -77,24 +84,24 @@
                     **************************-->
                     <%
                         List<FoodDO> foods = new FoodDS().getAllFoods();
+                        out.println("<form method=\"POST\" action=\"Manager?action=chooseFood\" id=\"foodForm\" onsubmit=\"return confirmation()\">");
                         for (FoodDO food : foods){
                            out.println("<tr>");
                            out.println("<td>");
-                           out.println("<input type=\"checkbox\" name=\"\" />");
+                           out.println("<input type=\"checkbox\" name=\"foodCheckBox\" value=\"" + food.getId() + "\" />");
                            out.println("</td>");
                            out.println("<td>");
-                           out.println("<a href=\"editKitchen.jsp\">");
-                           out.println("<button class=\"btn btn-edit\">");
+                           out.println("<button class=\"btn btn-edit\" name=\"foodIdBtn\" value=\"" + food.getId() +"\">");
                            out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
                            out.println("</button>");
-                           out.println("</a>");
                            out.println("</td>");
                            out.println("<td>" + food.getName() + "</td>");
                            out.println("<td>" + food.getPrice() + "</td>");
                            out.println("<td>" + food.getCategory() + "</td>");
                            out.println("<td>" + food.getId() + "</td>");
-                           out.println("</tr>");               
+                           out.println("</tr>");
                         }
+                        out.println("</form>");
                     %>
                 </table>
             </div>
