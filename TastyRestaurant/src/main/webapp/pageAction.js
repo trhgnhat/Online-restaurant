@@ -72,8 +72,8 @@ function checkAll(checkAll, id) {
         checkboxes[i].checked = checkAll.checked;
     }
 }
-function confirmation(id) {
-    if (confirm("Do you wish to delete food(s)?")) {
+function confirmation(field) {
+    if (confirm("Do you wish to delete " + field + "(s)?")) {
         return true;
     } else {
         return false;

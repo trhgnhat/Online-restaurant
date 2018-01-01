@@ -63,7 +63,7 @@
                         <span class="glyphicon glyphicon-plus"></span>New
                     </button>
                 </a>
-                <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteFood"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteFood" onsubmit="return confirmation('order')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
             </div>
             <div class="menuList">
                 <table class="table">
@@ -84,14 +84,14 @@
                     **************************-->
                     <%
                         List<FoodDO> foods = new FoodDS().getAllFoods();
-                        out.println("<form method=\"POST\" action=\"Manager?action=chooseFood\" id=\"foodForm\" onsubmit=\"return confirmation()\">");
+                        out.println("<form method=\"POST\" action=\"Manager?action=chooseFood\" id=\"foodForm\" onsubmit=\"return confirmation('food')\">");
                         for (FoodDO food : foods){
                            out.println("<tr>");
                            out.println("<td>");
                            out.println("<input type=\"checkbox\" name=\"foodCheckBox\" value=\"" + food.getId() + "\" />");
                            out.println("</td>");
                            out.println("<td>");
-                           out.println("<button class=\"btn btn-edit\" name=\"foodIdBtn\" value=\"" + food.getId() +"\">");
+                           out.println("<button class=\"btn btn-edit\" name=\"foodIdBtn\" value=\"" + food.getId() +"\" action=\"Manager?action=editFood\">");
                            out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
                            out.println("</button>");
                            out.println("</td>");
