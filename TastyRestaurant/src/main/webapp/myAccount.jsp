@@ -38,8 +38,15 @@
         <div class="stay">
             <div class="container">
                 <div class="topBar">
-                    <a href="#">Log In</a>
-                    <a href="#">Sign up</a>
+                    <%
+                        if(request.getSession().getAttribute("member") == null || request.getSession() == null){
+                            out.print("<a href=\"login.html\">Log In</a>");
+                            out.print("<a href=\"register.jsp\">Sign Up</a>");
+                        }
+                        else{
+                            out.print("<a href=\"Account\">Log Out</a>");
+                        }
+                    %>
                 </div>
             </div>
         </div>
@@ -52,12 +59,12 @@
             <div class="container">
                 <div class="welcomeBar">
                     <ul class="headBar">
-                        <li class=" headBarHome"><a href="homepage.html">Tasty Restaurant</a></li>
+                        <li class=" headBarHome"><a href="homepage.jsp">Tasty Restaurant</a></li>
                         <li class=" headBarElement"><a href="menu.jsp">
                                 <span class="glyphicon glyphicon-cutlery"></span>Menu</a></li>
-                        <li class=" headBarElement"><a href="offers.html">
+                        <li class=" headBarElement"><a href="offer.jsp">
                                 <span class="glyphicon glyphicon-tags"></span>Offers</a></li>
-                        <li class=" headBarElement"><a href="myAccount.html">
+                        <li class=" headBarElement"><a href="myAccount.jsp">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
                         <li class=" headBarElement"><a href="support.html">
                                 <span class="glyphicon glyphicon-earphone"></span>Support</a></li>

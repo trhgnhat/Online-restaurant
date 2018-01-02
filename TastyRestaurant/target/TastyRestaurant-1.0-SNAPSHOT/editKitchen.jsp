@@ -21,6 +21,9 @@
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
+        <%
+            FoodDO food = (FoodDO) request.getSession().getAttribute("Food");
+        %>
     </head>
     <body>
         <div class="col-lg-2" id="sideBar">
@@ -53,7 +56,7 @@
         <div class="col-lg-10">
 
             <div class="editPane">
-                <form>
+                <form method="post" action="Manager?action=editFood">
                     <div class="menuBtn">
                         <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
                         <button class="btn btn-edit"><span class="glyphicon glyphicon-floppy-save"></span>Save & Close</button>
@@ -62,19 +65,19 @@
                         <tr>
                             <td>Food name</td>
                             <td>
-                                <input class="form-control" type="text" name="" value="old_food_name" required />
+                                <input class="form-control" type="text" name="foodName" value="<%out.println(food.getName());%>" required />
                             </td>
                         </tr>
                         <tr>
                             <td>Price</td>
                             <td>
-                                <input class="form-control" type="text" name="" value="old_price" required />
+                                <input class="form-control" type="text" name="foodPrice" value="<%out.println(food.getPrice());%>" required />
                             </td>
                         </tr>
                         <tr>
                             <td>Category</td>
                             <td>
-                                <input class="form-control" type="text" name="" value="old_category" required />
+                                <input class="form-control" type="text" name="foodCategory" value="<%out.println(food.getCategory());%>" required />
                             </td>
                         </tr>
                         <tr>

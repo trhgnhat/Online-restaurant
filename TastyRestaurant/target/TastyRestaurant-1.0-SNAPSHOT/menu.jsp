@@ -27,17 +27,21 @@ and open the template in the editor.
         <script type="text/javascript" src="pageAction.js"></script>
     </head>
     <body>
-        <%
-
-        %>
         <!--
             Header
         -->
         <div class="stay">
             <div class="container">
                 <div class="topBar">
-                    <a href="#">Log In</a>
-                    <a href="#">Sign up</a>
+                    <%
+                        if(request.getSession().getAttribute("member") == null || request.getSession() == null){
+                            out.print("<a href=\"login.html\">Log In</a>");
+                            out.print("<a href=\"register.jsp\">Sign Up</a>");
+                        }
+                        else{
+                            out.print("<a href=\"Account\">Log Out</a>");
+                        }
+                    %>
                 </div>
             </div>
         </div>
@@ -45,12 +49,12 @@ and open the template in the editor.
             <div class="container">
                 <div class="welcomeBar">
                     <ul class="headBar">
-                        <li class=" headBarHome"><a href="homepage.html">Tasty Restaurant</a></li>
+                        <li class=" headBarHome"><a href="homepage.jsp">Tasty Restaurant</a></li>
                         <li class=" headBarElement"><a href="menu.jsp">
                                 <span class="glyphicon glyphicon-cutlery"></span>Menu</a></li>
                         <li class=" headBarElement"><a href="booking.jsp">
                                 <span class="glyphicon glyphicon-calendar"></span>Booking</a></li>
-                        <li class=" headBarElement"><a href="offers.html">
+                        <li class=" headBarElement"><a href="offer.jsp">
                                 <span class="glyphicon glyphicon-tags"></span>Offers</a></li> 
                         <li class=" headBarElement"><a href="myAccount.jsp">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
@@ -113,6 +117,7 @@ and open the template in the editor.
                             Product
                         -->
                         <div class="column2">
+<<<<<<< HEAD
                             <!--                            <div class="tab-content">-->
                             <div class="tabContent" style="display: block" id="appetizer">
                                 <%                                    List<FoodDO> foods = new FoodDS().getFoodsByCategory("appetizer");
@@ -508,6 +513,405 @@ and open the template in the editor.
                                         out.println("</div>");
                                     }
                                 %>
+=======
+                            <div class="tab-content">
+                                <div class="tabContent" id="appetizer">
+                                    <%                                        
+                                        List<FoodDO> foods = new FoodDS().getFoodsByCategory("appetizer");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="beef">
+                                    <%                                        
+                                        foods = new FoodDS().getFoodsByCategory("beef");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="chicken">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("chicken");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="fish">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("fish");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="pork">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("pork");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="seafood">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("seafood");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + food.getId() + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + food.getPrice() + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="italianDish">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("italian");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="asianDish">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("asian");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="hamburger">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("hamburger");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="beverage">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("beverage");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+                                <div class="tabContent" id="dessert">
+                                    <%
+                                        foods = new FoodDS().getFoodsByCategory("dessert");
+                                        for (FoodDO food : foods) {
+                                            out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
+                                            out.println("<div class=\"panel panel-default\">");
+                                            out.println("<div class=\"panel-body\">");
+                                            out.println("<div class=\"row\">");
+                                            out.println("<div class=\"col-xs-3 foodPicture\">");
+                                            out.println("<div class=\"foodPic\">");
+                                            out.println("<img src=\"img/appetizerExample.jpg\" alt=\"\"/>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"col-xs-9\" foodDetail>");
+                                            out.println("<div class=\"foodName\">");
+                                            out.println("<p>" + food.getName() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"foodPrice\">");
+                                            out.println("<p>Price: $" + food.getPrice() + "</p>");
+                                            out.println("</div>");
+                                            out.println("<div class=\"addBtn\">");
+                                            out.println("<form method='POST' action='Transaction?action=addFood'>");
+                                            out.println("<input type='hidden' name='foodID' value='" + Integer.toString(food.getId()) + "'>");
+                                            out.println("<input type='hidden' name='quantity' value='1'>");
+                                            out.println("<input type='hidden' name='price' value='" + Float.toString(food.getPrice()) + "'>");
+                                            out.println("<button class=\"addFood btn-block\">ADD</button>");
+                                            out.println("</form>");
+                                            out.println("</div>");
+                                            out.println(" </div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                            out.println("</div>");
+                                        }
+                                    %>
+                                </div>
+>>>>>>> 11817a2dc0caeac88c7bf2dc669304ba056fb4e8
                             </div>
                         </div>
                     </div>
@@ -515,6 +919,7 @@ and open the template in the editor.
                         End Product
                     -->
 
+<<<<<<< HEAD
                     <!--
                         Vertical Banner
                     -->
@@ -587,6 +992,62 @@ and open the template in the editor.
                                 </tr>
                             </tbody>
                         </table>
+=======
+                        <!--
+                            Vertical Banner
+                        -->
+                        <%
+                            if (request.getSession().getAttribute("member") == null) {
+                        %>
+                        <div class="column3">
+                            <a href="#">
+                                <img class="img-rounded" src="img/exampleBanner-vertical.png" alt=""/>
+                            </a>
+                        </div>
+                        <%
+                        } else {
+                        %>
+                        <div class="column3">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>#</th>
+                                        <th class="text-center">Price</th>
+                                        <th class="text-center">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        session = request.getSession();
+                                        BillDO bill = (BillDO) session.getAttribute("bill");
+                                        float total = 0;
+                                        for (int i = 0; i < bill.getFood().size(); i++) {
+                                    %>
+                                    <tr>
+                                        <td class="col-md-5"><em><%out.println(bill.getFood().get(i).getName());%></em></h4></td>
+                                        <td class="col-md-1" style="text-align: center"><%out.println(bill.getQuantity().get(i));%></td>
+                                        <td class="col-md-1 text-center">$<%out.println(bill.getFood().get(i).getPrice());%></td>
+                                        <td class="col-md-1 text-center">$<%out.println(bill.getPrice().get(i));%></td>
+                                    </tr>        
+
+                                    <%
+                                            total += bill.getPrice().get(i);
+                                        }
+                                    %>                                    
+                                    <tr>
+                                        <td>   </td>
+                                        <td>   </td>
+                                        <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                                        <td class="text-center text-danger"><h4><strong>$<%out.println(total);}//else "{"%></strong></h4></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--
+                            End Vertical Banner
+                        -->
+>>>>>>> 11817a2dc0caeac88c7bf2dc669304ba056fb4e8
                     </div>
                     <%
                         }

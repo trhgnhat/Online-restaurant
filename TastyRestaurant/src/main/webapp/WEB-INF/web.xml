@@ -8,6 +8,10 @@
         <servlet-name>Transaction</servlet-name>
         <servlet-class>Controller.Transaction</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Manager</servlet-name>
+        <servlet-class>Controller.Manager</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Account</servlet-name>
         <url-pattern>/Account</url-pattern>
@@ -16,9 +20,16 @@
         <servlet-name>Transaction</servlet-name>
         <url-pattern>/Transaction</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Manager</servlet-name>
+        <url-pattern>/Manager</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>homepage.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

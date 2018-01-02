@@ -4,6 +4,9 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="DBConnector.OrderDS"%>
+<%@page import="DO.OrderDO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +20,13 @@
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
+        <%
+            if (request.getSession().getAttribute("isLoggedIn") != "TRUE") {
+                out.println("<script type=\"text/javascript\">");
+                out.println("location='managerLogin.jsp';");
+                out.println("</script>");
+            }
+        %>
     </head>
     <body>
         <div class="col-lg-2" id="sideBar">
@@ -48,18 +58,24 @@
         
         <div class="col-lg-10">
             <div>
-                <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteOrder" onsubmit="return confirmation('order')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <select name="orderTime" style='float: right'>
+                    <option>All</option>
+                    <option>Last Day</option>
+                    <option>Last Week</option>
+                    <option>Last Month</option>
+                </select>
             </div>
             <div class="orderList">
                 <table class="table">
                     <tr>
                         <th>
-                            <input type="checkbox" name="" />
+                            <input type="checkbox" id="checkAll" onchange="checkAll(this, 'orderCheckBox')" />
                         </th>
                         <th></th>
                         <th>Order ID</th>
                         <th>Username</th>
-                        <th>Status</th>
+                        <th>Bill ID</th>
                         <th>Table</th>
                         <th>Total</th>
                         <th>Time</th>
@@ -71,25 +87,30 @@
                     GENERATE THIS <TR> ELEMENT
                     **************************-->
                     
-                    <tr>
-                        <th>
-                            <input type="checkbox" name="" />
-                        </th>
-                        <td>
-                            <a href="editKitchen.jsp">
-                                <button class="btn btn-edit">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </a>
-                        </td>
-                        <td>OrderID here</td>
-                        <td>trhgnhat</td>
-                        <td>Served</td>
-                        <td>no.3</td>
-                        <td>7.25</td>
-                        <td>17:00</td>
-                        <td>12/18/2017</td>
-                    </tr>
+                    <%
+                        List<OrderDO> orders = new OrderDS().getAllOrders();
+                        out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\">");
+                        for (OrderDO order : orders){
+                           out.println("<tr>");
+                           out.println("<td>");
+                           out.println("<input type=\"checkbox\" name=\"orderCheckBox\" value=\"" + order.getId() + "\" />");
+                           out.println("</td>");
+                           out.println("<td>");
+                           out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() +"\" action=\"Manager?action=editOrder\">");
+                           out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
+                           out.println("</button>");
+                           out.println("</td>");
+                           out.println("<td>" + order.getId() + "</td>");
+                           out.println("<td>" + order.getMember().getUsername() + "</td>");
+                           out.println("<td>" + order.getBill().getId() + "</td>");
+                           out.println("<td>" + order.getTable().getId() + "</td>");
+                           out.println("<td>" + order.getTotal_price() + "</td>");
+                           out.println("<td>" + order.getDate_time().toLocalTime() + "</td>");
+                           out.println("<td>" + order.getDate_time().toLocalDate() + "</td>");
+                           out.println("</tr>");
+                        }
+                        out.println("</form>");
+                    %>
                     
                 </table>
             </div>

@@ -16,15 +16,21 @@ and open the template in the editor.
         <script type="text/javascript" src="pageAction.js"></script>
     </head>
     <body>
-        
+
         <!--
             Header
         -->
         <div class="stay">
             <div class="container">
                 <div class="topBar">
-                    <a href="#">Log In</a>
-                    <a href="#">Sign up</a>
+                    <%
+                        if (request.getSession().getAttribute("member") == null || request.getSession() == null) {
+                            out.print("<a href=\"login.html\">Log In</a>");
+                            out.print("<a href=\"register.jsp\">Sign Up</a>");
+                        } else {
+                            out.print("<a href=\"Account\">Log Out</a>");
+                        }
+                    %>
                 </div>
             </div>
         </div>
@@ -41,8 +47,8 @@ and open the template in the editor.
                                 <span class="glyphicon glyphicon-tags"></span>Offers</a></li> 
                         <li class=" headBarElement"><a href="myAccount.jsp">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
-<!--                        <li class=" headBarElement"><a href="support.html">
-                                <span class="glyphicon glyphicon-earphone"></span>Support</a></li>-->
+                        <!--                        <li class=" headBarElement"><a href="support.html">
+                                                        <span class="glyphicon glyphicon-earphone"></span>Support</a></li>-->
                     </ul>
                 </div> 
             </div>
@@ -51,7 +57,7 @@ and open the template in the editor.
         <!--    
             Main
         -->
-        
+
         <div class="main-container">
             <div class="container">
                 <div class="tab-content" id="homepage">
@@ -87,7 +93,7 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div> <!-- Carousel -->
-                    
+
                     <!-- ******************
                         Login form
                     ******************* -->
@@ -115,10 +121,8 @@ and open the template in the editor.
                                 </div>
                                 <hr>
                                 <div class="signUp">
-                                    <a onclick="openRegisterForm()">
-                                        <h2>I'm a new customer.</h2>
-                                        <h3>Create an account</h3>
-                                    </a>
+                                    <h2>I'm a new customer.</h2>
+                                    <a onclick="openRegisterForm()">Create an account</a>
                                 </div>
                             </div>
                         </div>
@@ -188,9 +192,9 @@ and open the template in the editor.
                                             </td>
                                             <td>
                                                 <div class="checkbox">
-                                                    <label><input type="checkbox" name="remember"> I agree to the<a id="termOfService">terms of service</a></label>
+                                                    <label><input type="checkbox" id="termOfService"> I agree to the<a id="termOfService">terms of service</a></label>
                                                 </div>
-                                                <button type="submit" class="btn btn-default">Submit</button>
+                                                <button type="submit" class="btn btn-default" id="registerBtn">Submit</button>
                                             </td>
                                         </tr>
                                     </table>
@@ -205,7 +209,7 @@ and open the template in the editor.
                     <!--
                         Display news
                     -->
-                    
+
                     <div class="row">
                         <div class="col-xs-4">
                             <a href="#">
@@ -224,17 +228,17 @@ and open the template in the editor.
                         </div>
                     </div>
                     <hr>
-                    
+
                     <!--
                         Banner Decoration
                     -->
                     <div class="banner">
                         <p>How does our Tasty work?</p>
                         <a href="#">
-<!--                            
-                        ******************
-                        !!! LOGIN SITE !!!
-                        ******************
+                            <!--                            
+                                                    ******************
+                                                    !!! LOGIN SITE !!!
+                                                    ******************
                             -->
                             <img class="img-rounded" src="img/exampleBanner.png" alt=""/> 
                         </a>
@@ -242,11 +246,11 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-                
+
         <!--
             Footer
         -->
-        
+
         <div class="footer">
             <div class="jumbotron">
                 <div class="container">
@@ -281,7 +285,7 @@ and open the template in the editor.
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <div class="col-sm-4">
                             <p class="footTitle">Support</p>
                             <ul class="list-unstyled">
@@ -295,21 +299,21 @@ and open the template in the editor.
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <div class="col-sm-4">
                             <p class="footTitle">Follow us</p>
                             <div class="col-sm-1">
                                 <img src="img/footer-icon.png" alt=""/>
                             </div>
                             <div class="col-sm-3">
-                            <ul class="list-unstyled" id="followUs">
-                                <li><a href="#">Facebook</a>
-                                </li> 
-                                <li><a href="#">Youtube</a>
-                                </li>
-                                <li><a href="#">Instagram</a>
-                                </li>
-                            </ul>
+                                <ul class="list-unstyled" id="followUs">
+                                    <li><a href="#">Facebook</a>
+                                    </li> 
+                                    <li><a href="#">Youtube</a>
+                                    </li>
+                                    <li><a href="#">Instagram</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

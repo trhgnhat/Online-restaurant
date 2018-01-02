@@ -24,7 +24,7 @@
 //    public DatabaseService() {
 //        
 //        sqlConnectionManager = new MySqlConnectionManager(
-//                "localhost", "3306", "webapplab5", "root", "nntadotzip");  
+//                "localhost", "3306", "webapplab5", "root", "crazy123");  
 //        
 //    }
 //    /*

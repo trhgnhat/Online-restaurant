@@ -78,9 +78,13 @@ public class test {
 //            System.out.println(order.getClass());
 //            System.out.println("***********************************************");
 //        }
-        FoodDS foods = new FoodDS();
-        for (FoodDO food : foods.getAllFoods()){
-            System.out.println(food.getId());
+        OrderDS ods = new OrderDS();
+        List<OrderDO> orders = ods.getAllOrders();
+        for (OrderDO order : orders){
+            System.out.println(order.getDate_time());
+            System.out.println(order.getDate_time().getYear());
+            System.out.println(order.getDate_time().getMonth().getValue());
+            System.out.println(order.getDate_time().getDayOfMonth());
         }
     }
 }
