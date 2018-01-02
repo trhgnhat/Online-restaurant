@@ -22,7 +22,7 @@ public class TableDS {
 
     public TableDS() {
         sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "crazy123");
+                "localhost", "3306", "restaurant_website", "root", "nntadotzip");
     }
 
     public void createTable(TableDO table) {

@@ -23,7 +23,7 @@ public class MemberDS {
 
     public MemberDS() {
         sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "crazy123");
+                "localhost", "3306", "restaurant_website", "root", "nntadotzip");
     }
 
     /**

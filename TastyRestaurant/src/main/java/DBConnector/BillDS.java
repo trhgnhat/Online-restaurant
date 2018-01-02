@@ -26,7 +26,7 @@ public class BillDS {
 
     public BillDS() {
         sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "crazy123");
+                "localhost", "3306", "restaurant_website", "root", "nntadotzip");
     }
 
     public void createBill(BillDO bill) {
