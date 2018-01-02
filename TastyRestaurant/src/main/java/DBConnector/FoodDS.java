@@ -22,8 +22,7 @@ public class FoodDS {
     private MySqlConnectionManager sqlConnectionManager;
 
     public FoodDS() {
-        sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "crazy123");
+        sqlConnectionManager = new MySqlConnectionManager();
     }
 
     public void createFood(FoodDO food) {

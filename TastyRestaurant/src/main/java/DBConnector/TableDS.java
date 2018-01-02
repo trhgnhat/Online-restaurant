@@ -21,8 +21,7 @@ public class TableDS {
     private MySqlConnectionManager sqlConnectionManager;
 
     public TableDS() {
-        sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "nntadotzip");
+        sqlConnectionManager = new MySqlConnectionManager();
     }
 
     public void createTable(TableDO table) {
