@@ -4,6 +4,8 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="DBConnector.OrderDS"%>
 <%@page import="DO.OrderDO"%>
 <%@page import="java.util.List"%>
@@ -31,7 +33,7 @@
     <body>
         <div class="col-lg-2" id="sideBar">
             <div class="logo">
-               
+
             </div>
             <ul>
                 <li><a href="manager.jsp"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
@@ -55,15 +57,15 @@
                 </div>
             </nav>
         </div>
-        
+
         <div class="col-lg-10">
             <div>
                 <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteOrder" onsubmit="return confirmation('order')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
-                <select name="orderTime" style='float: right'>
-                    <option>All</option>
-                    <option>Last Day</option>
-                    <option>Last Week</option>
-                    <option>Last Month</option>
+                <select name="orderTime" style='float: right' onchange="chooseOrderTime(this.value)">
+                    <option value="all">All</option>
+                    <option value="lastDay">Last Day</option>
+                    <option value="lastWeek">Last Week</option>
+                    <option value="lastMonth">Last Month</option>
                 </select>
             </div>
             <div class="orderList">
@@ -81,37 +83,70 @@
                         <th>Time</th>
                         <th>Date</th>
                     </tr>
-                    
-<!--                    **************************
-                    ******SHOW MENU LIST******
-                    GENERATE THIS <TR> ELEMENT
-                    **************************-->
-                    
+
+                    <!--                    **************************
+                                        ******SHOW MENU LIST******
+                                        GENERATE THIS <TR> ELEMENT
+                                        **************************-->
+
                     <%
                         List<OrderDO> orders = new OrderDS().getAllOrders();
                         out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\">");
-                        for (OrderDO order : orders){
-                           out.println("<tr>");
-                           out.println("<td>");
-                           out.println("<input type=\"checkbox\" name=\"orderCheckBox\" value=\"" + order.getId() + "\" />");
-                           out.println("</td>");
-                           out.println("<td>");
-                           out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() +"\" action=\"Manager?action=editOrder\">");
-                           out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
-                           out.println("</button>");
-                           out.println("</td>");
-                           out.println("<td>" + order.getId() + "</td>");
-                           out.println("<td>" + order.getMember().getUsername() + "</td>");
-                           out.println("<td>" + order.getBill().getId() + "</td>");
-                           out.println("<td>" + order.getTable().getId() + "</td>");
-                           out.println("<td>" + order.getTotal_price() + "</td>");
-                           out.println("<td>" + order.getDate_time().toLocalTime() + "</td>");
-                           out.println("<td>" + order.getDate_time().toLocalDate() + "</td>");
-                           out.println("</tr>");
+                        for (OrderDO order : orders) {
+                            int yeargap = order.getDate_time().toLocalDate().getYear() - LocalDate.now().getYear();
+                            int monthgap = order.getDate_time().toLocalDate().getMonthValue() - LocalDate.now().getMonthValue();
+                            int daygap = order.getDate_time().toLocalDate().getDayOfYear() - LocalDate.now().getDayOfYear();
+                            if (yeargap == 0) {
+                                if (daygap <= 30) {
+                                    if (daygap <= 7) {
+                                        if (daygap <= 1) {
+                                            out.println("<tr id='lastDay'>");
+                                        } else {
+                                            out.println("<tr id='lastWeek'>");
+                                        }
+                                    } else {
+                                        out.println("<tr id='lastMonth'>");
+                                    }
+                                } else {
+                                    out.println("<tr id='all'>");
+                                }
+                            } else {
+                                daygap += 365;
+                                if (daygap <= 30) {
+                                    if (daygap <= 7) {
+                                        if (daygap <= 1) {
+                                            out.println("<tr id='lastDay'>");
+                                        } else {
+                                            out.println("<tr id='lastWeek'>");
+                                        }
+                                    } else {
+                                        out.println("<tr id='lastMonth'>");
+                                    }
+                                } else {
+                                    out.println("<tr id='all'>");
+                                }
+                            }
+
+                            out.println("<td>");
+                            out.println("<input type=\"checkbox\" name=\"orderCheckBox\" value=\"" + order.getId() + "\" />");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() + "\" action=\"Manager?action=editOrder\">");
+                            out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
+                            out.println("</button>");
+                            out.println("</td>");
+                            out.println("<td>" + order.getId() + "</td>");
+                            out.println("<td>" + order.getMember().getUsername() + "</td>");
+                            out.println("<td>" + order.getBill().getId() + "</td>");
+                            out.println("<td>" + order.getTable().getId() + "</td>");
+                            out.println("<td>" + order.getTotal_price() + "</td>");
+                            out.println("<td>" + order.getDate_time().toLocalTime() + "</td>");
+                            out.println("<td>" + order.getDate_time().toLocalDate() + "</td>");
+                            out.println("</tr>");
                         }
                         out.println("</form>");
                     %>
-                    
+
                 </table>
             </div>
         </div>

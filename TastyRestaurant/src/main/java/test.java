@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 import DBConnector.FoodDS;
 import DBConnector.MemberDS;
 import DBConnector.OrderDS;
@@ -16,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.crypto.BadPaddingException;
@@ -27,6 +27,7 @@ import javax.crypto.NoSuchPaddingException;
  * @author Admin
  */
 public class test {
+
     public static void main(String[] args) throws UnsupportedEncodingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
 //        MemberDS memberds = new MemberDS();
 //        List<MemberDO> members = memberds.getAllMembers();
@@ -78,13 +79,16 @@ public class test {
 //            System.out.println(order.getClass());
 //            System.out.println("***********************************************");
 //        }
-        OrderDS ods = new OrderDS();
-        List<OrderDO> orders = ods.getAllOrders();
-        for (OrderDO order : orders){
-            System.out.println(order.getDate_time());
-            System.out.println(order.getDate_time().getYear());
-            System.out.println(order.getDate_time().getMonth().getValue());
-            System.out.println(order.getDate_time().getDayOfMonth());
-        }
+//        OrderDS ods = new OrderDS();
+//        List<OrderDO> orders = ods.getAllOrders();
+//        for (OrderDO order : orders){
+//            System.out.println(order.getDate_time());
+//            System.out.println(order.getDate_time().getYear());
+//            System.out.println(order.getDate_time().getMonth().getValue());
+//            System.out.println(order.getDate_time().getDayOfMonth());
+//        }
+        System.out.println(LocalDateTime.now().getDayOfYear());
+        System.out.println(new OrderDS().getOrderByOrderID(1).getDate_time().getDayOfYear()); 
+        System.out.println(LocalDateTime.now().getDayOfYear() - new OrderDS().getOrderByOrderID(1).getDate_time().getDayOfYear());
     }
 }

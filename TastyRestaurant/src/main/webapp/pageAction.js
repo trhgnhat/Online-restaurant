@@ -79,4 +79,11 @@ function confirmation(field) {
         return false;
     }
 }
+function chooseOrderTime(time) {
+    document.getElementById("all").style.display = "none";
+    document.getElementById("lastDay").style.display = "none";
+    document.getElementById("lastMonth").style.display = "none";
+    document.getElementById("lastWeek").style.display = "none";
+    document.getElementById(time).style.display = "block";
+}
 previewFile();
