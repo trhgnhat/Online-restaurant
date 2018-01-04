@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sales</title>
+        <title>Kitchen Management</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -60,8 +60,8 @@
 
         <div class="col-lg-10">
             <div>
-                <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteOrder" onsubmit="return confirmation('order')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
-                <select name="orderTime" style='float: right' onchange="chooseOrderTime(this.value)">
+                <button class="btn btn-danger" form="orderForm" formaction="Manager?action=deleteOrder"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <select id="orderTime" style='float: right' onchange="chooseOrderTime(this)">
                     <option value="all">All</option>
                     <option value="lastDay">Last Day</option>
                     <option value="lastWeek">Last Week</option>
@@ -69,7 +69,7 @@
                 </select>
             </div>
             <div class="orderList">
-                <table class="table">
+                <table class="table" id="orderTable">
                     <tr>
                         <th>
                             <input type="checkbox" id="checkAll" onchange="checkAll(this, 'orderCheckBox')" />
@@ -91,39 +91,38 @@
 
                     <%
                         List<OrderDO> orders = new OrderDS().getAllOrders();
-                        out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\">");
+                        out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\" onsubmit=\"return confirmation('order')\">");
                         for (OrderDO order : orders) {
-                            int yeargap = order.getDate_time().toLocalDate().getYear() - LocalDate.now().getYear();
-                            int monthgap = order.getDate_time().toLocalDate().getMonthValue() - LocalDate.now().getMonthValue();
-                            int daygap = order.getDate_time().toLocalDate().getDayOfYear() - LocalDate.now().getDayOfYear();
+                            int yeargap = LocalDate.now().getYear() - order.getDate_time().toLocalDate().getYear();
+                            int daygap = LocalDate.now().getDayOfYear() - order.getDate_time().toLocalDate().getDayOfYear();
                             if (yeargap == 0) {
                                 if (daygap <= 30) {
                                     if (daygap <= 7) {
                                         if (daygap <= 1) {
-                                            out.println("<tr id='lastDay'>");
+                                            out.println("<tr name='lastDay'>");
                                         } else {
-                                            out.println("<tr id='lastWeek'>");
+                                            out.println("<tr name='lastWeek'>");
                                         }
                                     } else {
-                                        out.println("<tr id='lastMonth'>");
+                                        out.println("<tr name='lastMonth'>");
                                     }
                                 } else {
-                                    out.println("<tr id='all'>");
+                                    out.println("<tr name='otherTime'>");
                                 }
                             } else {
                                 daygap += 365;
                                 if (daygap <= 30) {
                                     if (daygap <= 7) {
                                         if (daygap <= 1) {
-                                            out.println("<tr id='lastDay'>");
+                                            out.println("<tr name='lastDay'>");
                                         } else {
-                                            out.println("<tr id='lastWeek'>");
+                                            out.println("<tr name='lastWeek'>");
                                         }
                                     } else {
-                                        out.println("<tr id='lastMonth'>");
+                                        out.println("<tr name='lastMonth'>");
                                     }
                                 } else {
-                                    out.println("<tr id='all'>");
+                                    out.println("<tr name='otherTime'>");
                                 }
                             }
 
@@ -146,7 +145,6 @@
                         }
                         out.println("</form>");
                     %>
-
                 </table>
             </div>
         </div>

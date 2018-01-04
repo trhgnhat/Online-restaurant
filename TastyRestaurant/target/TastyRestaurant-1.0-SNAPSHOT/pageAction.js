@@ -80,10 +80,20 @@ function confirmation(field) {
     }
 }
 function chooseOrderTime(time) {
-    document.getElementById("all").style.display = "none";
-    document.getElementById("lastDay").style.display = "none";
-    document.getElementById("lastMonth").style.display = "none";
-    document.getElementById("lastWeek").style.display = "none";
-    document.getElementById(time).style.display = "block";
+    if (time.value !== "all") {
+        var x = document.getElementById("orderTable").rows;
+        for (var i = 1; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        var selected = document.getElementsByName(time.value);
+        for (var i = 0, n = selected.length; i < n; i++) {
+            selected[i].style.display = "";
+        }
+    } else {
+        var x = document.getElementById("orderTable").rows;
+        for (var i = 0; i < x.length; i++) {
+            x[i].style.display = "";
+        }
+    }
 }
 previewFile();

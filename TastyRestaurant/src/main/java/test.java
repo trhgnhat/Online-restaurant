@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,8 +88,49 @@ public class test {
 //            System.out.println(order.getDate_time().getMonth().getValue());
 //            System.out.println(order.getDate_time().getDayOfMonth());
 //        }
-        System.out.println(LocalDateTime.now().getDayOfYear());
-        System.out.println(new OrderDS().getOrderByOrderID(1).getDate_time().getDayOfYear()); 
-        System.out.println(LocalDateTime.now().getDayOfYear() - new OrderDS().getOrderByOrderID(1).getDate_time().getDayOfYear());
+//        System.out.println(LocalDateTime.now().getDayOfYear());
+//        System.out.println(new OrderDS().getOrderByOrderID(1).getDate_time().getDayOfYear()); 
+        //System.out.println(LocalDateTime.now().toLocalDate() - new OrderDS().getOrderByOrderID(1).getDate_time().toLocalDate());
+
+        List<OrderDO> orders = new OrderDS().getAllOrders();
+        for (OrderDO order : orders) {
+            int yeargap = LocalDate.now().getYear() - order.getDate_time().toLocalDate().getYear();
+            int daygap = LocalDate.now().getDayOfYear() - order.getDate_time().toLocalDate().getDayOfYear();
+            System.out.println(order.getDate_time().toLocalDate().getYear());
+            System.out.println(LocalDate.now().getYear());
+            System.out.println(order.getDate_time().toLocalDate().getDayOfYear());
+            System.out.println(LocalDate.now().getDayOfYear());
+            if (yeargap == 0) {
+                if (daygap <= 30) {
+                    if (daygap <= 7) {
+                        if (daygap <= 1) {
+                            System.out.println("<tr name='lastDay'>");
+                        } else {
+                            System.out.println("<tr name='lastWeek'>");
+                        }
+                    } else {
+                        System.out.println("<tr name='lastMonth'>");
+                    }
+                } else {
+                    System.out.println("<tr name='otherTime'>");
+                }
+            } else {
+                daygap += 365;
+                if (daygap <= 30) {
+                    if (daygap <= 7) {
+                        if (daygap <= 1) {
+                            System.out.println("<tr name='lastDay'>");
+                        } else {
+                            System.out.println("<tr name='lastWeek'>");
+                        }
+                    } else {
+                        System.out.println("<tr name='lastMonth'>");
+                    }
+                } else {
+                    System.out.println("<tr name='otherTime'>");
+                }
+            }
+
+        }
     }
 }

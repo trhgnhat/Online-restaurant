@@ -6,6 +6,7 @@
 package Controller;
 
 import DBConnector.FoodDS;
+import DBConnector.OrderDS;
 import DO.FoodDO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -116,6 +117,23 @@ public class Manager extends HttpServlet {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please choose at least ONE food');");
                 out.println("location='kitchenManager.jsp';");
+                out.println("</script>");
+            }
+        }
+        if (action.equals("deleteOrder")) {
+            String[] checkboxes = request.getParameterValues("orderCheckBox");
+            if (checkboxes != null) {
+                for (String checkbox : checkboxes) {
+                    new OrderDS().deleteOrder(new OrderDS().getOrderByOrderID(Integer.parseInt(checkbox)));
+                }
+                out.println("<script type=\"text/javascript\">");
+                out.println("location='saleManager.jsp';");
+                out.println("</script>");
+            }
+            else{
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Please choose at least ONE food');");
+                out.println("location='saleManager.jsp';");
                 out.println("</script>");
             }
         }

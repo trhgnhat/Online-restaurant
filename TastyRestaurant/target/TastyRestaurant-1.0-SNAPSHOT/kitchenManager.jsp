@@ -63,7 +63,7 @@
                         <span class="glyphicon glyphicon-plus"></span>New
                     </button>
                 </a>
-                <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteFood" onsubmit="return confirmation('order')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteFood"><span class="glyphicon glyphicon-trash"></span>Delete</button>
             </div>
             <div class="menuList">
                 <table class="table">
