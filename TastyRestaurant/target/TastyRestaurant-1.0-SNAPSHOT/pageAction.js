@@ -79,7 +79,6 @@ function confirmation(field) {
         return false;
     }
 }
-<<<<<<< HEAD
 previewFile();
 
 function showOrderDetail(target){
@@ -96,7 +95,6 @@ function showOrderDetail(target){
     targets.style.display = isVisible ? "none" : "block";
     return false;
 }
-=======
 function chooseOrderTime(time) {
     if (time.value !== "all") {
         var x = document.getElementById("orderTable").rows;
@@ -115,4 +113,3 @@ function chooseOrderTime(time) {
     }
 }
 previewFile();
->>>>>>> a64e9fc82598fc123f5a23310475c908fbab1de1

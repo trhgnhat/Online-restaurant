@@ -94,6 +94,7 @@ public class test {
 
         List<OrderDO> orders = new OrderDS().getAllOrders();
         for (OrderDO order : orders) {
+            
             int yeargap = LocalDate.now().getYear() - order.getDate_time().toLocalDate().getYear();
             int daygap = LocalDate.now().getDayOfYear() - order.getDate_time().toLocalDate().getDayOfYear();
             System.out.println(order.getDate_time().toLocalDate().getYear());

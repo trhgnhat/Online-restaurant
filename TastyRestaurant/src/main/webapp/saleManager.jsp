@@ -4,6 +4,7 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="DO.FoodDO"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="DBConnector.OrderDS"%>
@@ -60,7 +61,7 @@
 
         <div class="col-lg-10">
             <div>
-                <button class="btn btn-danger" form="orderForm" formaction="Manager?action=deleteOrder"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <button class="btn btn-danger" form="orderForm" formaction="Manager?action=deleteOrder" onclick="return confirmation('order')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
                 <select id="orderTime" style='float: right' onchange="chooseOrderTime(this)">
                     <option value="all">All</option>
                     <option value="lastDay">Last Day</option>
@@ -83,7 +84,111 @@
                         <th>Time</th>
                         <th>Date</th>
                     </tr>
-<<<<<<< HEAD
+                    <%
+                        List<OrderDO> orders = new OrderDS().getAllOrders();
+                        out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\">");
+                        for (OrderDO order : orders) {
+                            int yeargap = LocalDate.now().getYear() - order.getDate_time().toLocalDate().getYear();
+                            int daygap = LocalDate.now().getDayOfYear() - order.getDate_time().toLocalDate().getDayOfYear();
+                            if (yeargap == 0) {
+                                if (daygap <= 30) {
+                                    if (daygap <= 7) {
+                                        if (daygap <= 1) {
+                                            out.println("<tr name='lastDay'>");
+                                        } else {
+                                            out.println("<tr name='lastWeek'>");
+                                        }
+                                    } else {
+                                        out.println("<tr name='lastMonth'>");
+                                    }
+                                } else {
+                                    out.println("<tr name='otherTime'>");
+                                }
+                            } else {
+                                daygap += 365;
+                                if (daygap <= 30) {
+                                    if (daygap <= 7) {
+                                        if (daygap <= 1) {
+                                            out.println("<tr name='lastDay'>");
+                                        } else {
+                                            out.println("<tr name='lastWeek'>");
+                                        }
+                                    } else {
+                                        out.println("<tr name='lastMonth'>");
+                                    }
+                                } else {
+                                    out.println("<tr name='otherTime'>");
+                                }
+                            }
+
+                            out.println("<td>");
+                            out.println("<input type=\"checkbox\" name=\"orderCheckBox\" value=\"" + order.getId() + "\" />");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() + "\" onclick=\"return showOrderDetail('" + order.getId() + "')\">");
+                            out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
+                            out.println("</button>");
+                            out.println("</td>");
+                            out.println("<td>" + order.getId() + "</td>");
+                            out.println("<td>" + order.getMember().getUsername() + "</td>");
+                            out.println("<td>" + order.getBill().getId() + "</td>");
+                            out.println("<td>" + order.getTable().getId() + "</td>");
+                            out.println("<td>" + order.getTotal_price() + "</td>");
+                            out.println("<td>" + order.getDate_time().toLocalTime() + "</td>");
+                            out.println("<td>" + order.getDate_time().toLocalDate() + "</td>");
+                            out.println("</tr>");
+
+//                          SHOW DETAIL OF THE CHOSEN ORDER
+                            out.println("<tr>");
+                            out.println("<td colspan=\"9\">");
+                            out.println("<div class=\"orderDetailDiv\" id=\"" + order.getId() + "\" style=\"display: none;\">");
+                            out.println("<table class=\"table\">");
+                            out.println("<tr id=\"orderDetail\">");
+                            out.println("<td colspan=\"4\">Dishes</td>");
+                            out.println("<td>Quantity</td>");
+                            out.println("<td colspan=\"2\">Price ($)</td>");
+                            out.println("<td colspan=\"2\">Sub Total ($)</td>");
+                            out.println("<td/>");
+                            out.println("</tr>");
+
+//                          DETAIL OF THE CONTAINED BILL
+                            for (int i = 0; i < order.getBill().getFood().size(); i++) {
+                                out.println("<tr id=\"orderDetailElement\">");
+                                out.println("<td colspan=\"4\">" + order.getBill().getFood().get(i).getName() + "</td>");
+                                out.println("<td>" + order.getBill().getQuantity().get(i) + "</td>");
+                                out.println("<td colspan=\"2\">" + order.getBill().getPrice().get(i) + "</td>");
+                                out.println("<td colspan=\"2\">" + order.getBill().getQuantity().get(i)*order.getBill().getPrice().get(i) + "</td>");
+                                out.println("<td/>");
+                                out.println("</tr>");
+                            }
+
+//                          DETAIL OF THE ACCOUNT
+                            out.println("<tr id=\"orderDetail\">");
+                            out.println("<td colspan=\"3\">Full Name</td>");
+                            out.println("<td>Username</td>");
+                            out.println("<td colspan=\"2\">Email</td>");
+                            out.println("<td colspan=\"1\">Address</td>");
+                            out.println("<td>Phone Number</td>");
+                            out.println("<td>Accumulated point</td>");
+                            out.println("<td/>");
+                            out.println("</tr>");
+
+                            out.println("<tr id=\"orderDetailElement\">");
+                            out.println("<td colspan=\"3\">" + order.getMember().getName() + "</td>");
+                            out.println("<td><a href=\"#\">" + order.getMember().getUsername() + "</a></td>");
+                            out.println("<td colspan=\"2\">" + order.getMember().getEmail() + "</td>");
+                            out.println("<td colspan=\"1\">" + order.getMember().getAddress() + "</td>");
+                            out.println("<td>" + order.getMember().getPhone() + "</td>");
+                            out.println("<td>" + order.getMember().getPoint() + "</td>");
+                            out.println("<td>" + "<button class=\"btn btn-edit\" name=\"memberIdBtn\" action=\"Manager?action=memberDetail&id=" + order.getMember().getId() + "\">view</button>" + "</td>");
+                            out.println("</tr>");
+                            out.println("</table>");
+                            out.println("</div>");
+                            out.println("</td>");
+                            out.println("</tr>");
+                        }
+                        out.println("</form>");
+                    %>
                     <tr>
                         <td>
                             <input type="checkbox" name="orderCheckbox" value="" />
@@ -157,172 +262,115 @@
                             </div>
                         </td>
                     </tr>
+
+                    <!--                    
+                                        DISPLAY ORDER DETAIL WITH PANEL - MODIFY LATER
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="orderCheckbox" value="" />
+                                            </td>
+                                            <td>
+                                                <a href="#" onclick="showOrderDetail('2')">View details</a>
+                                            </td>
+                                            <td>
+                                                orderID
+                                            </td>
+                                            <td>
+                                                username
+                                            </td>
+                                            <td>
+                                                billID
+                                            </td>
+                                            <td>
+                                                tableNo
+                                            </td>
+                                            <td>
+                                                total
+                                            </td>
+                                            <td>
+                                                time
+                                            </td>
+                                            <td>
+                                                date
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="9">
+                                                <div  class="orderDetailDiv" id="2" style="display: none;">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h4>Member's information</h4>
+                                                        </div>
+                                                        <div class="panel-body">
                     
-<!--                    
-                    DISPLAY ORDER DETAIL WITH PANEL - MODIFY LATER
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="orderCheckbox" value="" />
-                        </td>
-                        <td>
-                            <a href="#" onclick="showOrderDetail('2')">View details</a>
-                        </td>
-                        <td>
-                            orderID
-                        </td>
-                        <td>
-                            username
-                        </td>
-                        <td>
-                            billID
-                        </td>
-                        <td>
-                            tableNo
-                        </td>
-                        <td>
-                            total
-                        </td>
-                        <td>
-                            time
-                        </td>
-                        <td>
-                            date
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="9">
-                            <div  class="orderDetailDiv" id="2" style="display: none;">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4>Member's information</h4>
-                                    </div>
-                                    <div class="panel-body">
+                                                        </div>
+                                                        <div class="panel-heading">
+                                                            <h4>Receipt</h4>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <table class="table">
+                                                                <tr id="orderDetail">
+                                                            <td colspan="3">Dishes</td>
+                                                            <td>Quantity</td>
+                                                            <td colspan="2">Price ($)</td>
+                                                            <td colspan="2">Sub Total ($)</td>
+                                                            <td>Total ($)</td>
+                                                            <td>Full Name</td>
+                                                            <td>Username</td>
+                                                            <td>E-mail</td>
+                                                            <td>Address</td>
+                                                            <td>Phone Number</td>
+                                                            <td>Accumulated Point</td>
+                                                        </tr>
+                                                        <tr id="orderDetailElement">
+                                                            <td colspan="3">Chicken</td>
+                                                            <td>2</td>
+                                                            <td colspan="2">6.00</td>
+                                                            <td colspan="2">12.00</td>
+                                                            <td rowspan="2" align="center">Modify rowspan = number of dishes</td>
+                                                        </tr>
+                                                        <tr id="orderDetailElement">
+                                                            <td colspan="3">Beef</td>
+                                                            <td>1</td>
+                                                            <td colspan="2">9.00</td>
+                                                            <td colspan="2">9.00</td> 
+                                                        </tr>
+                                                        <tr id="orderDetail">
+                                                            <td colspan="3">Full Name</td>
+                                                            <td>Username</td>
+                                                            <td colspan="2">Email</td>
+                                                            <td colspan="1">Address</td>
+                                                            <td>Phone Number</td>
+                                                            <td>Accumulated point</td>
+                                                        </tr>
+                                                        <tr id="orderDetailElement">
+                                                            <td colspan="3">Anh Nguyen</td>
+                                                            <td><a href="#">nnta.zip</a></td>
+                                                            <td colspan="2">nnta@gmail.com</td>
+                                                            <td colspan="1">HCMC</td>
+                                                            <td>1234</td>
+                                                            <td>100</td>
+                                                        </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>-->
 
-                                    </div>
-                                    <div class="panel-heading">
-                                        <h4>Receipt</h4>
-                                    </div>
-                                    <div class="panel-body">
-                                        <table class="table">
-                                            <tr id="orderDetail">
-                                        <td colspan="3">Dishes</td>
-                                        <td>Quantity</td>
-                                        <td colspan="2">Price ($)</td>
-                                        <td colspan="2">Sub Total ($)</td>
-                                        <td>Total ($)</td>
-                                        <td>Full Name</td>
-                                        <td>Username</td>
-                                        <td>E-mail</td>
-                                        <td>Address</td>
-                                        <td>Phone Number</td>
-                                        <td>Accumulated Point</td>
-                                    </tr>
-                                    <tr id="orderDetailElement">
-                                        <td colspan="3">Chicken</td>
-                                        <td>2</td>
-                                        <td colspan="2">6.00</td>
-                                        <td colspan="2">12.00</td>
-                                        <td rowspan="2" align="center">Modify rowspan = number of dishes</td>
-                                    </tr>
-                                    <tr id="orderDetailElement">
-                                        <td colspan="3">Beef</td>
-                                        <td>1</td>
-                                        <td colspan="2">9.00</td>
-                                        <td colspan="2">9.00</td> 
-                                    </tr>
-                                    <tr id="orderDetail">
-                                        <td colspan="3">Full Name</td>
-                                        <td>Username</td>
-                                        <td colspan="2">Email</td>
-                                        <td colspan="1">Address</td>
-                                        <td>Phone Number</td>
-                                        <td>Accumulated point</td>
-                                    </tr>
-                                    <tr id="orderDetailElement">
-                                        <td colspan="3">Anh Nguyen</td>
-                                        <td><a href="#">nnta.zip</a></td>
-                                        <td colspan="2">nnta@gmail.com</td>
-                                        <td colspan="1">HCMC</td>
-                                        <td>1234</td>
-                                        <td>100</td>
-                                    </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>-->
-
-
-<!--                    **************************
-                    ******SHOW MENU LIST******
-                    GENERATE THIS <TR> ELEMENT
-                    **************************-->
-                    
-=======
 
                     <!--                    **************************
                                         ******SHOW MENU LIST******
                                         GENERATE THIS <TR> ELEMENT
                                         **************************-->
 
->>>>>>> a64e9fc82598fc123f5a23310475c908fbab1de1
-                    <%
-                        List<OrderDO> orders = new OrderDS().getAllOrders();
-                        out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\" onsubmit=\"return confirmation('order')\">");
-                        for (OrderDO order : orders) {
-                            int yeargap = LocalDate.now().getYear() - order.getDate_time().toLocalDate().getYear();
-                            int daygap = LocalDate.now().getDayOfYear() - order.getDate_time().toLocalDate().getDayOfYear();
-                            if (yeargap == 0) {
-                                if (daygap <= 30) {
-                                    if (daygap <= 7) {
-                                        if (daygap <= 1) {
-                                            out.println("<tr name='lastDay'>");
-                                        } else {
-                                            out.println("<tr name='lastWeek'>");
-                                        }
-                                    } else {
-                                        out.println("<tr name='lastMonth'>");
-                                    }
-                                } else {
-                                    out.println("<tr name='otherTime'>");
-                                }
-                            } else {
-                                daygap += 365;
-                                if (daygap <= 30) {
-                                    if (daygap <= 7) {
-                                        if (daygap <= 1) {
-                                            out.println("<tr name='lastDay'>");
-                                        } else {
-                                            out.println("<tr name='lastWeek'>");
-                                        }
-                                    } else {
-                                        out.println("<tr name='lastMonth'>");
-                                    }
-                                } else {
-                                    out.println("<tr name='otherTime'>");
-                                }
-                            }
 
-                            out.println("<td>");
-                            out.println("<input type=\"checkbox\" name=\"orderCheckBox\" value=\"" + order.getId() + "\" />");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() + "\" action=\"Manager?action=editOrder\">");
-                            out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
-                            out.println("</button>");
-                            out.println("</td>");
-                            out.println("<td>" + order.getId() + "</td>");
-                            out.println("<td>" + order.getMember().getUsername() + "</td>");
-                            out.println("<td>" + order.getBill().getId() + "</td>");
-                            out.println("<td>" + order.getTable().getId() + "</td>");
-                            out.println("<td>" + order.getTotal_price() + "</td>");
-                            out.println("<td>" + order.getDate_time().toLocalTime() + "</td>");
-                            out.println("<td>" + order.getDate_time().toLocalDate() + "</td>");
-                            out.println("</tr>");
-                        }
-                        out.println("</form>");
-                    %>
+                    <!--                    **************************
+                                        ******SHOW MENU LIST******
+                                        GENERATE THIS <TR> ELEMENT
+                                        **************************-->
+
+
                 </table>
             </div>
         </div>
