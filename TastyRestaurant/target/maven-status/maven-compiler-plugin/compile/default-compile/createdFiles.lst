@@ -1,5 +1,4 @@
 DBConnector\BookingDS.class
-DBConnector\FoodDS.class
 DO\FoodDO.class
 DBConnector\BillDS.class
 DO\MemberDO.class

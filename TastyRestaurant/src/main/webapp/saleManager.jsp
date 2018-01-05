@@ -83,7 +83,6 @@
                         <th>Time</th>
                         <th>Date</th>
                     </tr>
-<<<<<<< HEAD
                     <tr>
                         <td>
                             <input type="checkbox" name="orderCheckbox" value="" />
@@ -259,14 +258,12 @@
                     GENERATE THIS <TR> ELEMENT
                     **************************-->
                     
-=======
 
                     <!--                    **************************
                                         ******SHOW MENU LIST******
                                         GENERATE THIS <TR> ELEMENT
                                         **************************-->
 
->>>>>>> a64e9fc82598fc123f5a23310475c908fbab1de1
                     <%
                         List<OrderDO> orders = new OrderDS().getAllOrders();
                         out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\" onsubmit=\"return confirmation('order')\">");

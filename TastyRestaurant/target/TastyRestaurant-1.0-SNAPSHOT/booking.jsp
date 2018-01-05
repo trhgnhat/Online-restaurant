@@ -18,16 +18,16 @@
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
-
+        
+<!--        Date picker-->
         <link rel="stylesheet" href="datepicker/css/bootstrap.css" />
-        <link rel="stylesheet" href="datepicker/css/bootstrap-datepicker.css" />
+        <link rel="stylesheet" href="datepicker/css/datepicker.css" />
         <script src="datepicker/js/mainJs.js"></script>
-        <script src="datepicker/js/datepicker.js"></script>
-        <script>
-            $(function(){
-               $('.datepicker').datepicker(); 
-            });
-        </script>
+        <script src="datepicker/js/bootstrap-datepicker.js"></script>
+
+<!--        Time picker-->
+        <link rel="stylesheet" type="text/css" href="clockpicker-gh-pages/dist/bootstrap-clockpicker.min.css">
+        <script type="text/javascript" src="clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js"></script>
     </head>
     <body>
         <!--
@@ -90,22 +90,55 @@
                                 <form>
                                     <div class="form-group">
                                         <div class="col-xs-12 col-sm-3 wrap-none">
-                                            <input class="datepicker" type="text" name="pickADate" />
-                                        </div>
-                                        <div class="col-xs-12 col-sm-3 wrap-none">
-                                            <div class="input-group bootstrap-timepicker timepicker">
-                                                <input id="timepicker1" type="text" class="form-control input-small">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            <div class="input-group">
+                                                <input class="datepicker form-control input-small" type="text" name="pickADate" placeholder="mm/dd/yy" value="" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
                                             </div>
+                                            <script>
+                                                $(function(){
+                                                    $('.datepicker').datepicker(); 
+                                                });
+                                            </script>
                                         </div>
                                         <div class="col-xs-12 col-sm-3 wrap-none">
-                                            <input type="submit" class="btn btn-default" name="findTable" value="Find Table" />
+                                            <div class="input-group clockpicker">
+                                                <input class="form-control" type="text" name="pickATime" value="" placeholder="Click on the clock" disabled />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-time"></span>
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                            $('.clockpicker').clockpicker();
+                                            </script>
+                                        </div>     
+                                    </div>
+                                        <div class="col-xs-12 col-sm-3 wrap-none">
+                                            <button class="btn btn-primary btn-block" type="submit">Find me a table</button>
                                         </div>
                                         <div class="col-xs-12 col-sm-3 wrap-none">
-                                            <input type="submit" class="btn btn-edit" name="resetFindTable" value="Reset" />
+                                            <button class="btn btn-default btn-block" type="submit">Reset</button>
                                         </div>
                                     </div>
                                 </form>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                        <input id="" name="" value="" type="radio" />No.1
+                                    </label>
+                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                        <input id="" name="" value="" type="radio" />No.2
+                                    </label>
+                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                        <input id="" name="" value="" type="radio" />No.3
+                                    </label>
+                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                        <input id="" name="" value="" type="radio" />No.4
+                                    </label>
+                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                        <input id="" name="" value="" type="radio" />No.5
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
