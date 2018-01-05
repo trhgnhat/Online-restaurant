@@ -89,7 +89,7 @@
                             <div class="col-xs-12 col-sm-12">
                                 <form>
                                     <div class="form-group">
-                                        <div class="col-xs-12 col-sm-3 wrap-none">
+                                        <div class="col-xs-12 col-sm-3">
                                             <div class="input-group">
                                                 <input class="datepicker form-control input-small" type="text" name="pickADate" placeholder="mm/dd/yy" value="" />
                                                 <span class="input-group-addon">
@@ -102,7 +102,7 @@
                                                 });
                                             </script>
                                         </div>
-                                        <div class="col-xs-12 col-sm-3 wrap-none">
+                                        <div class="col-xs-12 col-sm-3">
                                             <div class="input-group clockpicker">
                                                 <input class="form-control" type="text" name="pickATime" value="" placeholder="Click on the clock" disabled />
                                                 <span class="input-group-addon">
@@ -114,30 +114,60 @@
                                             </script>
                                         </div>     
                                     </div>
-                                        <div class="col-xs-12 col-sm-3 wrap-none">
-                                            <button class="btn btn-primary btn-block" type="submit">Find me a table</button>
+                                        <div class="col-xs-12 col-sm-3">
+                                            <button class="btn btn-primary btn-block" onclick="showAvailableTables();">Find me a table</button>
                                         </div>
-                                        <div class="col-xs-12 col-sm-3 wrap-none">
+                                        <div class="col-xs-12 col-sm-3">
                                             <button class="btn btn-default btn-block" type="submit">Reset</button>
                                         </div>
                                     </div>
                                 </form>
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                        <input id="" name="" value="" type="radio" />No.1
-                                    </label>
-                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                        <input id="" name="" value="" type="radio" />No.2
-                                    </label>
-                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                        <input id="" name="" value="" type="radio" />No.3
-                                    </label>
-                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                        <input id="" name="" value="" type="radio" />No.4
-                                    </label>
-                                    <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                        <input id="" name="" value="" type="radio" />No.5
-                                    </label>
+                                <div class="showTable" id="showAvailableTables" style="display: none;">
+                                    <div class="col-xs-12">
+                                        <div class="btn-group tableSelection" data-toggle="buttons">
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.1
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.2
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.3
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.4
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.5
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.6
+                                            </label>
+                                        </div>
+                                        <div class="btn-group tableSelection" data-toggle="buttons">
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.7
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.8
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.9
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.10
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.11
+                                            </label>
+                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
+                                                <input id="" name="" value="" type="radio" />No.12
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12" id="confirmTableBtn">
+                                        <button class="btn btn-primary btn-block">Confirm</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

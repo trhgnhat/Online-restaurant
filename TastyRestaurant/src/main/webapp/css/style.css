@@ -846,3 +846,15 @@ li a:hover{
 #orderDetailElement a:hover{
     color: #ffce47;
 }
+/***************
+BOOKING
+***************/
+
+.tableSelection{
+    width: 100%;
+    margin-top: 15px;
+}
+
+#confirmTableBtn{
+    margin-top: 15px;
+}

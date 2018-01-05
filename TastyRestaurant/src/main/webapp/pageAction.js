@@ -79,10 +79,7 @@ function confirmation(field) {
         return false;
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 7b2cc0fa73032dd3c70125c18d78796a7be5786d
 previewFile();
 
 function showOrderDetail(target){
@@ -99,10 +96,11 @@ function showOrderDetail(target){
     targets.style.display = isVisible ? "none" : "block";
     return false;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 7b2cc0fa73032dd3c70125c18d78796a7be5786d
+function showAvailableTables(){
+    document.getElementById("showAvailableTables").style.display = "block";
+}
+
 function chooseOrderTime(time) {
     if (time.value !== "all") {
         var x = document.getElementById("orderTable").rows;
@@ -121,7 +119,4 @@ function chooseOrderTime(time) {
     }
 }
 previewFile();
-<<<<<<< HEAD
 
-=======
->>>>>>> 7b2cc0fa73032dd3c70125c18d78796a7be5786d
