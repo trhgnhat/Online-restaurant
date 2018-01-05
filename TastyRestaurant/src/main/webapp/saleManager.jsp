@@ -84,8 +84,7 @@
                         <th>Time</th>
                         <th>Date</th>
                     </tr>
-<<<<<<< HEAD
-=======
+
                     <%
                         List<OrderDO> orders = new OrderDS().getAllOrders();
                         out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\">");
@@ -191,7 +190,6 @@
                         }
                         out.println("</form>");
                     %>
->>>>>>> 7b2cc0fa73032dd3c70125c18d78796a7be5786d
                     <tr>
                         <td>
                             <input type="checkbox" name="orderCheckbox" value="" />
@@ -367,21 +365,17 @@
                                         GENERATE THIS <TR> ELEMENT
                                         **************************-->
 
-<<<<<<< HEAD
 <!--                    **************************
                     ******SHOW MENU LIST******
                     GENERATE THIS <TR> ELEMENT
                     **************************-->
                     
-=======
->>>>>>> 7b2cc0fa73032dd3c70125c18d78796a7be5786d
 
                     <!--                    **************************
                                         ******SHOW MENU LIST******
                                         GENERATE THIS <TR> ELEMENT
                                         **************************-->
 
-<<<<<<< HEAD
                     <%
                         List<OrderDO> orders = new OrderDS().getAllOrders();
                         out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\" onsubmit=\"return confirmation('order')\">");
@@ -418,8 +412,7 @@
                                     out.println("<tr name='otherTime'>");
                                 }
                             }
-=======
->>>>>>> 7b2cc0fa73032dd3c70125c18d78796a7be5786d
+                    %>
 
                 </table>
             </div>
