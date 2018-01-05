@@ -80,3 +80,18 @@ function confirmation(field) {
     }
 }
 previewFile();
+
+function showOrderDetail(target){
+    var orderDetailDivs = document.getElementsByClassName("orderDetailDiv");
+    var targets = document.getElementById(target);
+    var isVisible = targets.style.display == "block";
+    
+    //hide all
+    for (var i=0; i<orderDetailDivs.length; i++){
+        orderDetailDivs[i].style.display = "none";
+    }
+    
+    //toggle current
+    targets.style.display = isVisible ? "none" : "block";
+    return false;
+}

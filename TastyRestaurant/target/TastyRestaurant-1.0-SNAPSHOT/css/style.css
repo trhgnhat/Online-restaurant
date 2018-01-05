@@ -822,3 +822,27 @@ li a:hover{
 #dashboardDescript{
     font-size: 16px;
 }
+/* ***************
+ SALE MANAGEMENT
+ ****************/
+
+#orderDetail{
+    background-color: #cce6ff;
+    font-weight: bold;
+    color: #337ab7;
+}
+
+#orderDetailElement{
+    background-color: #f9fafc;
+    font-weight: lighter;
+    font-family: sans-serif;
+    color: #e40a0a;
+}
+
+#orderDetailElement a{
+    color: #e40a0a;
+}
+
+#orderDetailElement a:hover{
+    color: #ffce47;
+}

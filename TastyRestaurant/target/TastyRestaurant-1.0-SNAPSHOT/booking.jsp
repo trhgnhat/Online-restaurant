@@ -8,14 +8,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Support</title>
+        <title>Booking</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Manager</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
+
+        <link rel="stylesheet" href="datepicker/css/bootstrap.css" />
+        <link rel="stylesheet" href="datepicker/css/bootstrap-datepicker.css" />
+        <script src="datepicker/js/mainJs.js"></script>
+        <script src="datepicker/js/datepicker.js"></script>
+        <script>
+            $(function(){
+               $('.datepicker').datepicker(); 
+            });
+        </script>
     </head>
     <body>
         <!--
@@ -63,7 +75,40 @@
         <div class="main-container">
             <div class="container">
                 <div class="tab-content" id="support">
-                    
+                    <div class="coverImage">
+                        <img src="img/bookingCover.png" alt=""/>
+                    </div>
+                    <div class="panel panel-default panelFindTable">
+                        <div class="panel-heading">
+                            <h3>Find a table</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12">
+                                Please use the form below to find a table to reserve
+                            </div>
+                            <div class="col-xs-12 col-sm-12">
+                                <form>
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-3 wrap-none">
+                                            <input class="datepicker" type="text" name="pickADate" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3 wrap-none">
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input id="timepicker1" type="text" class="form-control input-small">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3 wrap-none">
+                                            <input type="submit" class="btn btn-default" name="findTable" value="Find Table" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3 wrap-none">
+                                            <input type="submit" class="btn btn-edit" name="resetFindTable" value="Reset" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
