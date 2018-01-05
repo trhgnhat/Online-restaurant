@@ -79,6 +79,7 @@ function confirmation(field) {
         return false;
     }
 }
+<<<<<<< HEAD
 previewFile();
 
 function showOrderDetail(target){
@@ -95,3 +96,23 @@ function showOrderDetail(target){
     targets.style.display = isVisible ? "none" : "block";
     return false;
 }
+=======
+function chooseOrderTime(time) {
+    if (time.value !== "all") {
+        var x = document.getElementById("orderTable").rows;
+        for (var i = 1; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        var selected = document.getElementsByName(time.value);
+        for (var i = 0, n = selected.length; i < n; i++) {
+            selected[i].style.display = "";
+        }
+    } else {
+        var x = document.getElementById("orderTable").rows;
+        for (var i = 0; i < x.length; i++) {
+            x[i].style.display = "";
+        }
+    }
+}
+previewFile();
+>>>>>>> a64e9fc82598fc123f5a23310475c908fbab1de1

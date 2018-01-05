@@ -6,11 +6,8 @@
 package DBConnector;
 
 import DO.BillDO;
-import DO.FoodDO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,8 +22,7 @@ public class BillDS {
     private MySqlConnectionManager sqlConnectionManager;
 
     public BillDS() {
-        sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "nntadotzip");
+        sqlConnectionManager = new MySqlConnectionManager();
     }
 
     public void createBill(BillDO bill) {

@@ -26,8 +26,7 @@ public class OrderDS {
     private MySqlConnectionManager sqlConnectionManager;
 
     public OrderDS() {
-        sqlConnectionManager = new MySqlConnectionManager(
-                "localhost", "3306", "restaurant_website", "root", "nntadotzip");
+        sqlConnectionManager = new MySqlConnectionManager();
     }
 
     public void createOrder(OrderDO order) {
