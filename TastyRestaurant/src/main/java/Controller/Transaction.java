@@ -69,7 +69,10 @@ public class Transaction extends HttpServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("member") == null) {
             // Link to Login page
-            response.sendRedirect("login.jsp");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Please Login First!');");
+            out.println("location='loginSite.jsp';");
+            out.println("</script>");
         } else {
             String action = request.getParameter("action");
 

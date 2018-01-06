@@ -99,6 +99,7 @@ function showOrderDetail(target){
 
 function showAvailableTables(){
     document.getElementById("showAvailableTables").style.display = "block";
+    return false;
 }
 
 function chooseOrderTime(time) {
