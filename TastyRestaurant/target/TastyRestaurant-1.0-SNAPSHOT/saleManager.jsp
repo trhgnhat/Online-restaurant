@@ -376,44 +376,6 @@
                                         GENERATE THIS <TR> ELEMENT
                                         **************************-->
 
-                    <%
-                        List<OrderDO> orders = new OrderDS().getAllOrders();
-                        out.println("<form method=\"POST\" action=\"Manager?action=chooseOrder\" id=\"orderForm\" onsubmit=\"return confirmation('order')\">");
-                        for (OrderDO order : orders) {
-                            int yeargap = LocalDate.now().getYear() - order.getDate_time().toLocalDate().getYear();
-                            int daygap = LocalDate.now().getDayOfYear() - order.getDate_time().toLocalDate().getDayOfYear();
-                            if (yeargap == 0) {
-                                if (daygap <= 30) {
-                                    if (daygap <= 7) {
-                                        if (daygap <= 1) {
-                                            out.println("<tr name='lastDay'>");
-                                        } else {
-                                            out.println("<tr name='lastWeek'>");
-                                        }
-                                    } else {
-                                        out.println("<tr name='lastMonth'>");
-                                    }
-                                } else {
-                                    out.println("<tr name='otherTime'>");
-                                }
-                            } else {
-                                daygap += 365;
-                                if (daygap <= 30) {
-                                    if (daygap <= 7) {
-                                        if (daygap <= 1) {
-                                            out.println("<tr name='lastDay'>");
-                                        } else {
-                                            out.println("<tr name='lastWeek'>");
-                                        }
-                                    } else {
-                                        out.println("<tr name='lastMonth'>");
-                                    }
-                                } else {
-                                    out.println("<tr name='otherTime'>");
-                                }
-                            }
-                    %>
-
                 </table>
             </div>
         </div>
