@@ -16,7 +16,7 @@ public class BookingDO {
     private TableDO table;  // which one is booked?
     private LocalDate booked_date; 
     private LocalTime booked_time;
-    private LocalTime expired_time; // default: = booked_time + 1 (hour)
+    private LocalTime expired_time; // default: = booked_time + 10 (minutes)
 
     public BookingDO(int id, MemberDO member, TableDO table, LocalDate booked_date, LocalTime booked_time) {
         this.id = id;
@@ -24,7 +24,7 @@ public class BookingDO {
         this.table = table;
         this.booked_date = booked_date;
         this.booked_time = booked_time;
-        this.expired_time = booked_time.plusHours(1);
+        this.expired_time = booked_time.plusMinutes(10);
     }
 
     public int getId() {

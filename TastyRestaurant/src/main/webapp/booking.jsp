@@ -4,6 +4,8 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="DO.TableDO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -86,24 +88,22 @@
                                 Please use the form below to find a table to reserve
                             </div>
                             <div class="col-xs-12 col-sm-12">
-                                <form id="bookingForm">
+                                <form id="bookingForm" method="POST"  action="Transaction?action=showBooking">
                                     <div class="form-group">
                                         <div class="col-xs-12 col-sm-3">
                                             <div class="input-group">
-                                                <input class="datepicker form-control input-small" type="text" name="pickADate" placeholder="mm/dd/yy" value="" />
+                                                <input class="datepicker form-control input-small" type="text" id="pickADate" name="pickADate" placeholder="mm/dd/yy" value="<%=(request.getSession().getAttribute("pickedDate") != null) ? request.getSession().getAttribute("pickedDate") : ""%>" />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
-                                            <script>
-                                                $(function () {
-                                                    $('.datepicker').datepicker();
-                                                });
+                                            <script type="text/javascript">
+                                                $('.datepicker').datepicker();
                                             </script>
                                         </div>
                                         <div class="col-xs-12 col-sm-3">
                                             <div class="input-group clockpicker">
-                                                <input class="form-control" type="text" name="pickATime" value="" placeholder="Click on the clock" disabled />
+                                                <input class="form-control" type="text" id="pickATime" name="pickATime" value="<%=(request.getSession().getAttribute("pickedTime") != null) ? request.getSession().getAttribute("pickedTime") : ""%>" placeholder="Click on the clock" />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
                                                 </span>
@@ -117,63 +117,40 @@
                                         <button class="btn btn-primary btn-block" onclick="return showAvailableTables();">Find me a table</button>
                                     </div>
                                     <div class="col-xs-12 col-sm-3">
-                                        <script>function resetForm() {
-                                                document.getElementById("bookingForm").reset();
-                                            }</script>
+                                        <script>
+                                            function resetForm() {
+                                                document.getElementById("pickATime").value = "";
+                                                document.getElementById("pickADate").value = "";
+                                                document.getElementById("showAvailableTables").style.display = "none";
+                                            }
+                                        </script>
                                         <button class="btn btn-default btn-block" onclick="resetForm()" form="notBelongToBookingForm">Reset</button>
-                                    </div>
-                            </div>
-                            </form>
-                            <div class="showTable" id="showAvailableTables" style="display: none;">
-                                <form method="POST" action="Transaction?action=booking" id="bookingForm">
-                                    <div class="col-xs-12" data-toggle="buttons">
-                                        <div class="btn-group tableSelection" >
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.1
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.2
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.3
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.4
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.5
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.6
-                                            </label>
-                                        </div>
-                                        <div class="btn-group tableSelection">
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.7
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.8
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.9
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.10
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.11
-                                            </label>
-                                            <label class="btn btn-default col-xs-4 col-sm-2" data-btn="btn-primary">
-                                                <input id="" name="" value="" type="radio" />No.12
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12" id="confirmTableBtn">
-                                        <button class="btn btn-primary btn-block">Confirm</button>
                                     </div>
                                 </form>
                             </div>
+                            <%
+                                if (request.getSession().getAttribute("availableTables") != null) {
+                                    out.print("<div class=\"showTable\" id=\"showAvailableTables\" style=\"display: block;\">");
+                                    out.print("<form method=\"POST\" action=\"Transaction?action=booking\">");
+                                    out.print("<div class=\"col-xs-12\" data-toggle=\"buttons\">");
+                                    out.print("<div class=\"btn-group tableSelection\" >");
+                                    List<TableDO> availableTables = (List) request.getSession().getAttribute("availableTables");
+                                    if (availableTables.isEmpty()) {
+                                        out.print("<h4>There is no available tables</h4><p>Please choose another time</p>");
+                                    } else {
+                                        for (TableDO table : availableTables) {
+                                            out.print("<label class=\"btn btn-default col-xs-4 col-sm-2\" data-btn=\"btn-primary\">\n");
+                                            out.print("<input name=\"tableChoices\" value=\"" + table.getId() + "\" type=\"radio\" />Table " + table.getId() + " - " + table.getSeat() + " seats\n");
+                                            out.print("</label>");
+                                        }
+                                    }
+                                    out.print("<input type=\"hidden\" name=\"pickATime\" value=\"" + request.getSession().getAttribute("pickedTime") + "\"/>");
+                                    out.print("<input type=\"hidden\" name=\"pickADate\" value=\"" + request.getSession().getAttribute("pickedDate") + "\"/>");
+                                    out.print("</div></div><div class=\"col-xs-12\" id=\"confirmTableBtn\"><button class=\"btn btn-primary btn-block\" onclick=\"return checkSelection('tableChoices', 'table')\">Book</button></form></div></div>");
+                                }
+                            %>
                         </div>
+                        
                     </div>
                 </div>
             </div>

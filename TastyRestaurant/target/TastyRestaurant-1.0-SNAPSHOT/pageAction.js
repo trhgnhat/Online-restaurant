@@ -82,24 +82,28 @@ function confirmation(field) {
 
 previewFile();
 
-function showOrderDetail(target){
+function showOrderDetail(target) {
     var orderDetailDivs = document.getElementsByClassName("orderDetailDiv");
     var targets = document.getElementById(target);
     var isVisible = targets.style.display == "block";
-    
+
     //hide all
-    for (var i=0; i<orderDetailDivs.length; i++){
+    for (var i = 0; i < orderDetailDivs.length; i++) {
         orderDetailDivs[i].style.display = "none";
     }
-    
+
     //toggle current
     targets.style.display = isVisible ? "none" : "block";
     return false;
 }
 
-function showAvailableTables(){
-    document.getElementById("showAvailableTables").style.display = "block";
-    return false;
+function showAvailableTables() {
+    if (document.getElementById("pickADate").value === "" || document.getElementById("pickATime").value === "") {
+        alert("Please choose Date & Time!");
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function chooseOrderTime(time) {
@@ -118,6 +122,29 @@ function chooseOrderTime(time) {
             x[i].style.display = "";
         }
     }
+}
+function checkSelection(selection, field) {
+    var radios = document.getElementsByName(selection);
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            return true;
+        }
+    }
+    alert("Please choose a " + field);
+    return false;
+}
+function changeAccountDetail() {
+    if (document.getElementById("inputPresentPassword").value === "" || document.getElementById("inputPresentPassword").value !== document.getElementById("presentPassword").value) {
+        alert("Please enter the correct password!");
+        return false;
+    }
+    if (document.getElementById("newPassword").value !== "") {
+        if (document.getElementById("newPassword").value !== document.getElementById("confirmPassword").value) {
+            alert("Please enter the correct confirm password!");
+            return false;
+        }
+    }
+    return true;
 }
 previewFile();
 
