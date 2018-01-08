@@ -146,5 +146,13 @@ function changeAccountDetail() {
     }
     return true;
 }
+function checkConfirmationPassword(password, confirmPassword) {
+    if (document.getElementById(password).value !== document.getElementById(confirmPassword).value) {
+        alert("Please enter the correct confirm password!");
+        return false;
+    } else {
+        return true;
+    }
+}
 previewFile();
 

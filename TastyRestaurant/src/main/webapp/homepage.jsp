@@ -15,7 +15,7 @@ and open the template in the editor.
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
     </head>
-    <body>
+    <body onload="checkTerm()">
 
         <!--
             Header
@@ -172,7 +172,7 @@ and open the template in the editor.
                                             <td>
                                                 <div class="form-group">
                                                     <label for="password">Password</label>
-                                                    <input type="password" class="form-control" name="password" required />
+                                                    <input type="password" class="form-control" name="password" id="password" required />
                                                 </div>
                                             </td>
                                             <td>
@@ -187,14 +187,14 @@ and open the template in the editor.
                                             <td>
                                                 <div class="form-group">
                                                     <label for="rePassword">Re-enter password</label>
-                                                    <input type="password" class="form-control" name="rePassword" required />
+                                                    <input type="password" class="form-control" name="rePassword" id="rePassword" required />
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="checkbox">
                                                     <label><input type="checkbox" id="termOfService"> I agree to the<a id="termOfService">terms of service</a></label>
                                                 </div>
-                                                <button type="submit" class="btn btn-default" id="registerBtn">Submit</button>
+                                                <button type="submit" class="btn btn-default" id="registerBtn" onclick="return checkConfirmationPassword('password', 'rePassword')">Register</button>
                                             </td>
                                         </tr>
                                     </table>

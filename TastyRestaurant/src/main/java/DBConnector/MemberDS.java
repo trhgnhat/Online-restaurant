@@ -29,17 +29,7 @@ public class MemberDS {
      * **********************
      * !!! REGISTER !!! **********************
      */
-    public String createMember(MemberDO member) {
-        String new_id = "";
-        if (!getAllMembers().isEmpty()) {
-            for (MemberDO memberdo : getAllMembers()) {
-                if (memberdo.getEmail().equals(member.getEmail())) {
-                    return "Invalid e-mail.";
-                } else if (memberdo.getUsername().equals(member.getUsername())) {
-                    return "Invalid username.";
-                }
-            }
-        }
+    public void createMember(MemberDO member) {
         String sqlStatement = "INSERT INTO member VALUES(" + Integer.toString(member.getId()) + ",'"
                 + member.getUsername() + "','"
                 + member.getPassword() + "','"
@@ -52,7 +42,6 @@ public class MemberDS {
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
-        return null;
     }
 
     /**
