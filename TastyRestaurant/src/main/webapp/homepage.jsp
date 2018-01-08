@@ -25,7 +25,7 @@ and open the template in the editor.
                 <div class="topBar">
                     <%
                         if (request.getSession().getAttribute("member") == null || request.getSession() == null) {
-                            out.print("<a href=\"login.html\">Log In</a>");
+                            out.print("<a href=\"loginSite.jsp\">Log In</a>");
                             out.print("<a href=\"register.jsp\">Sign Up</a>");
                         } else {
                             out.print("<a href=\"Account\">Log Out</a>");

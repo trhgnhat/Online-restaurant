@@ -34,9 +34,9 @@ public class MemberDS {
         if (!getAllMembers().isEmpty()) {
             for (MemberDO memberdo : getAllMembers()) {
                 if (memberdo.getEmail().equals(member.getEmail())) {
-                    return "Email invalid";
+                    return "Invalid e-mail.";
                 } else if (memberdo.getUsername().equals(member.getUsername())) {
-                    return "Username invalid";
+                    return "Invalid username.";
                 }
             }
         }

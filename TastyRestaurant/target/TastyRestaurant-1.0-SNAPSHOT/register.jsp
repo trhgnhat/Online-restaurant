@@ -15,9 +15,15 @@
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
+        <style>
+            body{
+                background-image: url("img/loginCover.jpg");
+            }
+        </style>
     </head>
     <body onload="checkTerm()">
-        <div class="container">
+<!--        <div class="container">-->
+            <div class="panel registerSite">
             <h2>Register</h2>
             <form action="Account?action=register" method="post">
                 <table class="registerForm">
@@ -82,6 +88,7 @@
                 <button type="submit" class="btn btn-default" id="registerBtn">Submit</button>
             </form>
         </div>
+<!--        </div>-->
 
     </body>
 </html>

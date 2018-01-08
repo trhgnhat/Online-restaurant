@@ -34,7 +34,7 @@
     <body>
         <div class="col-lg-2" id="sideBar">
             <div class="logo">
-
+                <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
             </div>
             <ul>
                 <li><a href="manager.jsp"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
@@ -127,7 +127,7 @@
                             out.println("</td>");
                             out.println("<td>");
                             out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() + "\" onclick=\"return showOrderDetail('" + order.getId() + "')\">");
-                            out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
+                            out.println("<span class=\"glyphicon glyphicon-eye-open\"></span>");
                             out.println("</button>");
                             out.println("</td>");
                             out.println("<td>" + order.getId() + "</td>");

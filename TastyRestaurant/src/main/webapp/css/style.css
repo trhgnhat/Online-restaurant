@@ -684,6 +684,38 @@ li a:hover{
     padding: 0px;
 }
 
+.logo{
+    color: #FFFFFF;
+    background-color: #e40a0a;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#e40a0a), to(#9f0202));
+    background-image: -webkit-linear-gradient(top, #e40a0a, #9f0202);
+    background-image: -moz-linear-gradient(top, #e40a0a, #9f0202);
+    background-image: -ms-linear-gradient(top, #e40a0a, #9f0202);
+    background-image: -o-linear-gradient(top, #e40a0a, #9f0202);
+    background-image: linear-gradient(to bottom, #e40a0a, #9f0202);
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#e40a0a, endColorstr=#9f0202);
+    text-align: center;
+}
+
+.logo:hover{
+    background-color: #f62b2b;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f62b2b), to(#d20202));
+    background: -webkit-linear-gradient(top, #f62b2b, #d20202);
+    background: -moz-linear-gradient(top, #f62b2b, #d20202);
+    background: -ms-linear-gradient(top, #f62b2b, #d20202);
+    background: -o-linear-gradient(top, #f62b2b, #d20202);
+    background: linear-gradient(to bottom, #f62b2b, #d20202);
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f62b2b, endColorstr=#d20202);
+}
+
+/*.logo a{
+    text-decoration: none;
+    font-family: "Flama Condensed Medium",sans-serif;
+    color: #FFFFFF;
+    font-size: 23px;
+    margin-top: 100px;
+}*/
+
 
                         /*****************
                           kitchen . JSP
@@ -826,6 +858,11 @@ li a:hover{
  SALE MANAGEMENT
  ****************/
 
+.orderList{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 #orderDetail{
     background-color: #cce6ff;
     font-weight: bold;
@@ -874,5 +911,22 @@ LOGIN SITE
     margin-top: 10%;
     max-height: 380px;
     max-width: 600px;
+    background-color: rgba(255,255,255,0.5);
+}
+/***************
+ REGISTER SITE
+ **************/
+
+.registerSite{
+    font-family: "Flama Condensed Medium",sans-serif;
+    padding-left: 120px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    max-height: 480px;
+    max-width: 1000px;
     background-color: rgba(255,255,255,0.5);
 }

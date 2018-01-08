@@ -98,7 +98,7 @@ public class Transaction extends HttpServlet {
                 request.getSession().invalidate();
                 request.getSession().setAttribute("member", member);
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('Successful! ');");
+                out.println("alert('Successfully! ');");
                 out.println("location='booking.jsp';");
                 out.println("</script>");
             } //Show available tables for booking

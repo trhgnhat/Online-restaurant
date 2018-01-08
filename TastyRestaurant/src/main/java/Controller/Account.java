@@ -80,12 +80,12 @@ public class Account extends HttpServlet {
                 if (member != null) {
                     request.getSession().setAttribute("member", member);
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Login Success !');");
+                    out.println("alert('Login successfully !');");
                     out.println("location='homepage.jsp';");
                     out.println("</script>");
                 } else {
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Username or Password invalid !');");
+                    out.println("alert('Invalid Username or Password!');");
                     out.println("location='loginSite.jsp';");
                     out.println("</script>");
                 }
@@ -104,12 +104,12 @@ public class Account extends HttpServlet {
             MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
             if (new MemberDS().createMember(member) == null) {
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('Register success!');");
+                out.println("alert('Register successfully!');");
                 out.println("location='homepage.jsp';");
                 out.println("</script>");
             } else {
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('Success!');");
+                out.println("alert('Successfully!');");
                 out.println("location='register.jsp';");
                 out.println("</script>");
             }
@@ -127,7 +127,7 @@ public class Account extends HttpServlet {
             }
             new MemberDS().updateMember(member);
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Success!');");
+            out.println("alert('Successfully!');");
             out.println("location='myAccount.jsp';");
             out.println("</script>");
         }

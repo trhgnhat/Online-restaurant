@@ -103,7 +103,7 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-3">
                                             <div class="input-group clockpicker">
-                                                <input class="form-control" type="text" id="pickATime" name="pickATime" value="<%=(request.getSession().getAttribute("pickedTime") != null) ? request.getSession().getAttribute("pickedTime") : ""%>" placeholder="Click on the clock" readonly="readonly" />
+                                                <input class="form-control" type="text" id="pickATime" name="pickATime" value="<%=(request.getSession().getAttribute("pickedTime") != null) ? request.getSession().getAttribute("pickedTime") : ""%>" placeholder="__ : __" readonly="readonly" />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
                                                 </span>

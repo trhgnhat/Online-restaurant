@@ -62,7 +62,7 @@ function checkAdminLoginInput() {
         return false;
     }
     if (document.forms["admidLogin"]["username"].value !== "admin" || document.forms["admidLogin"]["password"].value !== "123456") {
-        document.getElementById("adminLoginAnnouncement").innerHTML = "Username or Password invalid";
+        document.getElementById("adminLoginAnnouncement").innerHTML = "Invalid username or password.";
         return false;
     }
 }
