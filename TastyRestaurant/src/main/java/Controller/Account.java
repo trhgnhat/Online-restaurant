@@ -47,7 +47,7 @@ public class Account extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        request.getSession().invalidate();
+        request.getSession().setAttribute("member", null);
         out.println("<script type=\"text/javascript\">");
         out.println("location='homepage.jsp';");
         out.println("</script>");
@@ -67,14 +67,13 @@ public class Account extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String action = request.getParameter("action");
-
         if (action.equals("login")) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             if (username.equals("") || password.equals("")) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please enter Username and Password !');");
-                out.println("location='homepage.html';");
+                out.println("location='loginSite.jsp';");
                 out.println("</script>");
             } else {
                 MemberDO member = new MemberDS().getMember(username, password);
@@ -87,7 +86,7 @@ public class Account extends HttpServlet {
                 } else {
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Username or Password invalid !');");
-                    out.println("location='homepage.html';");
+                    out.println("location='loginSite.jsp';");
                     out.println("</script>");
                 }
             }
@@ -106,14 +105,31 @@ public class Account extends HttpServlet {
             if (new MemberDS().createMember(member) == null) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Register success!');");
-                out.println("location='homepage.html';");
+                out.println("location='homepage.jsp';");
                 out.println("</script>");
             } else {
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('" + new MemberDS().createMember(member) + "');");
+                out.println("alert('Success!');");
                 out.println("location='register.jsp';");
                 out.println("</script>");
             }
+        }
+
+        if (action.equals("changeDetail")) {
+            MemberDO member = (MemberDO) request.getSession().getAttribute("member");
+            member.setAddress(request.getParameter("address"));
+            member.setCreditCard(request.getParameter("creditCard"));
+            member.setName(request.getParameter("fullName"));
+            member.setPhone(request.getParameter("phone"));
+            member.setEmail(request.getParameter("email"));
+            if (!request.getParameter("newPassword").isEmpty()) {
+                member.setPassword(request.getParameter("newPassword"));
+            }
+            new MemberDS().updateMember(member);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Success!');");
+            out.println("location='myAccount.jsp';");
+            out.println("</script>");
         }
     }
 

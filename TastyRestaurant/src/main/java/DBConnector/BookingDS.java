@@ -28,10 +28,10 @@ public class BookingDS {
     public void createBooking(BookingDO booking) {
         String sqlStatement = "INSERT INTO booking VALUES(" + Integer.toString(booking.getId()) + ","
                 + Integer.toString(booking.getTable().getId()) + ","
-                + Integer.toString(booking.getMember().getId()) + ", "
-                + booking.getBooked_date().toString() + ","
-                + booking.getBooked_time().toString() + ","
-                + booking.getExpired_time().toString() + ")";
+                + Integer.toString(booking.getMember().getId()) + ", '"
+                + booking.getBooked_date().toString() + "', '"
+                + booking.getBooked_time().toString() + "', '"
+                + booking.getExpired_time().toString() + "')";
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();

@@ -48,8 +48,17 @@ public class BillDS {
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
         try {
             while (rs.next()) {
-                int db_id = rs.getInt("id");
-                bills.add(getBill(db_id));
+                boolean isNotExist = true;
+                for (BillDO bill : bills) {
+                    if (bill.getId() == rs.getInt("id")) {
+                        isNotExist = false;
+                    }
+                }
+                if (bills.isEmpty() || isNotExist) {
+                    int db_id = rs.getInt("id");
+                    bills.add(getBill(db_id));
+                }
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(BillDO.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,15 +68,14 @@ public class BillDS {
     }
 
     public BillDO getBill(int id) {
-        BillDO bill = null;
-        
+        BillDO bill = new BillDO(id);
+
         String sqlStatement = "SELECT * FROM bill WHERE id=" + Integer.toString(id);
 
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
         try {
             while (rs.next()) {
-                bill = new BillDO(id);
                 int db_food_id = rs.getInt("food_id");
                 bill.getFood().add(new FoodDS().getFood(db_food_id));
                 bill.getQuantity().add(rs.getInt("food_quantity"));

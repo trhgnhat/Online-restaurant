@@ -4,12 +4,18 @@
  * and open the template in the editor.
  */
 
+import DBConnector.BillDS;
+import DBConnector.BookingDS;
 import DBConnector.FoodDS;
 import DBConnector.MemberDS;
 import DBConnector.OrderDS;
+import DBConnector.TableDS;
+import DO.BillDO;
+import DO.BookingDO;
 import DO.FoodDO;
 import DO.MemberDO;
 import DO.OrderDO;
+import DO.TableDO;
 import Enscrypt.EncryptDecrypt;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -17,6 +23,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.crypto.BadPaddingException;
@@ -92,46 +100,21 @@ public class test {
 //        System.out.println(new OrderDS().getOrderByOrderID(1).getDate_time().getDayOfYear()); 
         //System.out.println(LocalDateTime.now().toLocalDate() - new OrderDS().getOrderByOrderID(1).getDate_time().toLocalDate());
 
-        List<OrderDO> orders = new OrderDS().getAllOrders();
-        for (OrderDO order : orders) {
-            
-            int yeargap = LocalDate.now().getYear() - order.getDate_time().toLocalDate().getYear();
-            int daygap = LocalDate.now().getDayOfYear() - order.getDate_time().toLocalDate().getDayOfYear();
-            System.out.println(order.getDate_time().toLocalDate().getYear());
-            System.out.println(LocalDate.now().getYear());
-            System.out.println(order.getDate_time().toLocalDate().getDayOfYear());
-            System.out.println(LocalDate.now().getDayOfYear());
-            if (yeargap == 0) {
-                if (daygap <= 30) {
-                    if (daygap <= 7) {
-                        if (daygap <= 1) {
-                            System.out.println("<tr name='lastDay'>");
-                        } else {
-                            System.out.println("<tr name='lastWeek'>");
-                        }
-                    } else {
-                        System.out.println("<tr name='lastMonth'>");
-                    }
-                } else {
-                    System.out.println("<tr name='otherTime'>");
-                }
-            } else {
-                daygap += 365;
-                if (daygap <= 30) {
-                    if (daygap <= 7) {
-                        if (daygap <= 1) {
-                            System.out.println("<tr name='lastDay'>");
-                        } else {
-                            System.out.println("<tr name='lastWeek'>");
-                        }
-                    } else {
-                        System.out.println("<tr name='lastMonth'>");
-                    }
-                } else {
-                    System.out.println("<tr name='otherTime'>");
-                }
-            }
-
-        }
+//        LocalDate date = LocalDate.now();
+//        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d/MM/uuuu");
+//        //String text = date.format(DateTimeFormatter.ofPattern("MM-dd-uuuu"));
+//        String text = "11-25-1997";
+//        LocalDate parsedDate = LocalDate.parse(text, DateTimeFormatter.ofPattern("MM-dd-uuuu"));
+//        
+//        System.out.println("date: " + date); // date: 2016-09-25
+//        System.out.println("Text format " + text); // Text format 25/09/2016
+//        System.out.println("parsedDate: " + parsedDate); // parsedDate: 2016-09-25
+//        LocalTime time = LocalTime.now();
+//        String inputtime = "11:03:05";
+//        LocalTime formattedTime = LocalTime.parse(inputtime, DateTimeFormatter.ofPattern("HH:mm:ss"));
+//        System.out.println("time: " + time);
+//        System.out.println("formattedTime: " + formattedTime);
+        OrderDO order = new OrderDO(((OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1)).getId() + 1, new MemberDS().getMember(1), new TableDS().getTable(1), new BillDS().getBill(4));
+        new OrderDS().createOrder(order);
     }
 }

@@ -34,7 +34,9 @@ public class OrderDS {
         String sqlStatement = "INSERT INTO ordering VALUES(" + Integer.toString(order.getId()) + ","
                 + Integer.toString(order.getMember().getId()) + ","
                 + Integer.toString(order.getTable().getId()) + ","
-                + Integer.toString(order.getBill().getId()) + ")";
+                + Integer.toString(order.getBill().getId()) + ", '"
+                + order.getDate_time() + "', "
+                + order.getTotal_price() + ")";
         
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);

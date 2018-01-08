@@ -27,7 +27,7 @@
             if (request.getSession().getAttribute("member") == null) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please Login first');");
-                out.println("location='homepage.html';");
+                out.println("location='loginSite.jsp';");
                 out.println("</script>");
 //                response.sendRedirect("homepage.html");
             } else {
@@ -100,7 +100,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="#">Log out</a>
+                                        <a href="Account">Log out</a>
                                     </td>
                                 </tr>
                             </table>
@@ -126,12 +126,12 @@
                                     <tr>
                                         <th>Email</th>
                                         <td><%out.println(member.getEmail());%></td>
-                                        <td><button type="" name="changeEmail">Change Email</button></td>
+                                        <td><button type="" name="changeEmail" onclick="showMenu('changeDetails');">Change Email</button></td>
                                     </tr>
                                     <tr>
                                         <th>Password</th>
-                                        <td><%out.println(member.getPassword());%></td>
-                                        <td><button type="" name="changePassword">Change Password</button></td>
+                                        <td><%out.println(member.getPassword().replaceAll("\\w", "*"));%></td>
+                                        <td><button type="" name="changePassword" onclick="showMenu('changeDetails');">Change Password</button></td>
                                     </tr>
                                     <tr>
                                         <th>Address</th>
@@ -163,26 +163,33 @@
                         --> 
                         <div class="tabContent" id="changeDetails">
                             <h3>Edit details</h3>
-                            <form>
+                            <form method="POST" action="Account?action=changeDetail">
                                 <table id="editDetails">
                                     <tr>
                                         <td>
-                                            <input class="form-control" type="text" name="" value="<%out.println(member.getName());%>" placeholder="Full Name" required />
+                                            <input class="form-control" type="text" name="fullName" value="<%=member.getName()%>" placeholder="Full Name" required />
                                         </td>
                                         <td>
-                                            <input class="form-control" type="text" name="" value="<%out.println(member.getAddress());%>" placeholder="Address" disabled />
+                                            <input class="form-control" type="text" name="address" value="<%=member.getAddress()%>" placeholder="Address" required />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
 
-                                            <input class="form-control" type="text" name="" value="<%out.println(member.getPhone());%>" placeholder="Phone Number" required />
+                                            <input class="form-control" type="text" name="phone" value="<%=member.getPhone()%>" placeholder="Phone Number" required />
 
                                         </td>
                                         <td>
 
-                                            <input class="form-control" type="text" name="" value="<%out.println(member.getCreditCard());%>" placeholder="Credit Card" disabled />
+                                            <input class="form-control" type="text" name="creditCard" value="<%=member.getCreditCard()%>" placeholder="Credit Card" required />
 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            
+                                            <input class="form-control" type="email" name="email" value="<%=member.getEmail()%>" placeholder="Email" required />
+                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -192,20 +199,21 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <input class="form-control" type="password" name="" placeholder="Confirm your present password" />
+                                            <input class="form-control" type="password" name="inputPresentPassword" id="inputPresentPassword" value="" placeholder="Confirm your present password" />
+                                            <input type="hidden" id="presentPassword" name="presentPassword" value="<%=member.getPassword()%>"
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input class="form-control" type="password" name="" placeholder="New password" />
+                                            <input class="form-control" type="password" name="newPassword" id="newPassword" value="" placeholder="New password" />
                                         </td>
                                         <td>
-                                            <input class="form-control" tyer="password" name="" placeholder="Confirm new password" />
+                                            <input class="form-control" tyer="password" name="confirmPassword" id="confirmPassword" value="" placeholder="Confirm new password" />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <button class="btn btn-default" type="submit" name="">Save My Details</button>
+                                            <button class="btn btn-default" type="submit" onclick="return changeAccountDetail()">Save My Details</button>
                                         </td>
                                     </tr>
                                 </table>

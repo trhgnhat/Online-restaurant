@@ -143,7 +143,8 @@ public class MemberDS {
                 + "phone='" + member.getPhone() + "', "
                 + "email='" + member.getEmail() + "', "
                 + "point=" + Integer.toString(member.getPoint()) + ", "
-                + "credit_card='" + member.getCreditCard() + "' "
+                + "credit_card='" + member.getCreditCard() + "', "
+                + "password='" + member.getPassword() + "' "
                 + " WHERE id=" + Integer.toString(member.getId()) + "";
 
         sqlConnectionManager.openConnection();

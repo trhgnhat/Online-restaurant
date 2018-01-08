@@ -6,11 +6,23 @@
 package Controller;
 
 import DBConnector.BillDS;
+import DBConnector.BookingDS;
 import DBConnector.FoodDS;
+import DBConnector.MemberDS;
+import DBConnector.OrderDS;
+import DBConnector.TableDS;
 import DO.BillDO;
+import DO.BookingDO;
 import DO.FoodDO;
+import DO.MemberDO;
+import DO.OrderDO;
+import DO.TableDO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -67,20 +79,75 @@ public class Transaction extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        if (session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null || session.getAttribute("member").equals("")) {
             // Link to Login page
-            response.sendRedirect("login.jsp");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Please Login First!');");
+            out.println("location='loginSite.jsp';");
+            out.println("</script>");
         } else {
             String action = request.getParameter("action");
 
-            //Booking
             if (action.equals("booking")) {
-
+                LocalDate chosenDate = LocalDate.parse(request.getParameter("pickADate"), DateTimeFormatter.ofPattern("MM/dd/uuuu"));
+                LocalTime chosenTime = LocalTime.parse(request.getParameter("pickATime"), DateTimeFormatter.ofPattern("HH:mm"));
+                TableDO chosenTable = new TableDS().getTable(Integer.parseInt(request.getParameter("tableChoices")));
+                MemberDO member = (MemberDO) request.getSession().getAttribute("member");
+                BookingDO booking = new BookingDO(new BookingDS().getAllBookings().size() + 1, member, chosenTable, chosenDate, chosenTime);
+                new BookingDS().createBooking(booking);
+                request.getSession().invalidate();
+                request.getSession().setAttribute("member", member);
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Successful! ');");
+                out.println("location='booking.jsp';");
+                out.println("</script>");
+            } //Show available tables for booking
+            else if (action.equals("showBooking")) {
+                String pickedDate = request.getParameter("pickADate"); //MM/dd/uuuu
+                String pickedTime = request.getParameter("pickATime"); //"HH:mm"
+                if (pickedDate.equals("") || pickedTime.equals("")) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Please Choose Date & Time!');");
+                    out.println("location='booking.jsp';");
+                    out.println("</script>");
+                } else {
+                    LocalDate date = LocalDate.parse(pickedDate, DateTimeFormatter.ofPattern("MM/dd/uuuu"));
+                    LocalTime time = LocalTime.parse(pickedTime, DateTimeFormatter.ofPattern("HH:mm"));
+                    List<BookingDO> apms = new BookingDS().getAllBookings();
+                    List<TableDO> availableTables = new TableDS().getAllTables();
+                    for (BookingDO apm : apms) {
+                        if (availableTables.isEmpty()) {
+                            break;
+                        }
+                        //If there is at least 1 book has the same booking date
+                        if (apm.getBooked_date().equals(date)) {
+                            // bookedTime <= pickTime <= expireTime
+                            if ((time.isBefore(apm.getExpired_time()) && time.isAfter(apm.getBooked_time())) || time.equals(apm.getExpired_time()) || time.equals(apm.getBooked_time())) {
+                                availableTables.remove(apm.getTable().getId() - 1);
+                            }
+                        }
+                    }
+                    request.getSession().setAttribute("availableTables", availableTables);
+                    request.getSession().setAttribute("pickedDate", pickedDate);
+                    request.getSession().setAttribute("pickedTime", pickedTime);
+                }
+                request.getRequestDispatcher("booking.jsp").forward(request, response);
             } //Order
             else if (action.equals("order")) {
-                int id = new BillDS().getAllBills().size() + 1;
-                BillDO bill = new BillDO(id);
-                request.getSession().setAttribute("bill", bill);
+                BillDO bill = (BillDO) request.getSession().getAttribute("bill");
+                OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
+                MemberDO member = (MemberDO) request.getSession().getAttribute("member");
+                TableDO table = new TableDS().getTable(Integer.parseInt(request.getParameter("tableID")));
+                OrderDO order = new OrderDO(lastOrder.getId()+1, member, table, bill);
+                new BillDS().createBill(bill);
+                new OrderDS().createOrder(order);
+                member.setPoint(member.getPoint() + 10);
+                new MemberDS().updateMember(member);
+                request.getSession().setAttribute("bill", null);
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Thanks you, see you again!');");
+                out.println("location='homepage.jsp';");
+                out.println("</script>");
             } //Add food into Cart (or Bill)
             else if (action.equals("addFood")) {
                 if (request.getSession().getAttribute("bill") == null) {
