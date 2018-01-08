@@ -33,7 +33,7 @@
     <body>
         <div class="col-lg-2" id="sideBar">
             <div class="logo">
-               <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
+                <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
             </div>
             <ul>
                 <li><a href="manager.jsp"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
@@ -57,10 +57,10 @@
                 </div>
             </nav>
         </div>
-        
+
         <div class="col-lg-10">
             <div class="menuBtn">
-                <button class="btn btn-danger" form="foodForm" formaction="Manager?action=deleteFood" onsubmit="return confirmation('food')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <button class="btn btn-danger" form="memberForm" formaction="Manager?action=deleteMember" onsubmit="return confirmation('member', 'memberCheckBox')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
             </div>
             <div class="menuList">
                 <table class="table">
@@ -74,65 +74,63 @@
                         <th>E-mail</th>
                         <th>Address</th>
                         <th>Phone Number</th>
-                        <th>Password</th>
                     </tr>
-                    
-<!--                    **************************
-                    ******SHOW MENU LIST******
-                    GENERATE THIS <TR> ELEMENT
-                    **************************-->
+
+                    <!--                    **************************
+                                        ******SHOW MENU LIST******
+                                        GENERATE THIS <TR> ELEMENT
+                                        **************************-->
                     <%  List<MemberDO> members = new MemberDS().getAllMembers();
-                        out.println("<form method=\"POST\" action=\"Manager?action=chooseFood\" id=\"foodForm\">");
-                        for (MemberDO member : members){
-                           out.println("<tr>");
-                           out.println("<td>");
-                           out.println("<input type=\"checkbox\" name=\"memberCheckBox\" value=\"" + member.getId() + "\" />");
-                           out.println("</td>");
-                           out.println("<td>" + member.getId() + "</td>");
-                           out.println("<td>" + member.getUsername() + "</td>");
-                           out.println("<td>" + member.getName() + "</td>");
-                           out.println("<td>" + member.getEmail() + "</td>");
-                           out.println("<td>" + member.getAddress() + "</td>");
-                           out.println("<td>" + member.getPhone() + "</td>");
-                           out.println("<td>" + member.getPassword() + "</td>");
-                           out.println("</tr>");
+                        out.println("<form method=\"POST\" action=\"Manager?action=chooseMember\" id=\"memberForm\">");
+                        for (MemberDO member : members) {
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("<input type=\"checkbox\" name=\"memberCheckBox\" value=\"" + member.getId() + "\" />");
+                            out.println("</td>");
+                            out.println("<td>" + member.getId() + "</td>");
+                            out.println("<td>" + member.getUsername() + "</td>");
+                            out.println("<td>" + member.getName() + "</td>");
+                            out.println("<td>" + member.getEmail() + "</td>");
+                            out.println("<td>" + member.getAddress() + "</td>");
+                            out.println("<td>" + member.getPhone() + "</td>");
+                            out.println("</tr>");
                         }
                     %>
-//                    <%
-//                        List<FoodDO> foods = new FoodDS().getAllFoods();
-//                        out.println("<form method=\"POST\" action=\"Manager?action=chooseFood\" id=\"foodForm\">");
-//                        for (FoodDO food : foods){
-//                           out.println("<tr>");
-//                           out.println("<td>");
-//                           out.println("<input type=\"checkbox\" name=\"foodCheckBox\" value=\"" + food.getId() + "\" />");
-//                           out.println("</td>");
-//                           out.println("<td>");
-//                           out.println("<button class=\"btn btn-edit\" name=\"foodIdBtn\" value=\"" + food.getId() +"\" action=\"Manager?action=editFood\">");
-//                           out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
-//                           out.println("</button>");
-//                           out.println("</td>");
-//                           out.println("<td>" + food.getName() + "</td>");
-//                           out.println("<td>" + food.getPrice() + "</td>");
-//                           out.println("<td>" + food.getCategory() + "</td>");
-//                           out.println("<td>" + food.getId() + "</td>");
-//                           out.println("<td>" + food.getId() + "</td>");
-//                           out.println("<td>" + food.getId() + "</td>");
-//                           out.println("</tr>");
-//                        }
-//                        out.println("</form>");
-//                    %>
+                    <%
+ //                        List<FoodDO> foods = new FoodDS().getAllFoods();
+ //                        out.println("<form method=\"POST\" action=\"Manager?action=chooseFood\" id=\"foodForm\">");
+ //                        for (FoodDO food : foods){
+ //                           out.println("<tr>");
+ //                           out.println("<td>");
+ //                           out.println("<input type=\"checkbox\" name=\"foodCheckBox\" value=\"" + food.getId() + "\" />");
+ //                           out.println("</td>");
+ //                           out.println("<td>");
+ //                           out.println("<button class=\"btn btn-edit\" name=\"foodIdBtn\" value=\"" + food.getId() +"\" action=\"Manager?action=editFood\">");
+ //                           out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
+ //                           out.println("</button>");
+ //                           out.println("</td>");
+ //                           out.println("<td>" + food.getName() + "</td>");
+ //                           out.println("<td>" + food.getPrice() + "</td>");
+ //                           out.println("<td>" + food.getCategory() + "</td>");
+ //                           out.println("<td>" + food.getId() + "</td>");
+ //                           out.println("<td>" + food.getId() + "</td>");
+ //                           out.println("<td>" + food.getId() + "</td>");
+ //                           out.println("</tr>");
+ //                        }
+ //                        out.println("</form>");
+ //                    %>
                 </table>
             </div>
-            
-<!--            <div class="active" id="dashboard">dashboard</div>
-            <div class="tabContent" id="kitchen">kitchen
-            
-            
-            
-            </div>
-            <div class="tabContent" id="sales">sales</div>
-            <div class="tabContent" id="restaurantLocation">restaurant</div>
-            <div class="tabContent" id="userManagement">user</div>-->
+
+            <!--            <div class="active" id="dashboard">dashboard</div>
+                        <div class="tabContent" id="kitchen">kitchen
+                        
+                        
+                        
+                        </div>
+                        <div class="tabContent" id="sales">sales</div>
+                        <div class="tabContent" id="restaurantLocation">restaurant</div>
+                        <div class="tabContent" id="userManagement">user</div>-->
         </div>
     </body>
 </html>

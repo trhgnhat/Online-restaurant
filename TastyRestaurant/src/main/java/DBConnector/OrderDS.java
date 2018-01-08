@@ -43,7 +43,7 @@ public class OrderDS {
         sqlConnectionManager.closeConnection();
     }
 
-    public List getAllOrders() {
+    public List<OrderDO> getAllOrders() {
         List<OrderDO> orders = new ArrayList<>();
 
         String sqlStatement = "SELECT * FROM ordering";

@@ -15,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Kitchen Management</title>
+        <title>Sales Management</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -61,8 +61,8 @@
 
         <div class="col-lg-10">
             <div>
-                <button class="btn btn-danger" form="orderForm" formaction="Manager?action=deleteOrder" onclick="return confirmation('order')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
-                <select id="orderTime" style='float: right' onchange="chooseOrderTime(this)">
+                <button class="btn btn-danger" form="orderForm" formaction="Manager?action=deleteOrder" onclick="return confirmation('order', 'orderCheckBox')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <select id="orderTime" style='float: right' onchange="chooseOrderTime(this, 'orderTable')">
                     <option value="all">All</option>
                     <option value="lastDay">Last Day</option>
                     <option value="lastWeek">Last Week</option>
@@ -126,7 +126,7 @@
                             out.println("<input type=\"checkbox\" name=\"orderCheckBox\" value=\"" + order.getId() + "\" />");
                             out.println("</td>");
                             out.println("<td>");
-                            out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() + "\" onclick=\"return showOrderDetail('" + order.getId() + "')\">");
+                            out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() + "\" onclick=\"return showDetail('" + order.getId() + "', 'orderDetailDiv')\">");
                             out.println("<span class=\"glyphicon glyphicon-eye-open\"></span>");
                             out.println("</button>");
                             out.println("</td>");
@@ -181,7 +181,6 @@
                             out.println("<td colspan=\"1\">" + order.getMember().getAddress() + "</td>");
                             out.println("<td>" + order.getMember().getPhone() + "</td>");
                             out.println("<td>" + order.getMember().getPoint() + "</td>");
-                            out.println("<td>" + "<button class=\"btn btn-edit\" name=\"memberIdBtn\" action=\"Manager?action=memberDetail&id=" + order.getMember().getId() + "\">view</button>" + "</td>");
                             out.println("</tr>");
                             out.println("</table>");
                             out.println("</div>");
@@ -190,192 +189,6 @@
                         }
                         out.println("</form>");
                     %>
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="orderCheckbox" value="" />
-                        </td>
-                        <td>
-                            <a href="#" onclick="showOrderDetail('1')">View details</a>
-                        </td>
-                        <td>
-                            orderID
-                        </td>
-                        <td>
-                            username
-                        </td>
-                        <td>
-                            billID
-                        </td>
-                        <td>
-                            tableNo
-                        </td>
-                        <td>
-                            total
-                        </td>
-                        <td>
-                            time
-                        </td>
-                        <td>
-                            date
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="9">
-                            <div class="orderDetailDiv" id="1" style="display: none;">
-                                <table class="table">
-                                    <tr id="orderDetail">
-                                        <td colspan="3">Dishes</td>
-                                        <td>Quantity</td>
-                                        <td colspan="2">Price ($)</td>
-                                        <td colspan="2">Sub Total ($)</td>
-                                        <td>Total ($)</td>
-                                    </tr>
-                                    <tr id="orderDetailElement">
-                                        <td colspan="3">Chicken</td>
-                                        <td>2</td>
-                                        <td colspan="2">6.00</td>
-                                        <td colspan="2">12.00</td>
-                                        <td rowspan="2" align="center">Modify rowspan = number of dishes</td>
-                                    </tr>
-                                    <tr id="orderDetailElement">
-                                        <td colspan="3">Beef</td>
-                                        <td>1</td>
-                                        <td colspan="2">9.00</td>
-                                        <td colspan="2">9.00</td> 
-                                    </tr>
-                                    <tr id="orderDetail">
-                                        <td colspan="3">Full Name</td>
-                                        <td>Username</td>
-                                        <td colspan="2">Email</td>
-                                        <td colspan="1">Address</td>
-                                        <td>Phone Number</td>
-                                        <td>Accumulated point</td>
-                                    </tr>
-                                    <tr id="orderDetailElement">
-                                        <td colspan="3">Anh Nguyen</td>
-                                        <td><a href="#">nnta.zip</a></td>
-                                        <td colspan="2">nnta@gmail.com</td>
-                                        <td colspan="1">HCMC</td>
-                                        <td>1234</td>
-                                        <td>100</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!--                    
-                                        DISPLAY ORDER DETAIL WITH PANEL - MODIFY LATER
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" name="orderCheckbox" value="" />
-                                            </td>
-                                            <td>
-                                                <a href="#" onclick="showOrderDetail('2')">View details</a>
-                                            </td>
-                                            <td>
-                                                orderID
-                                            </td>
-                                            <td>
-                                                username
-                                            </td>
-                                            <td>
-                                                billID
-                                            </td>
-                                            <td>
-                                                tableNo
-                                            </td>
-                                            <td>
-                                                total
-                                            </td>
-                                            <td>
-                                                time
-                                            </td>
-                                            <td>
-                                                date
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="9">
-                                                <div  class="orderDetailDiv" id="2" style="display: none;">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">
-                                                            <h4>Member's information</h4>
-                                                        </div>
-                                                        <div class="panel-body">
-                    
-                                                        </div>
-                                                        <div class="panel-heading">
-                                                            <h4>Receipt</h4>
-                                                        </div>
-                                                        <div class="panel-body">
-                                                            <table class="table">
-                                                                <tr id="orderDetail">
-                                                            <td colspan="3">Dishes</td>
-                                                            <td>Quantity</td>
-                                                            <td colspan="2">Price ($)</td>
-                                                            <td colspan="2">Sub Total ($)</td>
-                                                            <td>Total ($)</td>
-                                                            <td>Full Name</td>
-                                                            <td>Username</td>
-                                                            <td>E-mail</td>
-                                                            <td>Address</td>
-                                                            <td>Phone Number</td>
-                                                            <td>Accumulated Point</td>
-                                                        </tr>
-                                                        <tr id="orderDetailElement">
-                                                            <td colspan="3">Chicken</td>
-                                                            <td>2</td>
-                                                            <td colspan="2">6.00</td>
-                                                            <td colspan="2">12.00</td>
-                                                            <td rowspan="2" align="center">Modify rowspan = number of dishes</td>
-                                                        </tr>
-                                                        <tr id="orderDetailElement">
-                                                            <td colspan="3">Beef</td>
-                                                            <td>1</td>
-                                                            <td colspan="2">9.00</td>
-                                                            <td colspan="2">9.00</td> 
-                                                        </tr>
-                                                        <tr id="orderDetail">
-                                                            <td colspan="3">Full Name</td>
-                                                            <td>Username</td>
-                                                            <td colspan="2">Email</td>
-                                                            <td colspan="1">Address</td>
-                                                            <td>Phone Number</td>
-                                                            <td>Accumulated point</td>
-                                                        </tr>
-                                                        <tr id="orderDetailElement">
-                                                            <td colspan="3">Anh Nguyen</td>
-                                                            <td><a href="#">nnta.zip</a></td>
-                                                            <td colspan="2">nnta@gmail.com</td>
-                                                            <td colspan="1">HCMC</td>
-                                                            <td>1234</td>
-                                                            <td>100</td>
-                                                        </tr>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>-->
-
-
-                    <!--                    **************************
-                                        ******SHOW MENU LIST******
-                                        GENERATE THIS <TR> ELEMENT
-                                        **************************-->
-
-<!--                    **************************
-                    ******SHOW MENU LIST******
-                    GENERATE THIS <TR> ELEMENT
-                    **************************-->
-                    
-
-                    <!--                    **************************
-                                        ******SHOW MENU LIST******
-                                        GENERATE THIS <TR> ELEMENT
-                                        **************************-->
-
                 </table>
             </div>
         </div>

@@ -114,7 +114,11 @@ public class test {
 //        LocalTime formattedTime = LocalTime.parse(inputtime, DateTimeFormatter.ofPattern("HH:mm:ss"));
 //        System.out.println("time: " + time);
 //        System.out.println("formattedTime: " + formattedTime);
-        OrderDO order = new OrderDO(((OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1)).getId() + 1, new MemberDS().getMember(1), new TableDS().getTable(1), new BillDS().getBill(4));
-        new OrderDS().createOrder(order);
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        System.out.println("date: " + date);
+        System.out.println("date: " + date.format(DateTimeFormatter.ofPattern("MM/dd/uuuu")));
+        System.out.println("date: " + time);
+        System.out.println("date: " + time.format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 }

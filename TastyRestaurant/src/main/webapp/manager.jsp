@@ -4,6 +4,10 @@
     Author     : nnta.zip
 --%>
 
+<%@page import="DBConnector.BookingDS"%>
+<%@page import="DBConnector.MemberDS"%>
+<%@page import="DO.OrderDO"%>
+<%@page import="DBConnector.OrderDS"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -63,7 +67,12 @@
                                     <span class="glyphicon glyphicon-stats"></span>
                                 </div>
                                 <div class="col-xs-8 stat-content">
-                                    <span class="dashboardItemRed">$ 0.0
+                                    <span class="dashboardItemRed"><%
+                                        float total = 0;
+                                        for (OrderDO order : new OrderDS().getAllOrders()) {
+                                            total += order.getTotal_price();
+                                        }
+                                        out.print("$ " + total);%>
                                         <!--                                **************************    
                                                                         ADD THE TOTAL INCOMES HERE
                                                                         **************************-->
@@ -83,7 +92,7 @@
                                     <span class="glyphicon glyphicon-user"></span>
                                 </div>
                                 <div class="col-xs-8 stat-content">
-                                    <span class="dashboardItemBlue"> 0
+                                    <span class="dashboardItemBlue"> <%= new MemberDS().getAllMembers().size()%>
                                         <!--                                **************************    
                                                                         ADD THE TOTAL MEMBERS HERE
                                                                         **************************-->
@@ -102,7 +111,7 @@
                                     <span class="glyphicon glyphicon-shopping-cart"></span>
                                 </div>
                                 <div class="col-xs-8 stat-content">
-                                    <span class="dashboardItemGreen"> 0
+                                    <span class="dashboardItemGreen"> <%= new OrderDS().getAllOrders().size()%>
                                         <!--                                **************************    
                                                                         ADD THE TOTAL MEMBERS HERE
                                                                         **************************-->
@@ -121,7 +130,7 @@
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </div>
                                 <div class="col-xs-8 stat-content">
-                                    <span class="dashboardItemIndigo"> 0
+                                    <span class="dashboardItemIndigo"> <%= new BookingDS().getAllBookings().size()%>
                                         <!--                                **************************    
                                                                         ADD THE TOTAL MEMBERS HERE
                                                                         **************************-->

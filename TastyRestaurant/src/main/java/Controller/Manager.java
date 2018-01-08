@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DBConnector.BookingDS;
 import DBConnector.FoodDS;
 import DBConnector.OrderDS;
 import DO.FoodDO;
@@ -134,6 +135,23 @@ public class Manager extends HttpServlet {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please choose at least ONE food');");
                 out.println("location='saleManager.jsp';");
+                out.println("</script>");
+            }
+        }
+        if (action.equals("deleteBooking")) {
+            String[] checkboxes = request.getParameterValues("bookingCheckBox");
+            if (checkboxes != null) {
+                for (String checkbox : checkboxes) {
+                    new BookingDS().deleteBooking(new BookingDS().getBooking(Integer.parseInt(checkbox)));
+                }
+                out.println("<script type=\"text/javascript\">");
+                out.println("location='restaurantManager.jsp';");
+                out.println("</script>");
+            }
+            else{
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Please choose at least ONE food');");
+                out.println("location='restaurantManager.jsp';");
                 out.println("</script>");
             }
         }
