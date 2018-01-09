@@ -133,29 +133,24 @@ public class Transaction extends HttpServlet {
                 request.getRequestDispatcher("booking.jsp").forward(request, response);
             } //Order
             else if (action.equals("order")) {
-                
                 BillDO bill = (BillDO) request.getSession().getAttribute("bill");
-                MemberDO member = (MemberDO) request.getSession().getAttribute("member");
-                TableDO table = new TableDS().getTable(Integer.parseInt(request.getParameter("tableID")));
-//                if(new OrderDS().getAllOrders().isEmpty()){
-//                    OrderDO order = new OrderDO(1, member, table, bill);
-//                    out.println("alert('" + order.getId() + "-" + order.getMember().getId() + "-" + order.getTable().getId() + "-" + order.getBill().getId() + "-" + order.getDate_time() + "-" + order.getTotal_price() + "!');");
-//                    OrderDS ods = new OrderDS();
-//                    ods.createOrder(order);
-//                }else{
-//                    out.println("alert('NOT empty!');");
-//                    OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
-//                    OrderDO order = new OrderDO(lastOrder.getId()+1, member, table, bill);
-//                    out.println("alert('" + order.getId() + "-" + order.getMember().getId() + "-" + order.getTable().getId() + "-" + order.getBill().getId() + "-" + order.getDate_time() + "-" + order.getTotal_price() + "!');");
-//                    OrderDS ods = new OrderDS();
-//                    ods.createOrder(order);
-//                }
-                OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
-                OrderDO order = new OrderDO(lastOrder.getId() + 1, member, table, bill);
-                new OrderDS().createOrder(order);
                 new BillDS().createBill(bill);
+                MemberDO member = (MemberDO) request.getSession().getAttribute("member");
                 member.setPoint(member.getPoint() + 10);
                 new MemberDS().updateMember(member);
+                TableDO table = new TableDS().getTable(Integer.parseInt(request.getParameter("tableID")));
+                if(new OrderDS().getAllOrders().isEmpty()){
+                    OrderDO order = new OrderDO(1, member, table, bill);
+                    new OrderDS().createOrder(order);
+                }else{
+                    out.println("alert('NOT empty!');");
+                    OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
+                    OrderDO order = new OrderDO(lastOrder.getId()+1, member, table, bill);
+                    new OrderDS().createOrder(order);
+                }
+//                OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get((new OrderDS().getAllOrders().size()) - 1);
+//                OrderDO order = new OrderDO(lastOrder.getId() + 1, member, table, bill);
+//                new OrderDS().createOrder(order);
                 request.getSession().setAttribute("bill", null);
                 request.getSession().setAttribute("member", member);
                 out.println("<script type=\"text/javascript\">");
