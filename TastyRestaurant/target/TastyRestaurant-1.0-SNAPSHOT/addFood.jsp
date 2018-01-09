@@ -88,16 +88,18 @@
                                         <!--************************
                                             PLACE FOOD IMAGE HERE!!!
                                         ************************-->
-<!--                                        <img src="" alt="Food Image preview ..."/>-->
+                                        <!--                                        <img src="" alt="Food Image preview ..."/>-->
                                         <input type="file" accept="image/*" onchange="loadFile(event)">
-                                        <div style="min-width: 255px;min-height: 200px;">
-                                            <img id="output" />
-                                        </div>
+                                        <img id="output"/>
                                         <script>
-                                            var loadFile = function(event){
-                                                var output = document.getElementById('output');
-                                                output.src = URL.createObjectURL(event.target.file[0]);
+                                          var loadFile = function(event) {
+                                            var reader = new FileReader();
+                                            reader.onload = function(){
+                                              var output = document.getElementById('output');
+                                              output.src = reader.result;
                                             };
+                                            reader.readAsDataURL(event.target.files[0]);
+                                          };
                                         </script>
                                     </div>
 
