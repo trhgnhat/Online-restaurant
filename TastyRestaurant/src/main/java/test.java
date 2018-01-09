@@ -30,6 +30,7 @@ import java.util.List;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import org.apache.commons.lang.RandomStringUtils;
 
 /**
  *
@@ -115,12 +116,8 @@ public class test {
 //        System.out.println("time: " + time);
 //        System.out.println("formattedTime: " + formattedTime);
 //        
-        OrderDS ods = new OrderDS();
-        MemberDO member = new MemberDS().getMember("trhgnhat","123456");
-        TableDO table = new TableDS().getTable(1);
-        BillDO bill = new BillDS().getBill(13);
-        OrderDO order = new OrderDO(3,member,table,bill);
-        ods.createOrder(order);
+//        
+        System.out.println(RandomStringUtils.random(8, "ABCDEFGHIJKLMNOPQRSTUVƯXYZ0123456789"));
         
     }
 }
