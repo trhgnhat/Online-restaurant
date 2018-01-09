@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package DBConnector;
+
 import DO.BookingDO;
 import DO.MemberDO;
 import DO.TableDO;
@@ -14,11 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Admin
  */
 public class BookingDS {
+
     private MySqlConnectionManager sqlConnectionManager;
 
     public BookingDS() {

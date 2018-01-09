@@ -72,8 +72,21 @@ function checkAll(checkAll, id) {
         checkboxes[i].checked = checkAll.checked;
     }
 }
-function confirmation(field) {
-    if (confirm("Do you wish to delete " + field + "(s)?")) {
+function confirmation(field1, field2) {
+
+    var checkboxes = document.getElementsByName(field2);
+    var isChecked = false;
+    for (var i = 0, n = checkboxes.length; i < n; i++) {
+        if (checkboxes[i].checked) {
+            isChecked = true;
+            break;
+        }
+    }
+    if (!isChecked) {
+        alert("Please choose a(n) " + field1);
+        return false;
+    }
+    if (confirm("Do you wish to delete " + field1 + "(s)?")) {
         return true;
     } else {
         return false;
@@ -82,8 +95,8 @@ function confirmation(field) {
 
 previewFile();
 
-function showOrderDetail(target) {
-    var orderDetailDivs = document.getElementsByClassName("orderDetailDiv");
+function showDetail(target, targetDetailDiv) {
+    var orderDetailDivs = document.getElementsByClassName(targetDetailDiv);
     var targets = document.getElementById(target);
     var isVisible = targets.style.display == "block";
 
@@ -106,9 +119,9 @@ function showAvailableTables() {
     }
 }
 
-function chooseOrderTime(time) {
+function chooseOrderTime(time, table) {
     if (time.value !== "all") {
-        var x = document.getElementById("orderTable").rows;
+        var x = document.getElementById(table).rows;
         for (var i = 1; i < x.length; i++) {
             x[i].style.display = "none";
         }
@@ -117,7 +130,7 @@ function chooseOrderTime(time) {
             selected[i].style.display = "";
         }
     } else {
-        var x = document.getElementById("orderTable").rows;
+        var x = document.getElementById(table).rows;
         for (var i = 0; i < x.length; i++) {
             x[i].style.display = "";
         }
@@ -145,6 +158,45 @@ function changeAccountDetail() {
         }
     }
     return true;
+}
+function checkConfirmationPassword(password, confirmPassword) {
+    if (document.getElementById(password).value !== document.getElementById(confirmPassword).value) {
+        alert("Please enter the correct confirm password!");
+        return false;
+    } else {
+        return true;
+    }
+}
+function searchBooking(date, time, table) {
+    if (document.getElementById(date).value !== "") {
+        var x = document.getElementById(table).rows;
+        for (var i = 1; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        if (document.getElementById(time).value !== "") {
+            //alert(document.getElementById(date).value);
+            var selected_date = document.getElementsByName(document.getElementById(date).value);
+            //alert(selected_date.innerHTML);
+            for (var i = 0; i < selected_date.length; i++) {
+                if (selected_date[i].getAttribute("value") === document.getElementById(time).value) {
+                    selected_date[i].style.display = "";
+                }
+            }
+        } else {
+            var selected_date = document.getElementsByName(document.getElementById(date).value);
+            for (var i = 0; i < selected_date.length; i++) {
+                selected_date[i].style.display = "";
+            }
+        }
+        return false;
+    } else if (document.getElementById(date).value === "") {
+        var x = document.getElementById(table).rows;
+        for (var i = 0; i < x.length; i++) {
+            x[i].style.display = "";
+        }
+        return false;
+    }
+    return false;
 }
 previewFile();
 

@@ -99,19 +99,30 @@ public class Account extends HttpServlet {
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String credit_card = request.getParameter("credit_card");
-            String checkTerms = request.getParameter("termOfService");
             int id = new MemberDS().getAllMembers().size() + 1;
-            MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
-            if (new MemberDS().createMember(member) == null) {
+            boolean isNotExisted = true;
+            for (MemberDO member : new MemberDS().getAllMembers()) {
+                if (username.equals(member.getUsername())) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Username invalid!');");
+                    out.println("location='register.jsp';");
+                    out.println("</script>");
+                    isNotExisted = false;
+                } else if (email.equals(member.getEmail())) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Username invalid!');");
+                    out.println("location='register.jsp';");
+                    out.println("</script>");
+                    isNotExisted = false;
+                }
+            }
+            if (isNotExisted) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Register successfully!');");
                 out.println("location='homepage.jsp';");
                 out.println("</script>");
-            } else {
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('Successfully!');");
-                out.println("location='register.jsp';");
-                out.println("</script>");
+                MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
+                new MemberDS().createMember(member);
             }
         }
 
