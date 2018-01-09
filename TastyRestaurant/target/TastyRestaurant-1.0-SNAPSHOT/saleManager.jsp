@@ -128,7 +128,7 @@
                             out.println("</td>");
                             out.println("<td>");
                             out.println("<button class=\"btn btn-edit\" name=\"orderIdBtn\" value=\"" + order.getId() + "\" onclick=\"return showDetail('" + order.getId() + "', 'orderDetailDiv')\">");
-                            out.println("<span class=\"glyphicon glyphicon-eye-open\"></span>");
+                            out.println("<span class=\"glyphicon glyphicon-eye-open\" style=\"padding: 0;\"></span>");
                             out.println("</button>");
                             out.println("</td>");
                             out.println("<td>" + order.getId() + "</td>");
@@ -163,7 +163,7 @@
                                 out.println("<td/>");
                                 out.println("</tr>");
                             }
-                            out.println("<tr><td colspan=\"4\"/ ><td/ ><td colspan=\"2\">Total</td><td colspan=\"2\">" + order.getTotal_price() + "</td>");
+                            out.println("<tr id=\"orderDetailElement\"><td colspan=\"4\"/ ><td/ ><td colspan=\"2\">Total</td><td colspan=\"2\">" + order.getTotal_price() + "</td>");
 
 //                          DETAIL OF THE ACCOUNT
                             out.println("<tr id=\"orderDetail\">");

@@ -62,18 +62,12 @@
                 </div>
                 <div class="editPane" style="margin-top: 20px;">
                     <table class="form-table" style="width: 50%;">
-                        <tr class="rowSpace">
+<!--                        <tr class="rowSpace">
                             <td>Table name</td>
                             <td>
                                 <input class="form-control" type="text" name="addFoodName" required />
                             </td>
-                        </tr>
-                        <tr class="rowSpace">
-                            <td>Table ID</td>
-                            <td>
-                                <input class="form-control" type="text" name="addFoodPrice" required />
-                            </td>
-                        </tr>
+                        </tr>-->
                         <tr class="rowSpace">
                             <td>Number of seat</td>
                             <td>
