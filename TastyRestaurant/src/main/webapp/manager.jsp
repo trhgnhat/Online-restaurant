@@ -21,6 +21,8 @@
         <script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="pageAction.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <%
             if (request.getSession().getAttribute("isLoggedIn") != "TRUE") {
                 out.println("<script type=\"text/javascript\">");
@@ -144,16 +146,64 @@
                 </div>
             </div>
             
-            <div class="drawBarChart">
-                <div id="chartContainer" style="height: 360px; width: 100%;"></div>
+            <div class="drawBarChart" width="400" height="400">
+                <canvas id="myChart"></canvas>
+                <script>
+                    var ctx = document.getElementById("myChart");
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                       data:{
+                       labels: ["Total Sales", "Total Members", "Total Orders", "Total Reservations"],
+                            datasets: [{
+                                label: 'Reports Chart',
+                                data: [12,
+                                        <%= new MemberDS().getAllMembers().size()%>,
+                                        <%= new OrderDS().getAllOrders().size()%>,
+                                        <%= new BookingDS().getAllBookings().size()%>],
+                                backgroundColor: [
+                                    '#d9534f',
+                                    '#66ccff',
+                                    '#5CB85C',
+                                    '#337ab7',
+                                ],
+                                borderColor: [
+                                    '#d9534f',
+                                    '#66ccff',
+                                    '#5CB85C',
+                                    '#337ab7',
+                                ],
+                                borderWidth: 1
+                            }]
+                    },
+                        options: {
+                            scales: {
+
+                                yAxes: [{
+                                ticks: {
+
+                                       min: 0,
+                                       max: 100,
+                                       callback: function(value){return value+ "%"}
+                                    },  
+                            scaleLabel: {
+                                       display: true,
+                                       labelString: "Percentage"
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+            </div>
+            <div id="chartContainer" style="height: 360px; width: 100%;">
                 <script>
                     var chart = new CanvasJS.Chart("chartContainer",
                     {
-                        title:{
-                        text: "Bar Chart with Percent"
-                        },
-                        data: [
-                            {      	
+                      title:{
+                      text: "Bar Chart with Percent"
+                      },
+                      data: [
+                      {      	
                         type: "bar",
                         //indexLabel : "{y}%",
                         toolTipContent: "{y}%",
@@ -161,8 +211,7 @@
                         { x: new Date(2012, 01, 1), y: 71 },
                         { x: new Date(2012, 02, 1), y: 55 },
                         { x: new Date(2012, 03, 1), y: 50 },
-                        { x: new Date(2012, 04, 1), y: 65 },
-                        { x: new Date(2012, 05, 1), y: 95 }
+                        { x: new Date(2012, 04, 1), y: 65 }
                         ]
                       }
                       ]

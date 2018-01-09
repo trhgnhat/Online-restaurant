@@ -854,6 +854,12 @@ li a:hover{
 #dashboardDescript{
     font-size: 16px;
 }
+
+#myChart{
+    max-height: 50%;
+    max-width: 90%;
+}
+
 /* ***************
  SALE MANAGEMENT
  ****************/
