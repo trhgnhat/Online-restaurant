@@ -110,7 +110,7 @@
                         View My Account tab
                         *******************
                         -->                       
-                        <div class="tabContent" id="viewMyAccount">
+                        <div class="tabContent" id="viewMyAccount" style="display: block">
                             <div class="col-lg-9">
                                 <table class="table">
                                     <tr>

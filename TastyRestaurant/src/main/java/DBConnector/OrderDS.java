@@ -53,7 +53,15 @@ public class OrderDS {
         try {
             while (rs.next()) {
                 int db_id = rs.getInt("id");
-                orders.add(getOrderByOrderID(db_id));
+                if(rs.wasNull()){
+                    
+                    System.out.print("There is no record");
+                }
+                else{
+                    System.out.print("There is a record");
+                    orders.add(getOrderByOrderID(db_id));
+                }
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderDO.class.getName()).log(Level.SEVERE, null, ex);

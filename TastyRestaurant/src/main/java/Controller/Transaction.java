@@ -22,7 +22,6 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -134,17 +133,37 @@ public class Transaction extends HttpServlet {
                 request.getRequestDispatcher("booking.jsp").forward(request, response);
             } //Order
             else if (action.equals("order")) {
+                out.println("<script type=\"text/javascript\">");
                 BillDO bill = (BillDO) request.getSession().getAttribute("bill");
-                OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
                 MemberDO member = (MemberDO) request.getSession().getAttribute("member");
                 TableDO table = new TableDS().getTable(Integer.parseInt(request.getParameter("tableID")));
-                OrderDO order = new OrderDO(lastOrder.getId()+1, member, table, bill);
-                new BillDS().createBill(bill);
+//                if(new OrderDS().getAllOrders().isEmpty()){
+//                    OrderDO order = new OrderDO(1, member, table, bill);
+//                    out.println("alert('" + order.getId() + "-" + order.getMember().getId() + "-" + order.getTable().getId() + "-" + order.getBill().getId() + "-" + order.getDate_time() + "-" + order.getTotal_price() + "!');");
+//                    OrderDS ods = new OrderDS();
+//                    ods.createOrder(order);
+//                }else{
+//                    out.println("alert('NOT empty!');");
+//                    OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
+//                    OrderDO order = new OrderDO(lastOrder.getId()+1, member, table, bill);
+//                    out.println("alert('" + order.getId() + "-" + order.getMember().getId() + "-" + order.getTable().getId() + "-" + order.getBill().getId() + "-" + order.getDate_time() + "-" + order.getTotal_price() + "!');");
+//                    OrderDS ods = new OrderDS();
+//                    ods.createOrder(order);
+//                }
+                int id = 1;
+                if (!new OrderDS().getAllOrders().isEmpty()) {
+                    OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
+                    id = lastOrder.getId() + 1;
+                }
+//                OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
+                OrderDO order = new OrderDO(id, member, table, bill);
                 new OrderDS().createOrder(order);
+                new BillDS().createBill(bill);
                 member.setPoint(member.getPoint() + 10);
                 new MemberDS().updateMember(member);
                 request.getSession().setAttribute("bill", null);
-                out.println("<script type=\"text/javascript\">");
+                request.getSession().setAttribute("member", member);
+
                 out.println("alert('Thanks you, see you again!');");
                 out.println("location='homepage.jsp';");
                 out.println("</script>");
