@@ -78,6 +78,7 @@
                         <th>Table</th>
                         <th>Number of seat</th>
                         <th>Status</th>
+                        <th>Change Status</th>
                     </tr>
                     
 <!--                    **************************
@@ -94,12 +95,21 @@
                            out.println("</td>");
                            out.println("<td>");
                            out.println("<button class=\"btn btn-edit\" name=\"tableIdBtn\" value=\"" + table.getId() +"\" action=\"Manager?action=editTable\">");
-                           out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
+                           out.println("<span class=\"glyphicon glyphicon-pencil\" style=\"padding: 0;\"></span>");
                            out.println("</button>");
                            out.println("</td>");
                            out.println("<td>" + table.getId() + "</td>");
                            out.println("<td>" + table.getSeat() + "</td>");
+<<<<<<< HEAD
+                           out.println("<td>" + table.getStatus() + "</td>");
+                           out.println("<td>");     
+                           out.println("<label class=\"switch\">");
+                           out.println("<input type=\"checkbox\">");
+                           out.println("<span class=\"slider round\"></span>");
+                           out.println("</label>");
+=======
                            out.println("<td>" + ((table.getStatus() == 0) ? "Available" : "busy") + "</td>");
+>>>>>>> 5ac3cae98c55660979ee4a06d15d68274b033691
                            out.println("</tr>");
                         }
                         out.println("</form>");

@@ -28,13 +28,14 @@
     <body>
         <div class="col-lg-2" id="sideBar">
             <div class="logo">
-               
+               <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
             </div>
             <ul>
                 <li><a href="manager.jsp"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
                 <li><a href="kitchenManager.jsp"><span class="glyphicon glyphicon-cutlery"></span>Kitchen</a></li>
                 <li><a href="saleManager.jsp"><span class="glyphicon glyphicon-stats"></span>Sales</a></li>
-                <li><a href="restaurantManager.jsp"><span class="glyphicon glyphicon-map-marker"></span>Restaurant</a></li>
+                <li><a href="restaurantManager.jsp"><span class="glyphicon glyphicon-calendar"></span>Reservation</a></li>
+                <li><a href="tableManager.jsp"><span class="glyphicon glyphicon-list-alt"></span>Table</a></li>
                 <li><a href="userManager.jsp"><span class="glyphicon glyphicon-user"></span>Users</a></li>
             </ul>
         </div>
@@ -62,25 +63,25 @@
                         <button class="btn btn-edit"><span class="glyphicon glyphicon-floppy-save"></span>Save & Close</button>
                     </div>
                     <table class="form-table">
-                        <tr>
+                        <tr class="rowSpace">
                             <td>Food name</td>
                             <td>
                                 <input class="form-control" type="text" name="foodName" value="<%out.println(food.getName());%>" required />
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="rowSpace">
                             <td>Price</td>
                             <td>
                                 <input class="form-control" type="text" name="foodPrice" value="<%out.println(food.getPrice());%>" required />
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="rowSpace">
                             <td>Category</td>
                             <td>
                                 <input class="form-control" type="text" name="foodCategory" value="<%out.println(food.getCategory());%>" required />
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="rowSpace">
                             <td>Image</td>
                             <td>
                                 <div class="foodImg">

@@ -75,7 +75,7 @@
                 <button class="btn btn-danger" form="bookingForm" formaction="Manager?action=deleteBooking" onclick="return confirmation('booking', 'bookingCheckBox')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
                 <div class="col-xs-12 col-sm-3">
                     <div class="input-group">
-                        <input class="datepicker form-control input-small" type="text" id="pickADate" name="pickADate" placeholder="mm/dd/yy" value="" />
+                        <input class="datepicker form-control input-small" type="text" id="pickADate" name="pickADate" placeholder="mm/dd/yyyy" value="" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -121,7 +121,7 @@
                             out.println("</td>");
                             out.println("<td>");
                             out.println("<button class=\"btn btn-edit\" name=\"bookingIdBtn\" value=\"" + booking.getId() + "\" onclick=\"return showDetail('" + booking.getId() + "', 'bookingDetailDiv')\">");
-                            out.println("<span class=\"glyphicon glyphicon-eye-open\"></span>");
+                            out.println("<span class=\"glyphicon glyphicon-eye-open\" style=\"padding: 0;\"></span>");
                             out.println("</button>");
                             out.println("</td>");
                             out.println("<td>" + booking.getId() + "</td>");
@@ -137,18 +137,14 @@
                             out.println("<div class=\"bookingDetailDiv\" id=\"" + booking.getId() + "\" style=\"display: none;\">");
                             out.println("<table class=\"table\">");
                             out.println("<tr id=\"bookingDetail\">");
-                            out.println("<td colspan=\"3\">Table</td>");
-                            out.println("<td colspan=\"3\">Seat</td>");
-                            out.println("<td/>");
-                            out.println("<td/>");
-                            out.println("<td/>");
+                            out.println("<td colspan=\"3\">Table ID</td>");
+                            out.println("<td colspan=\"3\">Number of seat</td>");
+                            out.println("<td colspan=\"3\">Table Name</td>");
                             out.println("</tr>");
-                            out.println("<tr id=\"bookingDetail\">");
+                            out.println("<tr id=\"bookingDetailElement\">");
                             out.println("<td colspan=\"3\">" + booking.getTable().getId() + "</td>");
                             out.println("<td colspan=\"3\">" + booking.getTable().getSeat() + "</td>");
-                            out.println("<td/>");
-                            out.println("<td/>");
-                            out.println("<td/>");
+                            out.println("<td colspan=\"3\">No. " + booking.getTable().getId() + "</td>");
                             out.println("</tr>");
 
 //                          DETAIL OF THE ACCOUNT
@@ -159,7 +155,7 @@
                             out.println("<td colspan=\"1\">Address</td>");
                             out.println("<td>Phone Number</td>");
                             out.println("<td>Accumulated point</td>");
-                            out.println("<td/>");
+//                            out.println("<td/>");
                             out.println("</tr>");
 
                             out.println("<tr id=\"bookingDetailElement\">");
@@ -169,7 +165,6 @@
                             out.println("<td colspan=\"1\">" + booking.getMember().getAddress() + "</td>");
                             out.println("<td>" + booking.getMember().getPhone() + "</td>");
                             out.println("<td>" + booking.getMember().getPoint() + "</td>");
-                            out.println("<td>" + "<button class=\"btn btn-edit\" name=\"memberIdBtn\" action=\"Manager?action=memberDetail&id=" + booking.getMember().getId() + "\">view</button>" + "</td>");
                             out.println("</tr>");
                             out.println("</table>");
                             out.println("</div>");

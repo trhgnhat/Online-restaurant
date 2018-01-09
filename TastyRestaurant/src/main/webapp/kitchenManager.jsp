@@ -93,7 +93,7 @@
                            out.println("</td>");
                            out.println("<td>");
                            out.println("<button class=\"btn btn-edit\" name=\"foodIdBtn\" value=\"" + food.getId() +"\" action=\"Manager?action=editFood\">");
-                           out.println("<span class=\"glyphicon glyphicon-pencil\"></span>");
+                           out.println("<span class=\"glyphicon glyphicon-pencil\" style=\"padding: 0;\"></span>");
                            out.println("</button>");
                            out.println("</td>");
                            out.println("<td>" + food.getName() + "</td>");

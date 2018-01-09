@@ -62,7 +62,16 @@
                 </div>
                 <div class="editPane" style="margin-top: 20px;">
                     <table class="form-table" style="width: 50%;">
+<<<<<<< HEAD
+<!--                        <tr class="rowSpace">
+                            <td>Table name</td>
+                            <td>
+                                <input class="form-control" type="text" name="addFoodName" required />
+                            </td>
+                        </tr>-->
+=======
                         
+>>>>>>> 5ac3cae98c55660979ee4a06d15d68274b033691
                         <tr class="rowSpace">
                             <td>Number of seat</td>
                             <td>
