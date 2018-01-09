@@ -172,7 +172,7 @@ public class Manager extends HttpServlet {
             member.setPassword(newPassword);
             new MemberDS().updateMember(member);
             String msg = "Your new password is: " + member.getPassword();
-            //Mailer mailer = new Mailer(member.getEmail(), "[RESET PASSWORD]", msg);
+            Mailer mailer = new Mailer("trhgnhat.97@gmail.com", "Crazy123", member.getEmail(), "[RESET PASSWORD]", msg);
             out.println("<script type=\"text/javascript\">");
             out.println("alert('" + member.getPassword() + " - " + member.getPassword() + "');");
             out.println("location='userManager.jsp';");
