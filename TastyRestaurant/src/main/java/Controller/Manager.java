@@ -8,7 +8,9 @@ package Controller;
 import DBConnector.BookingDS;
 import DBConnector.FoodDS;
 import DBConnector.OrderDS;
+import DBConnector.TableDS;
 import DO.FoodDO;
+import DO.TableDO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -113,8 +115,7 @@ public class Manager extends HttpServlet {
                 out.println("<script type=\"text/javascript\">");
                 out.println("location='kitchenManager.jsp';");
                 out.println("</script>");
-            }
-            else{
+            } else {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please choose at least ONE food');");
                 out.println("location='kitchenManager.jsp';");
@@ -130,8 +131,7 @@ public class Manager extends HttpServlet {
                 out.println("<script type=\"text/javascript\">");
                 out.println("location='saleManager.jsp';");
                 out.println("</script>");
-            }
-            else{
+            } else {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please choose at least ONE food');");
                 out.println("location='saleManager.jsp';");
@@ -147,13 +147,20 @@ public class Manager extends HttpServlet {
                 out.println("<script type=\"text/javascript\">");
                 out.println("location='restaurantManager.jsp';");
                 out.println("</script>");
-            }
-            else{
+            } else {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please choose at least ONE food');");
                 out.println("location='restaurantManager.jsp';");
                 out.println("</script>");
             }
+        }
+        if (action.equals("addTable")) {
+            TableDO newTable = new TableDO(new TableDS().getAllTables().size() +1 , Integer.parseInt(request.getParameter("addTableSeat")), 0);
+            new TableDS().createTable(newTable);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Adding successfully!!');");
+            out.println("location='tableManager.jsp';");
+            out.println("</script>");
         }
     }
 

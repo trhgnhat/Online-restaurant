@@ -13,7 +13,7 @@ public class TableDO {
 
     private int id;
     private int seat;
-    private int status; //1 = TRUE is available, 0 = FALSE means this table is booked or being used.
+    private int status; //1 = TRUE is busy, 0 = FALSE is available.
 
     public TableDO(int id, int seat, int status) {
         this.id = id;
