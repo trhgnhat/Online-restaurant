@@ -133,7 +133,7 @@ public class Transaction extends HttpServlet {
                 request.getRequestDispatcher("booking.jsp").forward(request, response);
             } //Order
             else if (action.equals("order")) {
-                out.println("<script type=\"text/javascript\">");
+                
                 BillDO bill = (BillDO) request.getSession().getAttribute("bill");
                 MemberDO member = (MemberDO) request.getSession().getAttribute("member");
                 TableDO table = new TableDS().getTable(Integer.parseInt(request.getParameter("tableID")));
@@ -150,20 +150,15 @@ public class Transaction extends HttpServlet {
 //                    OrderDS ods = new OrderDS();
 //                    ods.createOrder(order);
 //                }
-                int id = 1;
-                if (!new OrderDS().getAllOrders().isEmpty()) {
-                    OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
-                    id = lastOrder.getId() + 1;
-                }
-//                OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
-                OrderDO order = new OrderDO(id, member, table, bill);
+                OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
+                OrderDO order = new OrderDO(lastOrder.getId() + 1, member, table, bill);
                 new OrderDS().createOrder(order);
                 new BillDS().createBill(bill);
                 member.setPoint(member.getPoint() + 10);
                 new MemberDS().updateMember(member);
                 request.getSession().setAttribute("bill", null);
                 request.getSession().setAttribute("member", member);
-
+                out.println("<script type=\"text/javascript\">");
                 out.println("alert('Thanks you, see you again!');");
                 out.println("location='homepage.jsp';");
                 out.println("</script>");

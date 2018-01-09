@@ -48,6 +48,7 @@ public class Account extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         request.getSession().setAttribute("member", null);
+        request.getSession().setAttribute("bill", null);
         out.println("<script type=\"text/javascript\">");
         out.println("location='homepage.jsp';");
         out.println("</script>");
