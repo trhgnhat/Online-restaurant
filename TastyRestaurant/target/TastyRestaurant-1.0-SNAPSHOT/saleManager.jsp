@@ -163,6 +163,7 @@
                                 out.println("<td/>");
                                 out.println("</tr>");
                             }
+                            out.println("<tr><td colspan=\"4\"/ ><td/ ><td colspan=\"2\">Total</td><td colspan=\"2\">" + order.getTotal_price() + "</td>");
 
 //                          DETAIL OF THE ACCOUNT
                             out.println("<tr id=\"orderDetail\">");

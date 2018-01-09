@@ -26,8 +26,8 @@ public class OrderDO {
         this.table = table;
         this.bill = bill;
         this.date_time = LocalDateTime.now();
-        for (float price : bill.getPrice()) {
-            this.total_price += price;
+        for (int i = 0; i < bill.getFood().size(); i++) {
+            this.total_price += bill.getFood().get(i).getPrice() * bill.getQuantity().get(i);
         }
     }
 
