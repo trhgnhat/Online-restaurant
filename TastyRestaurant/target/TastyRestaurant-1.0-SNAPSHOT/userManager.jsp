@@ -75,6 +75,7 @@
                         <th>E-mail</th>
                         <th>Address</th>
                         <th>Phone Number</th>
+                        <th>Password</th>
                     </tr>
 
                     <!--                    **************************
@@ -94,6 +95,7 @@
                             out.println("<td>" + member.getEmail() + "</td>");
                             out.println("<td>" + member.getAddress() + "</td>");
                             out.println("<td>" + member.getPhone() + "</td>");
+                            out.println("<td><button class=\"btn btn-link\">Reset password</button></td>");
                             out.println("</tr>");
                         }
                     %>

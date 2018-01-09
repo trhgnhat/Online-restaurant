@@ -143,6 +143,34 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="drawBarChart">
+                <div id="chartContainer" style="height: 360px; width: 100%;"></div>
+                <script>
+                    var chart = new CanvasJS.Chart("chartContainer",
+                    {
+                        title:{
+                        text: "Bar Chart with Percent"
+                        },
+                        data: [
+                            {      	
+                        type: "bar",
+                        //indexLabel : "{y}%",
+                        toolTipContent: "{y}%",
+                        dataPoints: [
+                        { x: new Date(2012, 01, 1), y: 71 },
+                        { x: new Date(2012, 02, 1), y: 55 },
+                        { x: new Date(2012, 03, 1), y: 50 },
+                        { x: new Date(2012, 04, 1), y: 65 },
+                        { x: new Date(2012, 05, 1), y: 95 }
+                        ]
+                      }
+                      ]
+                    });
+
+                    chart.render();
+                </script>
+            </div>
         </div>
     </body>
 </html>
