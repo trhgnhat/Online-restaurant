@@ -57,7 +57,7 @@
         <div class="col-lg-10">
             <form method="post" action="Manager?action=addFood">
                 <div class="menuBtn">
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
+                    <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" onclick="validateFileType();"></span>Save</button>
                     <button class="btn btn-edit"><span class="glyphicon glyphicon-floppy-save"></span>Save & Close</button>
                 </div>
                 <div class="editPane">
@@ -77,26 +77,37 @@
                         <tr class="rowSpace">
                             <td>Category</td>
                             <td>
-                                <input class="form-control" type="text" name="addFoodCategory" required />
+<!--                                <input class="form-control" type="text" name="addFoodCategory" required />-->
+                                <select class="form-control" name="addFoodCategory" required>
+                                    <option>appetizer</option>
+                                    <option>beef</option>
+                                    <option>chicken</option>
+                                    <option>fish</option>
+                                    <option>pork</option>
+                                    <option>sea food</option>
+                                    <option>italian</option>
+                                    <option>asian</option>
+                                    <option>hamburger</option>
+                                    <option>beverage</option>
+                                    <option>dessert</option>
+                                    
+                                </select>
                             </td>
                         </tr>
                         <tr class="rowSpace">
-                            <td>Image</td>
+                            <td style="float: left;padding-top: 10px;">Image</td>
                             <td>
                                 <div class="foodImg">
                                     <div class="foodPreview">
-                                        <!--************************
-                                            PLACE FOOD IMAGE HERE!!!
-                                        ************************-->
-                                        <!--                                        <img src="" alt="Food Image preview ..."/>-->
-                                        <input type="file" accept="image/*" onchange="loadFile(event)">
-                                        <img id="output"/>
+                                        <input type="file" accept="image/*" id="filename" onchange="loadFile(event);">
+                                        <img id="output" width="255px" height="200px" style="padding: auto;padding-top: 12px;padding-bottom: 12px;"/ >
                                         <script>
                                           var loadFile = function(event) {
                                             var reader = new FileReader();
                                             reader.onload = function(){
                                               var output = document.getElementById('output');
-                                              output.src = reader.result;
+//                                              output.src = reader.result;
+                                                output.src = reader.result;
                                             };
                                             reader.readAsDataURL(event.target.files[0]);
                                           };
@@ -104,7 +115,7 @@
                                     </div>
 
                                     <div class="btn-inline">
-<!--                                        <input class="browseBtn" type="file" value="Browse" onchange="previewImg();" />-->
+                                        <!--                                        <input class="browseBtn" type="file" value="Browse" onchange="previewImg();" />-->
                                         <button class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span>Remove</button>
                                     </div>
                                 </div>
