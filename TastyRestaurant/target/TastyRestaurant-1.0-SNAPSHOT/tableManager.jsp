@@ -66,7 +66,7 @@
                         <span class="glyphicon glyphicon-plus"></span>New
                     </button>
                 </a>
-                <button class="btn btn-danger" form="tableForm" formaction="Manager?action=deleteTable" onsubmit="return confirmation('table', 'tableCheckBox')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <button class="btn btn-danger" form="tableForm" formaction="Manager?action=deleteTable" onclick="return confirmation('table', 'tableCheckBox')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
             </div>
             <div class="menuList">
                 <table class="table">
@@ -75,8 +75,7 @@
                             <input type="checkbox" id="checkAll" onchange="checkAll(this, 'tableCheckBox')" />
                         </th>
                         <th></th>
-                        <th>Table ID</th>
-                        <th>Table name</th>
+                        <th>Table</th>
                         <th>Number of seat</th>
                         <th>Status</th>
                     </tr>
@@ -99,9 +98,8 @@
                            out.println("</button>");
                            out.println("</td>");
                            out.println("<td>" + table.getId() + "</td>");
-                           out.println("<td>" + table.getId() + "</td>");
                            out.println("<td>" + table.getSeat() + "</td>");
-                           out.println("<td>" + table.getStatus() + "</td>");
+                           out.println("<td>" + ((table.getStatus() == 0) ? "Available" : "busy") + "</td>");
                            out.println("</tr>");
                         }
                         out.println("</form>");

@@ -62,33 +62,14 @@
                 </div>
                 <div class="editPane" style="margin-top: 20px;">
                     <table class="form-table" style="width: 50%;">
-                        <tr class="rowSpace">
-                            <td>Table name</td>
-                            <td>
-                                <input class="form-control" type="text" name="addFoodName" required />
-                            </td>
-                        </tr>
-                        <tr class="rowSpace">
-                            <td>Table ID</td>
-                            <td>
-                                <input class="form-control" type="text" name="addFoodPrice" required />
-                            </td>
-                        </tr>
+                        
                         <tr class="rowSpace">
                             <td>Number of seat</td>
                             <td>
-                                <input class="form-control" type="text" name="addFoodCategory" required />
+                                <input class="form-control" type="number" name="addTableSeat" required />
                             </td>
                         </tr>
-                        <tr class="rowSpace">
-                            <td>Change status</td>
-                            <td>
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </td>
-                        </tr>
+                        
                     </table>
             </form>
             </div>
