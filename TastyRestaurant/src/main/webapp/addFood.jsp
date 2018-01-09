@@ -85,14 +85,24 @@
                             <td>
                                 <div class="foodImg">
                                     <div class="foodPreview">
-                                        <!--                                        ************************
-                                                                                PLACE FOOD IMAGE HERE!!!
-                                                                                ************************-->
-                                        <img src="" alt="Food Image preview ..."/>
+                                        <!--************************
+                                            PLACE FOOD IMAGE HERE!!!
+                                        ************************-->
+<!--                                        <img src="" alt="Food Image preview ..."/>-->
+                                        <input type="file" accept="image/*" onchange="loadFile(event)">
+                                        <div style="min-width: 255px;min-height: 200px;">
+                                            <img id="output" />
+                                        </div>
+                                        <script>
+                                            var loadFile = function(event){
+                                                var output = document.getElementById('output');
+                                                output.src = URL.createObjectURL(event.target.file[0]);
+                                            };
+                                        </script>
                                     </div>
 
                                     <div class="btn-inline">
-                                        <input class="browseBtn" type="file" value="Browse" onchange="previewImg();" />
+<!--                                        <input class="browseBtn" type="file" value="Browse" onchange="previewImg();" />-->
                                         <button class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span>Remove</button>
                                     </div>
                                 </div>
