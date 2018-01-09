@@ -37,7 +37,7 @@ public class OrderDS {
                 + Integer.toString(order.getBill().getId()) + ", '"
                 + order.getDate_time() + "', "
                 + order.getTotal_price() + ")";
-        
+
         sqlConnectionManager.openConnection();
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
@@ -53,15 +53,7 @@ public class OrderDS {
         try {
             while (rs.next()) {
                 int db_id = rs.getInt("id");
-                if(rs.wasNull()){
-                    
-                    System.out.print("There is no record");
-                }
-                else{
-                    System.out.print("There is a record");
-                    orders.add(getOrderByOrderID(db_id));
-                }
-                
+                orders.add(getOrderByOrderID(db_id));
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderDO.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,6 +85,7 @@ public class OrderDS {
         sqlConnectionManager.closeConnection();
         return order;
     }
+
     public List<OrderDO> getOrdersByMemberID(int memberID) {
         List<OrderDO> orders = new ArrayList<>();
 

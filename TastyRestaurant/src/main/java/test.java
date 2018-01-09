@@ -119,7 +119,7 @@ public class test {
         MemberDO member = new MemberDS().getMember("trhgnhat","123456");
         TableDO table = new TableDS().getTable(1);
         BillDO bill = new BillDS().getBill(13);
-        OrderDO order = new OrderDO(0,member,table,bill);
+        OrderDO order = new OrderDO(3,member,table,bill);
         ods.createOrder(order);
         
     }
