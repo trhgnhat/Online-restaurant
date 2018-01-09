@@ -50,7 +50,8 @@
                 <li><a href="manager.jsp"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
                 <li><a href="kitchenManager.jsp"><span class="glyphicon glyphicon-cutlery"></span>Kitchen</a></li>
                 <li><a href="saleManager.jsp"><span class="glyphicon glyphicon-stats"></span>Sales</a></li>
-                <li><a href="restaurantManager.jsp"><span class="glyphicon glyphicon-map-marker"></span>Restaurant</a></li>
+                <li><a href="restaurantManager.jsp"><span class="glyphicon glyphicon-calendar"></span>Reservation</a></li>
+                <li><a href="tableManager.jsp"><span class="glyphicon glyphicon-list-alt"></span>Table</a></li>
                 <li><a href="userManager.jsp"><span class="glyphicon glyphicon-user"></span>Users</a></li>
             </ul>
         </div>
@@ -94,9 +95,9 @@
                         $('.clockpicker').clockpicker();
                     </script>
                 </div>
-                <button class="btn btn-danger" form="bookingForm" formaction="Manager?action=searchBooking" onclick="return searchBooking('pickADate', 'pickATime', 'bookingTable')"><span class="glyphicon glyphicon-trash"></span>Search</button>
+                <button class="btn btn-primary" form="bookingForm" formaction="Manager?action=searchBooking" onclick="return searchBooking('pickADate', 'pickATime', 'bookingTable')"><span class="glyphicon glyphicon-search"></span>Search</button>
             </div>
-            <div class="bookingList">
+            <div class="bookingList" style="margin-top: 20px;">
                 <table class="table" id="bookingTable">
                     <tr>
                         <th>

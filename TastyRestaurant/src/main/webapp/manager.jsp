@@ -38,7 +38,8 @@
                 <li><a href="manager.jsp"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
                 <li><a href="kitchenManager.jsp"><span class="glyphicon glyphicon-cutlery"></span>Kitchen</a></li>
                 <li><a href="saleManager.jsp"><span class="glyphicon glyphicon-stats"></span>Sales</a></li>
-                <li><a href="restaurantManager.jsp"><span class="glyphicon glyphicon-map-marker"></span>Restaurant</a></li>
+                <li><a href="restaurantManager.jsp"><span class="glyphicon glyphicon-calendar"></span>Reservation</a></li>
+                <li><a href="tableManager.jsp"><span class="glyphicon glyphicon-list-alt"></span>Table</a></li>
                 <li><a href="userManager.jsp"><span class="glyphicon glyphicon-user"></span>Users</a></li>
             </ul>
         </div>
@@ -64,7 +65,7 @@
                         <div class="panel-body">
                             <div class="row" id="rowDash">
                                 <div class="col-xs-4 stat-icon-red">
-                                    <span class="glyphicon glyphicon-stats"></span>
+                                    <span class="glyphicon glyphicon-export"></span>
                                 </div>
                                 <div class="col-xs-8 stat-content">
                                     <span class="dashboardItemRed"><%
