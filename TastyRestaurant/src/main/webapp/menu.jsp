@@ -118,7 +118,8 @@ and open the template in the editor.
                         <div class="column2">
                             <!--                            <div class="tab-content">-->
                             <div class="tabContent" style="display: block" id="appetizer">
-                                <%                                    List<FoodDO> foods = new FoodDS().getFoodsByCategory("appetizer");
+                                <%                                    
+                                    List<FoodDO> foods = new FoodDS().getFoodsByCategory("appetizer");
                                     for (FoodDO food : foods) {
                                         out.println("<div class=\"col-lg-5\" id=\"productStandard\">");
                                         out.println("<div class=\"panel panel-default\">");
@@ -992,7 +993,7 @@ and open the template in the editor.
             Footer
         -->
 
-        <div class="footer">
+        <div class="footer" style="display: block">
             <div class="jumbotron">
                 <div class="container">
                     <div class="row">
