@@ -198,5 +198,9 @@ function searchBooking(date, time, table) {
     }
     return false;
 }
+function setTableStatus(checkbox, status){
+    
+    
+}
 previewFile();
 
