@@ -95,7 +95,7 @@
                             out.println("<td>" + member.getEmail() + "</td>");
                             out.println("<td>" + member.getAddress() + "</td>");
                             out.println("<td>" + member.getPhone() + "</td>");
-                            out.println("<td><button class=\"btn btn-link\">Reset password</button></td>");
+                            out.println("<td><button class=\"btn btn-link\" name=\"resetButton\" value=\"" + member.getId() + "\" formaction=\"Manager?action=resetPassword\">Reset password</button></td>");
                             out.println("</tr>");
                         }
                     %>

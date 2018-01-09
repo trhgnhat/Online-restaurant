@@ -7,10 +7,13 @@ package Controller;
 
 import DBConnector.BookingDS;
 import DBConnector.FoodDS;
+import DBConnector.MemberDS;
 import DBConnector.OrderDS;
 import DBConnector.TableDS;
 import DO.FoodDO;
+import DO.MemberDO;
 import DO.TableDO;
+import Services.Mailer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,6 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.spi.http.HttpExchange;
+import org.apache.commons.lang.RandomStringUtils;
 
 /**
  *
@@ -155,11 +159,23 @@ public class Manager extends HttpServlet {
             }
         }
         if (action.equals("addTable")) {
-            TableDO newTable = new TableDO(new TableDS().getAllTables().size() +1 , Integer.parseInt(request.getParameter("addTableSeat")), 0);
+            TableDO newTable = new TableDO(new TableDS().getAllTables().size() + 1, Integer.parseInt(request.getParameter("addTableSeat")), 0);
             new TableDS().createTable(newTable);
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Adding successfully!!');");
             out.println("location='tableManager.jsp';");
+            out.println("</script>");
+        }
+        if (action.equals("resetPassword")) {
+            MemberDO member = new MemberDS().getMember(Integer.parseInt(request.getParameter("resetButton")));
+            String newPassword = RandomStringUtils.random(6, "ABCDEFGHIJKLMNOPQRSTUVUWXYZ0123456789");
+            member.setPassword(newPassword);
+            new MemberDS().updateMember(member);
+            String msg = "Your new password is: " + member.getPassword();
+            //Mailer mailer = new Mailer(member.getEmail(), "[RESET PASSWORD]", msg);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('" + member.getPassword() + " - " + member.getPassword() + "');");
+            out.println("location='userManager.jsp';");
             out.println("</script>");
         }
     }
