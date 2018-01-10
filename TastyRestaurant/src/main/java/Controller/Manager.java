@@ -68,8 +68,8 @@ public class Manager extends HttpServlet {
         if (action.equals("addFood")) {
             List<FoodDO> foods = new FoodDS().getAllFoods();
             int newFoodId = 1;
-            if (!foods.isEmpty()){
-                newFoodId = (new FoodDS().getAllFoods().get(new FoodDS().getAllFoods().size()-1)).getId() + 1;
+            if (!foods.isEmpty()) {
+                newFoodId = (new FoodDS().getAllFoods().get(new FoodDS().getAllFoods().size() - 1)).getId() + 1;
             }
             String newFoodName = request.getParameter("addFoodName");
             Float newFoodPrice = Float.parseFloat(request.getParameter("addFoodPrice"));
@@ -161,8 +161,8 @@ public class Manager extends HttpServlet {
         }
         if (action.equals("addTable")) {
             int id = 1;
-            if(!new TableDS().getAllTables().isEmpty()){
-                id = (new TableDS().getAllTables().get(new TableDS().getAllTables().size()-1)).getId() + 1;
+            if (!new TableDS().getAllTables().isEmpty()) {
+                id = (new TableDS().getAllTables().get(new TableDS().getAllTables().size() - 1)).getId() + 1;
             }
             TableDO newTable = new TableDO(id, Integer.parseInt(request.getParameter("addTableSeat")), 0);
             new TableDS().createTable(newTable);
@@ -182,6 +182,51 @@ public class Manager extends HttpServlet {
             out.println("alert('" + member.getPassword() + " - " + member.getPassword() + "');");
             out.println("location='userManager.jsp';");
             out.println("</script>");
+        }
+        if (action.equals("deleteTable")) {
+            String[] checkboxes = request.getParameterValues("tableCheckBox");
+            if (checkboxes != null) {
+                for (String checkbox : checkboxes) {
+                    new TableDS().deleteTable(new TableDS().getTable(Integer.parseInt(checkbox)));
+                }
+                out.println("<script type=\"text/javascript\">");
+                out.println("location='tableManager.jsp';");
+                out.println("</script>");
+            } else {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Please choose at least ONE food');");
+                out.println("location='tableManager.jsp';");
+                out.println("</script>");
+            }
+        }
+        if (action.equals("deleteMember")) {
+            String[] checkboxes = request.getParameterValues("memberCheckBox");
+            if (checkboxes != null) {
+                for (String checkbox : checkboxes) {
+                    new MemberDS().deleteMember(new MemberDS().getMember(Integer.parseInt(checkbox)));
+                }
+                out.println("<script type=\"text/javascript\">");
+                out.println("location='userManager.jsp';");
+                out.println("</script>");
+            } else {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Please choose at least ONE food');");
+                out.println("location='userManager.jsp';");
+                out.println("</script>");
+            }
+        }
+        if (action.equals("changeTableStatus")) {
+            
+            TableDO table = new TableDS().getTable(Integer.parseInt(request.getParameter("tableId")));
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('"+ table.getId() +"');");
+            out.println("</script>");
+            if (table.getStatus() == 1) {
+                table.setStatus(0);
+            } else if (table.getStatus() == 0) {
+                table.setStatus(1);
+            }
+            response.getOutputStream().print(((table.getStatus() == 0) ? "Available" : "busy"));
         }
     }
 
