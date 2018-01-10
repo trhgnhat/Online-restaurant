@@ -122,7 +122,7 @@ and open the template in the editor.
                                 <hr>
                                 <div class="signUp">
                                     <h2>I'm a new customer.</h2>
-                                    <a onclick="openRegisterForm()">Create an account</a>
+                                    <a href="register.jsp">Create an account</a>
                                 </div>
                             </div>
                         </div>
