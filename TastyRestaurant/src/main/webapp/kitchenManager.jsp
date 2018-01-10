@@ -28,7 +28,7 @@
             }
         %>
     </head>
-    <body>
+    <body style="background-color:#f1f1f1;">
         <div class="col-lg-2" id="sideBar">
             <div class="logo">
                <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
@@ -57,7 +57,7 @@
             </nav>
         </div>
         
-        <div class="col-lg-10">
+        <div class="col-lg-10" style="background-color:#ffffff;padding-top: 20px;">
             <div class="menuBtn">
                 <a href="addFood.jsp">
                     <button class="btn btn-primary">

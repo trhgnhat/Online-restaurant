@@ -31,7 +31,7 @@
             }
         %>
     </head>
-    <body>
+    <body style="background-color:#f1f1f1;">
         <div class="col-lg-2" id="sideBar">
             <div class="logo">
                 <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
@@ -60,7 +60,7 @@
             </nav>
         </div>
 
-        <div class="col-lg-10">
+        <div class="col-lg-10"  style="background-color:#ffffff;padding-top: 20px;">
             <div>
                 <button class="btn btn-danger" form="orderForm" formaction="Manager?action=deleteOrder" onclick="return confirmation('order', 'orderCheckBox')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
                 <select id="orderTime" style='float: right' onchange="chooseOrderTime(this, 'orderTable')">

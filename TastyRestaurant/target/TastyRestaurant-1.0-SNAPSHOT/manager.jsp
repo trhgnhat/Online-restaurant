@@ -31,7 +31,7 @@
             }
         %>
     </head>
-    <body>
+    <body style="background-color:#f1f1f1;">
         <div class="col-lg-2" id="sideBar">
             <div class="logo">
                 <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
