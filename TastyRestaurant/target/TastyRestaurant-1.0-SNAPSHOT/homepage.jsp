@@ -97,7 +97,7 @@ and open the template in the editor.
                     <!-- ******************
                         Login form
                     ******************* -->
-                    <div id="introduction" style="display: <%=(request.getSession().getAttribute("member") != null) ? "none" : "block" %>">
+                    <div id="introduction" style="display: <%=(request.getSession().getAttribute("member") != null) ? "none" : "block"%>">
                         <div align="center" class="panel">
                             <div class="panel-heading">
                                 <h2>Sign In to Start</h2>
@@ -194,7 +194,7 @@ and open the template in the editor.
                                                 <div class="checkbox">
                                                     <label><input type="checkbox" id="termOfService"> I agree to the<a id="termOfService">terms of service</a></label>
                                                 </div>
-                                                <button type="submit" class="btn btn-default" id="registerBtn" onclick="return checkConfirmationPassword('password', 'rePassword')" >Register</button>
+                                                <button type="submit" class="btn btn-default" id="registerBtn" onclick="return checkConfirmationPassword('password', 'rePassword')">Register</button>
                                             </td>
                                         </tr>
                                     </table>

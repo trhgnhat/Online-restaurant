@@ -161,7 +161,7 @@ function changeAccountDetail() {
 }
 function checkConfirmationPassword(password, confirmPassword) {
     if (document.getElementById(password).value !== document.getElementById(confirmPassword).value) {
-        alert(document.getElementById(password).value + document.getElementById(confirmPassword).value);
+        alert(document.getElementById(password).value + "-" + document.getElementById(confirmPassword).value);
         return false;
     } else {
         return true;

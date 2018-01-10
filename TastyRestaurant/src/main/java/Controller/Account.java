@@ -101,7 +101,6 @@ public class Account extends HttpServlet {
             String email = request.getParameter("email");
             String credit_card = request.getParameter("credit_card");
             boolean isNotExisted = true;
-<<<<<<< HEAD
             int id = 1; // default input = member db is empty
             if (!new MemberDS().getAllMembers().isEmpty()) {
                 id = (new MemberDS().getAllMembers().get(new MemberDS().getAllMembers().size() - 1)).getId() + 1;
@@ -119,60 +118,61 @@ public class Account extends HttpServlet {
                         out.println("</script>");
                         isNotExisted = false;
                     }
-=======
-            for (MemberDO member : new MemberDS().getAllMembers()) {
-                if (username.equals(member.getUsername())) {
+                }
+                for (MemberDO member : new MemberDS().getAllMembers()) {
+                    if (username.equals(member.getUsername())) {
+                        out.println("<script type=\"text/javascript\">");
+                        out.println("alert('Existed username. Please choose another one!');");
+                        out.println("location='register.jsp';");
+                        out.println("</script>");
+                        isNotExisted = false;
+                    } else if (email.equals(member.getEmail())) {
+                        out.println("<script type=\"text/javascript\">");
+                        out.println("alert('This e-mail has already existed!');");
+                        out.println("location='register.jsp';");
+                        out.println("</script>");
+                        isNotExisted = false;
+                    }
+                }
+
+                if (isNotExisted) {
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Existed username. Please choose another one!');");
-                    out.println("location='register.jsp';");
+                    out.println("alert('Register successfully!');");
+                    out.println("location='homepage.jsp';");
                     out.println("</script>");
-                    isNotExisted = false;
-                } else if (email.equals(member.getEmail())) {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('This e-mail has already existed!');");
-                    out.println("location='register.jsp';");
-                    out.println("</script>");
-                    isNotExisted = false;
->>>>>>> a08307cdf363503c2148ae00297a97b7c117b25e
+                    MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
+                    new MemberDS().createMember(member);
                 }
             }
 
-            if (isNotExisted) {
+            if (action.equals("changeDetail")) {
+                MemberDO member = (MemberDO) request.getSession().getAttribute("member");
+                member.setAddress(request.getParameter("address"));
+                member.setCreditCard(request.getParameter("creditCard"));
+                member.setName(request.getParameter("fullName"));
+                member.setPhone(request.getParameter("phone"));
+                member.setEmail(request.getParameter("email"));
+                if (!request.getParameter("newPassword").isEmpty()) {
+                    member.setPassword(request.getParameter("newPassword"));
+                }
+                new MemberDS().updateMember(member);
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('Register successfully!');");
-                out.println("location='homepage.jsp';");
+                out.println("alert('Successfully!');");
+                out.println("location='myAccount.jsp';");
                 out.println("</script>");
-                MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
-                new MemberDS().createMember(member);
             }
-        }
-
-        if (action.equals("changeDetail")) {
-            MemberDO member = (MemberDO) request.getSession().getAttribute("member");
-            member.setAddress(request.getParameter("address"));
-            member.setCreditCard(request.getParameter("creditCard"));
-            member.setName(request.getParameter("fullName"));
-            member.setPhone(request.getParameter("phone"));
-            member.setEmail(request.getParameter("email"));
-            if (!request.getParameter("newPassword").isEmpty()) {
-                member.setPassword(request.getParameter("newPassword"));
-            }
-            new MemberDS().updateMember(member);
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Successfully!');");
-            out.println("location='myAccount.jsp';");
-            out.println("</script>");
         }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }
