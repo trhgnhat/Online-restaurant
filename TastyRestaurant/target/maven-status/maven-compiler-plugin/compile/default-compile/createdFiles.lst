@@ -6,6 +6,7 @@ DO\MemberDO.class
 DO\BillDO.class
 Enscrypt\EncryptDecrypt.class
 DO\TableDO.class
+Services\Mailer.class
 DO\OrderDO.class
 DBConnector\MySqlConnectionManager.class
 DBConnector\TableDS.class
@@ -16,3 +17,4 @@ Controller\Account.class
 DBConnector\OrderDS.class
 Controller\Manager.class
 Controller\Transaction.class
+Services\Mailer$1.class

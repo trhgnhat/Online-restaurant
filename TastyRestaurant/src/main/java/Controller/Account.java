@@ -105,13 +105,13 @@ public class Account extends HttpServlet {
             for (MemberDO member : new MemberDS().getAllMembers()) {
                 if (username.equals(member.getUsername())) {
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Username invalid!');");
+                    out.println("alert('Existed username. Please choose another one!');");
                     out.println("location='register.jsp';");
                     out.println("</script>");
                     isNotExisted = false;
                 } else if (email.equals(member.getEmail())) {
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Username invalid!');");
+                    out.println("alert('This e-mail has already existed!');");
                     out.println("location='register.jsp';");
                     out.println("</script>");
                     isNotExisted = false;
