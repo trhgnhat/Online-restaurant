@@ -84,4 +84,13 @@ public class TableDS {
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
     }
+    public void deleteTable(TableDO table) {
+
+        String sqlStatement = "DELETE FROM tables"
+                + " WHERE id=" + Integer.toString(table.getId()) + "";
+
+        sqlConnectionManager.openConnection();
+        sqlConnectionManager.ExecuteUpdate(sqlStatement);
+        sqlConnectionManager.closeConnection();
+    }
 }

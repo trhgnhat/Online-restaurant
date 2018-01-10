@@ -198,19 +198,49 @@ function searchBooking(date, time, table) {
     }
     return false;
 }
-function setTableStatus(checkbox, status){
-    
-    
+//AJAX reference
+//https://www.youtube.com/watch?v=WJ1h0pqvBZA
+function changeTableStatus(action, idObj, id, methodtype) {
+    alert("ok");
+    var xmlhttp;
+    if (window.XMLHttpRequest) {//IE7+ and other browser
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // IE5, IE6
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+            alert("4 & 200");
+            document.getElementById("tableStatus"+id).innerHTML = xmlhttp.responseText;
+            if(xmlhttp.responseText === "Available"){
+                document.getElementById("changeStatus"+id).checked = true;
+            }
+            else{
+                document.getElementById("changeStatus"+id).checked = false;
+            }
+        }
+    };
+    var params = "action=" + action + "&" + idObj + "=" + document.getElementById(id).value;
+    if (methodtype === 'POST'){
+        xmlhttp.open(methodtype, "/Manager", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-ww-form-urlencoded");
+        xmlhttp.send(params);
+    }else if(methodtype === 'GET'){
+        xmlhttp.open(methodtype, "/Controller/Manager?" + params, true);
+        xmlhttp.send();
+    }
+
 }
 previewFile();
 
-function validateFileType(){
-        var fileName = document.getElementById("fileName").value;
-        var idxDot = fileName.lastIndexOf(".") + 1;
-        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-        if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
-            //TO DO
-        }else{
-            alert("Only jpg/jpeg and png files are allowed!");
-        }   
+function validateFileType() {
+    var fileName = document.getElementById("fileName").value;
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+        //TO DO
+    } else {
+        alert("Only jpg/jpeg and png files are allowed!");
+    }
 }

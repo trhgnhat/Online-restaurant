@@ -95,17 +95,16 @@
                            out.println("<input type=\"checkbox\" name=\"tableCheckBox\" value=\"" + table.getId() + "\" />");
                            out.println("</td>");
                            out.println("<td>");
-                           out.println("<button class=\"btn btn-edit\" name=\"tableIdBtn\" value=\"" + table.getId() +"\" action=\"Manager?action=editTable\">");
+                           out.println("<button class=\"btn btn-edit\" name=\"tableIdBtn\" value=\"" + table.getId() + "\" action=\"Manager?action=editTable\">");
                            out.println("<span class=\"glyphicon glyphicon-pencil\" style=\"padding: 0;\"></span>");
                            out.println("</button>");
                            out.println("</td>");
                            out.println("<td>" + table.getId() + "</td>");
                            out.println("<td>" + table.getSeat() + "</td>");
-                           out.println("<td>" + table.getStatus() + "</td>");
-                           out.println("<td>" + ((table.getStatus() == 0) ? "Available" : "busy") + "</td>");
+                           out.println("<td name=\"tableStatus\" id=\"tableStatus" + table.getId() + "\">" + ((table.getStatus() == 0) ? "Available" : "Busy") + "</td>");
                            out.println("<td>");     
                            out.println("<label class=\"switch\">");
-                           out.println("<input type=\"checkbox\">");
+                           out.println("<input type=\"checkbox\" id=\"changeStatus" + table.getId() + "\" name='changeStatus' onchange=\"return changeTableStatus('changeTableStatus', 'tableId', '" + table.getId() + "', 'POST')\" />");
                            out.println("<span class=\"slider round\"></span>");
                            out.println("</label></td>");
                         }

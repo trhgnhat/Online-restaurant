@@ -140,4 +140,13 @@ public class MemberDS {
         sqlConnectionManager.ExecuteUpdate(sqlStatement);
         sqlConnectionManager.closeConnection();
     }
+    public void deleteMember(MemberDO member) {
+
+        String sqlStatement = "DELETE FROM member"
+                + " WHERE id=" + Integer.toString(member.getId()) + "";
+
+        sqlConnectionManager.openConnection();
+        sqlConnectionManager.ExecuteUpdate(sqlStatement);
+        sqlConnectionManager.closeConnection();
+    }
 }

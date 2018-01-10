@@ -61,7 +61,7 @@
 
         <div class="col-lg-10" style="background-color:#ffffff;padding-top: 20px;">
             <div class="menuBtn">
-                <button class="btn btn-danger" form="memberForm" formaction="Manager?action=deleteMember" onsubmit="return confirmation('member', 'memberCheckBox')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                <button class="btn btn-danger" form="memberForm" formaction="Manager?action=deleteMember" onclick="return confirmation('member', 'memberCheckBox')"><span class="glyphicon glyphicon-trash"></span>Delete</button>
             </div>
             <div class="menuList">
                 <table class="table">
