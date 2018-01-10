@@ -62,12 +62,14 @@
                         <li class=" headBarHome"><a href="homepage.jsp">Tasty Restaurant</a></li>
                         <li class=" headBarElement"><a href="menu.jsp">
                                 <span class="glyphicon glyphicon-cutlery"></span>Menu</a></li>
+                        <li class=" headBarElement"><a href="booking.jsp">
+                                <span class="glyphicon glyphicon-calendar"></span>Booking</a></li>
                         <li class=" headBarElement"><a href="offer.jsp">
-                                <span class="glyphicon glyphicon-tags"></span>Offers</a></li>
+                                <span class="glyphicon glyphicon-tags"></span>Offers</a></li> 
                         <li class=" headBarElement"><a href="myAccount.jsp">
                                 <span class="glyphicon glyphicon-user"></span>My Account</a></li>
-                        <li class=" headBarElement"><a href="support.html">
-                                <span class="glyphicon glyphicon-earphone"></span>Support</a></li>
+                        <!--                        <li class=" headBarElement"><a href="support.html">
+                                                        <span class="glyphicon glyphicon-earphone"></span>Support</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -165,7 +167,7 @@
                             <h3>Edit details</h3>
                             <form method="POST" action="Account?action=changeDetail">
                                 <table id="editDetails">
-                                    <tr>
+                                    <tr class="rowColSpace">
                                         <td>
                                             <input class="form-control" type="text" name="fullName" value="<%=member.getName()%>" placeholder="Full Name" required />
                                         </td>
@@ -173,7 +175,7 @@
                                             <input class="form-control" type="text" name="address" value="<%=member.getAddress()%>" placeholder="Address" required />
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="rowColSpace">
                                         <td>
 
                                             <input class="form-control" type="text" name="phone" value="<%=member.getPhone()%>" placeholder="Phone Number" required />
@@ -185,33 +187,33 @@
 
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="rowColSpace">
                                         <td>
                                             
                                             <input class="form-control" type="email" name="email" value="<%=member.getEmail()%>" placeholder="Email" required />
                                             
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="rowColSpace">
                                         <td colspan="2">
                                             <h4>Change Password</h4>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="rowColSpace">
                                         <td colspan="2">
                                             <input class="form-control" type="password" name="inputPresentPassword" id="inputPresentPassword" value="" placeholder="Confirm your present password" />
                                             <input type="hidden" id="presentPassword" name="presentPassword" value="<%=member.getPassword()%>"
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="rowColSpace">
                                         <td>
                                             <input class="form-control" type="password" name="newPassword" id="newPassword" value="" placeholder="New password" />
                                         </td>
                                         <td>
-                                            <input class="form-control" tyer="password" name="confirmPassword" id="confirmPassword" value="" placeholder="Confirm new password" />
+                                            <input class="form-control" type="password" name="confirmPassword" id="confirmPassword" value="" placeholder="Confirm new password" />
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="rowColSpace">
                                         <td>
                                             <button class="btn btn-default" type="submit" onclick="return changeAccountDetail()">Save My Details</button>
                                         </td>

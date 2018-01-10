@@ -636,6 +636,11 @@ li a:hover{
     border: 10px;
 }
 
+tr.rowColSpace td{
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
 
 
                         /*****************
