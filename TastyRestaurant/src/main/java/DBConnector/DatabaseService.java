@@ -32,14 +32,14 @@
 //    */
 //    public void createMember(MemberDO member) {
 //   
-//        String sqlStatement ="INSERT INTO MEMBER VALUES('" + member.getId() + "','"
-//                + member.getName()+"',"
-//                + member.getGpa()+" )";
+//        //String sqlStatement ="INSERT INTO MEMBER VALUES('" + member.getId() + "','"
+//                //+ member.getName()+"',"
+//                //+ member.getGpa()+" )";
 //        
 //        //System.out.println("SQL: " + sqlStatement );
 //        
 //        sqlConnectionManager.openConnection();
-//        sqlConnectionManager.ExecuteUpdate(sqlStatement);
+//        //sqlConnectionManager.ExecuteUpdate(sqlStatement);
 //        sqlConnectionManager.closeConnection();
 //      
 //    }
@@ -49,7 +49,7 @@
 //        String sqlStatement ="UPDATE MEMBER "
 //                + "SET id='" + member.getId() + "', " 
 //                + "name='"+ member.getName()+"', "
-//                + "password=" + member.getGpa() 
+//                //+ "password=" + member.getGpa() 
 //                + " WHERE id='"+memberId+"'";
 //        
 //        System.out.println("SQL: " + sqlStatement );
@@ -78,8 +78,8 @@
 //                String name = rs.getString("name");
 //                String password = rs.getString("password");
 //                
-//                MemberDO member = new MemberDO(id, name, password);
-//                listOfMembers.add(member);
+//                //MemberDO member = new MemberDO(id, name, password);
+//                //listOfMembers.add(member);
 //          
 //                
 //            }
@@ -113,8 +113,8 @@
 //            while(rs.next()){
 //                String id = rs.getString("id");
 //                String name = rs.getString("name");
-//                FoodDO course = new FoodDO(id, name);
-//                listOfCourses.add(course);
+//                //FoodDO course = new FoodDO(id, name);
+//                //listOfCourses.add(course);
 //        
 //            }
 //        } catch (SQLException ex) {

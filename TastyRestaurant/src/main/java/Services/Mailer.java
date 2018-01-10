@@ -15,7 +15,9 @@ import javax.mail.internet.*;
  * @author Admin
  */
 public class Mailer {
-    public Mailer(final String from, final String password, String to, String sub, String msg){
+    public Mailer(String to, String sub, String msg){
+        final String from = "trhgnhat.97@gmail.com";
+        final String password = "Crazy123";
         send(from, password, to, sub, msg);
     }
     

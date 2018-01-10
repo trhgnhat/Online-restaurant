@@ -17,13 +17,11 @@ import Services.Mailer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.spi.http.HttpExchange;
 import org.apache.commons.lang.RandomStringUtils;
 
 /**
@@ -69,7 +67,10 @@ public class Manager extends HttpServlet {
         }
         if (action.equals("addFood")) {
             List<FoodDO> foods = new FoodDS().getAllFoods();
-            int newFoodId = foods.size() + 1;
+            int newFoodId = 1;
+            if (!foods.isEmpty()){
+                newFoodId = (new FoodDS().getAllFoods().get(new FoodDS().getAllFoods().size()-1)).getId() + 1;
+            }
             String newFoodName = request.getParameter("addFoodName");
             Float newFoodPrice = Float.parseFloat(request.getParameter("addFoodPrice"));
             String newFoodCategory = request.getParameter("addFoodCategory");
@@ -159,7 +160,11 @@ public class Manager extends HttpServlet {
             }
         }
         if (action.equals("addTable")) {
-            TableDO newTable = new TableDO(new TableDS().getAllTables().size() + 1, Integer.parseInt(request.getParameter("addTableSeat")), 0);
+            int id = 1;
+            if(!new TableDS().getAllTables().isEmpty()){
+                id = (new TableDS().getAllTables().get(new TableDS().getAllTables().size()-1)).getId() + 1;
+            }
+            TableDO newTable = new TableDO(id, Integer.parseInt(request.getParameter("addTableSeat")), 0);
             new TableDS().createTable(newTable);
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Adding successfully!!');");
@@ -172,7 +177,7 @@ public class Manager extends HttpServlet {
             member.setPassword(newPassword);
             new MemberDS().updateMember(member);
             String msg = "Your new password is: " + member.getPassword();
-            Mailer mailer = new Mailer("trhgnhat.97@gmail.com", "Crazy123", member.getEmail(), "[RESET PASSWORD]", msg);
+            Mailer mailer = new Mailer(member.getEmail(), "[RESET PASSWORD]", msg);
             out.println("<script type=\"text/javascript\">");
             out.println("alert('" + member.getPassword() + " - " + member.getPassword() + "');");
             out.println("location='userManager.jsp';");

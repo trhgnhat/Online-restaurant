@@ -92,7 +92,7 @@ public class Transaction extends HttpServlet {
                 LocalTime chosenTime = LocalTime.parse(request.getParameter("pickATime"), DateTimeFormatter.ofPattern("HH:mm"));
                 TableDO chosenTable = new TableDS().getTable(Integer.parseInt(request.getParameter("tableChoices")));
                 MemberDO member = (MemberDO) request.getSession().getAttribute("member");
-                BookingDO booking = new BookingDO(new BookingDS().getAllBookings().size() + 1, member, chosenTable, chosenDate, chosenTime);
+                BookingDO booking = new BookingDO(new BookingDS().getAllBookings().get(new BookingDS().getAllBookings().size() - 1).getId() + 1, member, chosenTable, chosenDate, chosenTime);
                 new BookingDS().createBooking(booking);
                 request.getSession().invalidate();
                 request.getSession().setAttribute("member", member);
@@ -144,8 +144,7 @@ public class Transaction extends HttpServlet {
                     new OrderDS().createOrder(order);
                 }else{
                     out.println("alert('NOT empty!');");
-                    OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1);
-                    OrderDO order = new OrderDO(lastOrder.getId()+1, member, table, bill);
+                    OrderDO order = new OrderDO(new OrderDS().getAllOrders().get(new OrderDS().getAllOrders().size() - 1).getId()+1, member, table, bill);
                     new OrderDS().createOrder(order);
                 }
 //                OrderDO lastOrder = (OrderDO) new OrderDS().getAllOrders().get((new OrderDS().getAllOrders().size()) - 1);

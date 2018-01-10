@@ -190,7 +190,7 @@
                                     <tr class="rowColSpace">
                                         <td>
                                             
-                                            <input class="form-control" type="email" name="email" value="<%=member.getEmail()%>" placeholder="Email" disabled />
+                                            <input class="form-control" type="email" name="email" value="<%=member.getEmail()%>" placeholder="Email" readonly="readonly" />
                                             
                                         </td>
                                     </tr>

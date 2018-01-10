@@ -97,7 +97,7 @@ and open the template in the editor.
                     <!-- ******************
                         Login form
                     ******************* -->
-                    <div id="introduction" style="display: <%=(request.getSession().getAttribute("member") != null) ? "none" : "block" %>">
+                    <div id="introduction" style="display: <%=(request.getSession().getAttribute("member") != null) ? "none" : "block"%>">
                         <div align="center" class="panel">
                             <div class="panel-heading">
                                 <h2>Sign In to Start</h2>
