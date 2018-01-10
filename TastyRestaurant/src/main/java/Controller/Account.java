@@ -136,43 +136,43 @@ public class Account extends HttpServlet {
                 }
 
                 if (isNotExisted) {
+                    MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
+                    new MemberDS().createMember(member);
+                    request.getSession().setAttribute("member", member);
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Register successfully!');");
                     out.println("location='homepage.jsp';");
                     out.println("</script>");
-                    MemberDO member = new MemberDO(id, username, password, name, address, phone, email, 0, credit_card);
-                    new MemberDS().createMember(member);
                 }
             }
-
-            if (action.equals("changeDetail")) {
-                MemberDO member = (MemberDO) request.getSession().getAttribute("member");
-                member.setAddress(request.getParameter("address"));
-                member.setCreditCard(request.getParameter("creditCard"));
-                member.setName(request.getParameter("fullName"));
-                member.setPhone(request.getParameter("phone"));
-                member.setEmail(request.getParameter("email"));
-                if (!request.getParameter("newPassword").isEmpty()) {
-                    member.setPassword(request.getParameter("newPassword"));
-                }
-                new MemberDS().updateMember(member);
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('Successfully!');");
-                out.println("location='myAccount.jsp';");
-                out.println("</script>");
+            
+        }
+        if (action.equals("changeDetail")) {
+            MemberDO member = (MemberDO) request.getSession().getAttribute("member");
+            member.setAddress(request.getParameter("address"));
+            member.setCreditCard(request.getParameter("creditCard"));
+            member.setName(request.getParameter("fullName"));
+            member.setPhone(request.getParameter("phone"));
+            member.setEmail(request.getParameter("email"));
+            if (!request.getParameter("newPassword").isEmpty()) {
+                member.setPassword(request.getParameter("newPassword"));
             }
+            new MemberDS().updateMember(member);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Successfully!');");
+            out.println("location='myAccount.jsp';");
+            out.println("</script>");
         }
     }
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo
-        
-            () {
-        return "Short description";
-        }// </editor-fold>
 
-    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

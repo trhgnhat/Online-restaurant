@@ -128,7 +128,7 @@
                                     <tr>
                                         <th>Email</th>
                                         <td><%out.println(member.getEmail());%></td>
-                                        <td><button type="" name="changeEmail" onclick="showMenu('changeDetails');">Change Email</button></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <th>Password</th>
@@ -183,7 +183,7 @@
                                         </td>
                                         <td>
 
-                                            <input class="form-control" type="text" name="creditCard" value="<%=member.getCreditCard()%>" placeholder="Credit Card" required />
+                                            <input class="form-control" type="text" name="creditCard" value="<%=(member.getCreditCard() == null || member.getCreditCard() == "") ? "" : member.getCreditCard() %>" placeholder="Credit Card" />
 
                                         </td>
                                     </tr>
