@@ -146,12 +146,12 @@ public class MySqlConnectionManager {
         return result;
     }
 
-    public int ExecuteUpdateBlob(String sql, InputStream inputStream) {
+    public int ExecuteUpdateBlob(String sql, InputStream inputStream, int index) {
 
         int result = 0;
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setBlob(1, inputStream);
+            statement.setBlob(index, inputStream);
             result = statement.executeUpdate();
 
         } catch (Exception ex) {

@@ -100,7 +100,7 @@
                                 <div class="foodImg">
                                     <div class="foodPreview">
                                         <input type="file" accept="image/*" id="filename" onchange="loadFile(event);">
-                                        <img id="output" width="255px" height="200px" style="padding: auto;padding-top: 12px;padding-bottom: 12px;"/ >
+                                        <img id="output" width="255px" height="200px" style="padding: auto;padding-top: 12px;padding-bottom: 12px;" />
                                         <script>
                                           var loadFile = function(event) {
                                             var reader = new FileReader();
