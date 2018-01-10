@@ -40,7 +40,7 @@ public class BookingDS {
         sqlConnectionManager.closeConnection();
     }
 
-    public List getAllBookings() {
+    public List<BookingDO> getAllBookings() {
         List<BookingDO> bookings = new ArrayList<>();
 
         String sqlStatement = "SELECT * FROM booking";

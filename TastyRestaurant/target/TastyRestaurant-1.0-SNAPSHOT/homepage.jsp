@@ -194,7 +194,7 @@ and open the template in the editor.
                                                 <div class="checkbox">
                                                     <label><input type="checkbox" id="termOfService"> I agree to the<a id="termOfService">terms of service</a></label>
                                                 </div>
-                                                <button type="submit" class="btn btn-default" id="registerBtn" onclick="return checkConfirmationPassword('password', 'rePassword')">Register</button>
+                                                <button type="submit" class="btn btn-default" id="registerBtn" onclick="return checkConfirmationPassword('password', 'rePassword')" >Register</button>
                                             </td>
                                         </tr>
                                     </table>

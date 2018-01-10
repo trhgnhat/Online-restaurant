@@ -33,7 +33,7 @@ public class TableDS {
         sqlConnectionManager.closeConnection();
     }
 
-    public List getAllTables() {
+    public List<TableDO> getAllTables() {
         List<TableDO> tables = new ArrayList<>();
 
         String sqlStatement = "SELECT * FROM tables";

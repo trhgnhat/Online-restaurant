@@ -100,23 +100,27 @@ public class Account extends HttpServlet {
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String credit_card = request.getParameter("credit_card");
-            int id = new MemberDS().getAllMembers().size() + 1;
             boolean isNotExisted = true;
-            for (MemberDO member : new MemberDS().getAllMembers()) {
-                if (username.equals(member.getUsername())) {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Username invalid!');");
-                    out.println("location='register.jsp';");
-                    out.println("</script>");
-                    isNotExisted = false;
-                } else if (email.equals(member.getEmail())) {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Username invalid!');");
-                    out.println("location='register.jsp';");
-                    out.println("</script>");
-                    isNotExisted = false;
+            int id = 1; // default input = member db is empty
+            if (!new MemberDS().getAllMembers().isEmpty()) {
+                id = (new MemberDS().getAllMembers().get(new MemberDS().getAllMembers().size() - 1)).getId() + 1;
+                for (MemberDO member : new MemberDS().getAllMembers()) {
+                    if (username.equals(member.getUsername())) {
+                        out.println("<script type=\"text/javascript\">");
+                        out.println("alert('Username invalid!');");
+                        out.println("location='register.jsp';");
+                        out.println("</script>");
+                        isNotExisted = false;
+                    } else if (email.equals(member.getEmail())) {
+                        out.println("<script type=\"text/javascript\">");
+                        out.println("alert('Email invalid!');");
+                        out.println("location='register.jsp';");
+                        out.println("</script>");
+                        isNotExisted = false;
+                    }
                 }
             }
+
             if (isNotExisted) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Register successfully!');");
