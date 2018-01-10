@@ -26,7 +26,7 @@ public class MySqlConnectionManager {
         this.port = "3306";
         this.database = "restaurant_website";
         this.userName = "root";
-        this.password = "crazy123";
+        this.password = "nntadotzip";
 
         connectionString = "jdbc:mysql://" + ip + ":" + port + "/" + database + "?useUnicode=true&characterEncoding=UTF-8&useFastDateParsing=false";
 
