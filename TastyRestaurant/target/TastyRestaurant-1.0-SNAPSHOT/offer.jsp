@@ -60,7 +60,8 @@ and open the template in the editor.
 
         <div class="main-container">
             <div class="container">
-                <div class="tab-content" id="offers"> 
+                <div class="tab-content" id="offers">
+                    <h1 align="center">Sorry, there is no offer to display.</h1>
                 </div>  
             </div>
         </div>

@@ -146,7 +146,7 @@
                 </div>
             </div>
             
-            <div class="drawBarChart" width="400" height="400">
+            <div align="center" class="drawBarChart" width="400" height="400">
                 <canvas id="myChart"></canvas>
                 <script>
                     var ctx = document.getElementById("myChart");
@@ -155,8 +155,8 @@
                        data:{
                        labels: ["Total Sales", "Total Members", "Total Orders", "Total Reservations"],
                             datasets: [{
-                                label: 'Reports Chart',
-                                data: [<%= total %>,
+                                label: '',
+                                data: [<%= total/100 %>,
                                         <%= new MemberDS().getAllMembers().size()%>,
                                         <%= new OrderDS().getAllOrders().size()%>,
                                         <%= new BookingDS().getAllBookings().size()%>],
