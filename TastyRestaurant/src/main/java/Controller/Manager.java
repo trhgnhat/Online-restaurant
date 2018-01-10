@@ -216,17 +216,17 @@ public class Manager extends HttpServlet {
             }
         }
         if (action.equals("changeTableStatus")) {
-            
+
             TableDO table = new TableDS().getTable(Integer.parseInt(request.getParameter("tableId")));
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('"+ table.getId() +"');");
-            out.println("</script>");
             if (table.getStatus() == 1) {
                 table.setStatus(0);
             } else if (table.getStatus() == 0) {
                 table.setStatus(1);
             }
-            response.getOutputStream().print(((table.getStatus() == 0) ? "Available" : "busy"));
+            new TableDS().updateTable(table);
+            out.println("<script type=\"text/javascript\">");
+            out.println("location='tableManager.jsp';");
+            out.println("</script>");
         }
     }
 
