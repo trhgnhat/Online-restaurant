@@ -134,7 +134,7 @@
                                     out.print("<div class=\"showTable\" id=\"showAvailableTables\" style=\"display: block;\">");
                                     out.print("<form method=\"POST\" action=\"Transaction?action=booking\">");
                                     out.print("<div class=\"col-xs-12\" data-toggle=\"buttons\">");
-                                    out.print("<div class=\"btn-group tableSelection\" >");
+                                    out.print("<div class=\"btn-group tableSelection\" style=\"padding-top: 20px;\">");
                                     List<TableDO> availableTables = (List) request.getSession().getAttribute("availableTables");
                                     if (availableTables.isEmpty()) {
                                         out.print("<h4>There is no available tables</h4><p>Please choose another time</p>");
