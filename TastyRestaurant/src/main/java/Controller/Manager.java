@@ -227,6 +227,22 @@ public class Manager extends HttpServlet {
             out.println("location='tableManager.jsp';");
             out.println("</script>");
         }
+        if (action.equals("chooseTable")) {
+            int tableID = Integer.parseInt(request.getParameter("tableIdBtn"));
+            request.getSession().setAttribute("Table", new TableDS().getTable(tableID));
+            out.println("<script type=\"text/javascript\">");
+            out.println("location='editTable.jsp';");
+            out.println("</script>");
+        }
+        if (action.equals("editTable")) {
+            TableDO table = (TableDO) request.getSession().getAttribute("Table");
+            table.setSeat(Integer.parseInt(request.getParameter("editTableSeat")));
+            new TableDS().updateTable(table);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Edit successfully!!');");
+            out.println("location='tableManager.jsp';");
+            out.println("</script>");
+        }
     }
 
     @Override
