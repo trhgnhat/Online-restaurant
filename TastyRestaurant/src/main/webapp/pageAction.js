@@ -200,43 +200,58 @@ function searchBooking(date, time, table) {
 }
 //AJAX reference
 //https://www.youtube.com/watch?v=WJ1h0pqvBZA
-function changeTableStatus(form ,action, idObj, id, methodtype) {
-    document.getElementById(form).action = "Manager?action=" + action +"&" + idObj + "=" + id;
-    document.getElementById(form).method = methodtype;
-    document.getElementById(form).submit();
-//    alert("ok");
-//    var xmlhttp;
-//    if (window.XMLHttpRequest) {//IE7+ and other browser
-//        alert("IE7+");
-//        xmlhttp = new XMLHttpRequest();
-//    }
-//    xmlhttp.onreadystatechange = function () {
-//        alert("FUNCTION");
-//        if (this.readyState === 4) {
-//            if (this.status === 200) {
-//                alert("4 & 200");
-//                document.getElementById("tableStatus" + id).innerHTML = this.responseText;
-//                if (this.responseText === "Available") {
-//                    document.getElementById("changeStatus" + id).checked = true;
-//                } else {
-//                    document.getElementById("changeStatus" + id).checked = false;
-//                }
-//            }
-//        }
-//    };
-//    alert("out of state change");
-//    var params = "action=" + action + "&" + idObj + "=" + document.getElementById(id).value;
+
+
+function changeTableStatus(form, action, idObj, id, methodtype) {
+//    document.getElementById(form).action = "Manager?action=" + action +"&" + idObj + "=" + id;
+//    document.getElementById(form).method = methodtype;
+//    document.getElementById(form).submit();
+
+    var xmlhttp;
+    if (window.XMLHttpRequest) {//IE7+ and other browser
+        xmlhttp = new XMLHttpRequest();
+    }
+    var params = "action=" + action + "&" + idObj + "=" + document.getElementById(id).value;
+    alert("begin");
+    xmlhttp.open(methodtype, "/Manager", true);
+    alert("open");
+    xmlhttp.setRequestHeader("Content-type", "application/x-ww-form-urlencoded");
+    alert("set header");
+    xmlhttp.onreadystatechange = listener();
+    alert("state change");
+    xmlhttp.send(params);
+    alert("send");
 //    if (methodtype === 'POST') {
 //        alert("POST method");
 //        xmlhttp.open(methodtype, "/Manager", true);
 //        xmlhttp.setRequestHeader("Content-type", "application/x-ww-form-urlencoded");
+//        xmlhttp.onreadystatechange = listener();
 //        xmlhttp.send(params);
 //    } else if (methodtype === 'GET') {
-//        xmlhttp.open(methodtype, "/Controller/Manager?" + params, true);
+//        xmlhttp.open(methodtype, "/Manager?" + params, true);
+//        xmlhttp.onreadystatechange = listener();
 //        xmlhttp.send();
 //    } else {
 //        alert("else");
 //    }
+
+    function listener() {
+        alert("FUNCTION");
+        if (xmlhttp.readyState == 4) {
+            alert("4");
+            if (xmlhttp.status == 200) {
+                alert("4 & 200");
+                document.getElementById("tableStatus" + id).innerHTML = xmlhttp.responseText;
+                if (xmlhttp.responseText === "Available") {
+                    document.getElementById("changeStatus" + id).checked = true;
+                } else {
+                    document.getElementById("changeStatus" + id).checked = false;
+                }
+            }
+        }
+    }
+    ;
+
 
 }
 previewFile();

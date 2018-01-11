@@ -223,8 +223,10 @@ public class Manager extends HttpServlet {
                 table.setStatus(1);
             }
             new TableDS().updateTable(table);
+            response.getOutputStream().print((table.getStatus() == 1) ? "Busy" : "Available");
             out.println("<script type=\"text/javascript\">");
-            out.println("location='tableManager.jsp';");
+            out.println("alert('Servlet');");
+            //out.println("location='tableManager.jsp';");
             out.println("</script>");
         }
         if (action.equals("chooseTable")) {

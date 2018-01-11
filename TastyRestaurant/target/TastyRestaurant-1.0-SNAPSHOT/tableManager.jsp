@@ -104,7 +104,7 @@
                            out.println("<td name=\"tableStatus\" id=\"tableStatus" + table.getId() + "\">" + ((table.getStatus() == 0) ? "Available" : "Busy") + "</td>");
                            out.println("<td>");     
                            out.println("<label class=\"switch\">");
-                           out.println("<input type=\"checkbox\" id=\"changeStatus" + table.getId() + "\" name='changeStatus' onchange=\"return changeTableStatus('tableForm' ,'changeTableStatus', 'tableId', '" + table.getId() + "', 'POST')\" " + ((table.getStatus() == 0) ? "" : "checked") + "/>");
+                           out.println("<input type=\"checkbox\" id=\"changeStatus" + table.getId() + "\" name='changeStatus' onchange=\"changeTableStatus('tableForm' ,'changeTableStatus', 'tableId', '" + table.getId() + "', 'POST')\" " + ((table.getStatus() == 0) ? "" : "checked") + "/>");
                            out.println("<span class=\"slider round\"></span>");
                            out.println("</label></td>");
                         }

@@ -71,23 +71,23 @@ public class Account extends HttpServlet {
         if (action.equals("login")) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            if (username.equals("") || password.equals("")) {
+            if (username.equals("") || password.equals("") ) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please enter Username and Password !');");
                 out.println("location='loginSite.jsp';");
                 out.println("</script>");
             } else {
-                MemberDO member = new MemberDS().getMember(username, password);
-                if (member != null) {
+                MemberDO member = new MemberDS().getMember(username);
+                if (member == null || !member.getPassword().equals(password)) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Invalid Username or Password!');");
+                    out.println("location='loginSite.jsp';");
+                    out.println("</script>");
+                } else {
                     request.getSession().setAttribute("member", member);
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Login successfully !');");
                     out.println("location='homepage.jsp';");
-                    out.println("</script>");
-                } else {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Invalid Username or Password!');");
-                    out.println("location='loginSite.jsp';");
                     out.println("</script>");
                 }
             }
