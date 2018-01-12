@@ -179,7 +179,6 @@ public class Manager extends HttpServlet {
             String msg = "Your new password is: " + member.getPassword();
             Mailer mailer = new Mailer(member.getEmail(), "[RESET PASSWORD]", msg);
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('" + member.getPassword() + " - " + member.getPassword() + "');");
             out.println("location='userManager.jsp';");
             out.println("</script>");
         }
@@ -224,7 +223,25 @@ public class Manager extends HttpServlet {
                 table.setStatus(1);
             }
             new TableDS().updateTable(table);
+            response.getOutputStream().print((table.getStatus() == 1) ? "Busy" : "Available");
             out.println("<script type=\"text/javascript\">");
+            out.println("alert('Servlet');");
+            //out.println("location='tableManager.jsp';");
+            out.println("</script>");
+        }
+        if (action.equals("chooseTable")) {
+            int tableID = Integer.parseInt(request.getParameter("tableIdBtn"));
+            request.getSession().setAttribute("Table", new TableDS().getTable(tableID));
+            out.println("<script type=\"text/javascript\">");
+            out.println("location='editTable.jsp';");
+            out.println("</script>");
+        }
+        if (action.equals("editTable")) {
+            TableDO table = (TableDO) request.getSession().getAttribute("Table");
+            table.setSeat(Integer.parseInt(request.getParameter("editTableSeat")));
+            new TableDS().updateTable(table);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Edit successfully!!');");
             out.println("location='tableManager.jsp';");
             out.println("</script>");
         }

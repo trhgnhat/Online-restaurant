@@ -43,7 +43,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Add New Food</a>
+                        <a class="navbar-brand" href="#">Add New Table</a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>

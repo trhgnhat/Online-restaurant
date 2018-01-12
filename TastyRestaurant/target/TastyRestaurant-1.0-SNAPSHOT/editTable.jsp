@@ -1,15 +1,16 @@
 <%-- 
-    Document   : addTable
-    Created on : Jan 9, 2018, 10:39:59 AM
+    Document   : editTable
+    Created on : Jan 11, 2018, 8:41:59 AM
     Author     : nnta.zip
 --%>
 
+<%@page import="DO.TableDO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>New Table</title>
+        <title>Edit Table</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -43,7 +44,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Add New Table</a>
+                        <a class="navbar-brand" href="#">Edit Table</a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -55,10 +56,9 @@
         </div>
         
         <div class="col-lg-10">
-            <form method="post" action="Manager?action=addTable">
+            <form method="post" action="Manager?action=editTable">
                 <div class="menuBtn">
                     <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
-                    <button class="btn btn-edit"><span class="glyphicon glyphicon-floppy-save"></span>Save & Close</button>
                 </div>
                 <div class="editPane" style="margin-top: 20px;">
                     <table class="form-table" style="width: 50%;">
@@ -71,7 +71,7 @@
                         <tr class="rowSpace">
                             <td>Number of seat</td>
                             <td>
-                                <input class="form-control" type="number" name="addTableSeat" required />
+                                <input class="form-control" type="number" name="editTableSeat" value="<%=((TableDO) request.getSession().getAttribute("Table")).getSeat()%>" required />
                             </td>
                         </tr>
                         
@@ -81,3 +81,4 @@
         </div>
     </body>
 </html>
+

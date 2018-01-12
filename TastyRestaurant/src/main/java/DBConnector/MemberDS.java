@@ -48,9 +48,9 @@ public class MemberDS {
      * **********************
      * !!! LOGIN !!! **********************
      */
-    public MemberDO getMember(String username, String password) {
+    public MemberDO getMember(String username) {
         MemberDO member = null;
-        String sqlStatement = "SELECT * FROM member WHERE username='" + username + "'and password='" + password + "';";
+        String sqlStatement = "SELECT * FROM member WHERE username='" + username + "';";
 
         sqlConnectionManager.openConnection();
         ResultSet rs = sqlConnectionManager.ExecuteQuery(sqlStatement);
