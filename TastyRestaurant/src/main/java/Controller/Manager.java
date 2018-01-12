@@ -34,6 +34,18 @@ public class Manager extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AutoCompleteServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AutoCompleteServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        };
     }
 
     @Override
@@ -223,7 +235,10 @@ public class Manager extends HttpServlet {
                 table.setStatus(1);
             }
             new TableDS().updateTable(table);
-            response.getOutputStream().print((table.getStatus() == 1) ? "Busy" : "Available");
+            //response.getOutputStream().print((table.getStatus() == 1) ? "Busy" : "Available");
+            response.setContentType("text/html");
+            response.setHeader("Cache-Control", "no-cache");
+            response.getWriter().write((table.getStatus() == 1) ? "Busy" : "Available");
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Servlet');");
             //out.println("location='tableManager.jsp';");
