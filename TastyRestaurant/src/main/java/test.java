@@ -117,7 +117,8 @@ public class test {
 //        System.out.println("formattedTime: " + formattedTime);
 //        
 //        
-        System.out.println(RandomStringUtils.random(8, "ABCDEFGHIJKLMNOPQRSTUVƯXYZ0123456789"));
-        
+        //System.out.println(RandomStringUtils.random(8, "ABCDEFGHIJKLMNOPQRSTUVƯXYZ0123456789"));
+        System.out.println("THIS IS A STRING" + 1);
+        System.out.println("THIS IS A STRING".trim() + 1);
     }
 }
