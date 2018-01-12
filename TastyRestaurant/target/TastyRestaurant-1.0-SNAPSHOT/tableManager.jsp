@@ -33,7 +33,7 @@
     <body style="background-color:#f1f1f1;">
         <div class="col-lg-2" id="sideBar">
             <div class="logo">
-               <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
+                <a href="homepage.html"><img src="img/tastyText.png" alt=""/></a>
             </div>
             <ul>
                 <li><a href="manager.jsp"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
@@ -58,7 +58,7 @@
                 </div>
             </nav>
         </div>
-        
+
         <div class="col-lg-10" style="background-color:#ffffff;padding-top: 20px;">
             <div class="menuBtn">
                 <a href="addTable.jsp">
@@ -81,37 +81,38 @@
                         <th>Change Status</th>
                         <th></th>
                     </tr>
-                    
-<!--                    **************************
-                    ******SHOW MENU LIST******
-                    GENERATE THIS <TR> ELEMENT
-                    **************************-->
+
+                    <!--                    **************************
+                                        ******SHOW MENU LIST******
+                                        GENERATE THIS <TR> ELEMENT
+                                        **************************-->
                     <%
                         List<TableDO> tables = new TableDS().getAllTables();
                         out.println("<form method=\"POST\" action=\"Manager?action=chooseTable\" id=\"tableForm\">");
-                        for (TableDO table : tables){
-                           out.println("<tr>");
-                           out.println("<td>");
-                           out.println("<input type=\"checkbox\" name=\"tableCheckBox\" value=\"" + table.getId() + "\" />");
-                           out.println("</td>");
-                           out.println("<td>");
-                           out.println("<button class=\"btn btn-edit\" name=\"tableIdBtn\" value=\"" + table.getId() + "\" action=\"Manager?action=editTable\">");
-                           out.println("<span class=\"glyphicon glyphicon-pencil\" style=\"padding: 0;\"></span>");
-                           out.println("</button>");
-                           out.println("</td>");
-                           out.println("<td>" + table.getId() + "</td>");
-                           out.println("<td>" + table.getSeat() + "</td>");
-                           out.println("<td name=\"tableStatus\" id=\"tableStatus" + table.getId() + "\">" + ((table.getStatus() == 0) ? "Available" : "Busy") + "</td>");
-                           out.println("<td>");     
-                           out.println("<label class=\"switch\">");
-                           out.println("<input type=\"checkbox\" id=\"changeStatus" + table.getId() + "\" name='changeStatus' onchange=\"changeTableStatus('tableForm' ,'changeTableStatus', 'tableId', '" + table.getId() + "', 'POST')\" " + ((table.getStatus() == 0) ? "" : "checked") + "/>");
-                           out.println("<span class=\"slider round\"></span>");
-                           out.println("</label></td>");
+                        for (TableDO table : tables) {
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("<input type=\"checkbox\" name=\"tableCheckBox\" value=\"" + table.getId() + "\" />");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<button class=\"btn btn-edit\" name=\"tableIdBtn\" value=\"" + table.getId() + "\" action=\"Manager?action=editTable\">");
+                            out.println("<span class=\"glyphicon glyphicon-pencil\" style=\"padding: 0;\"></span>");
+                            out.println("</button>");
+                            out.println("</td>");
+                            out.println("<td>" + table.getId() + "</td>");
+                            out.println("<td>" + table.getSeat() + "</td>");
+                            out.println("<td name=\"tableStatus\" id=\"tableStatus" + table.getId() + "\">" + ((table.getStatus() == 0) ? "Available" : "Busy") + "</td>");
+                            out.println("<td>");
+                            out.println("<label class=\"switch\">");
+                            out.println("<input type=\"checkbox\" id=\"changeStatus" + table.getId() + "\" name='changeStatus' onclick=\"changeTableStatus('tableForm' ,'changeTableStatus', 'tableId', '" + table.getId() + "', 'GET')\" " + ((table.getStatus() == 0) ? "" : "checked") + "/>");
+                            out.println("<span class=\"slider round\"></span>");
+                            out.println("</label></td>");
                         }
                         out.println("</form>");
                     %>
                 </table>
             </div>
         </div>
+        <div id="test"></div>
     </body>
 </html>

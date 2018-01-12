@@ -17,6 +17,8 @@ import Services.Mailer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,23 +30,37 @@ import org.apache.commons.lang.RandomStringUtils;
  *
  * @author nnta.zip
  */
-@WebServlet(name = "Menu", urlPatterns = {"/Menu"})
+@WebServlet(name = "Manager", urlPatterns = {"/Manager"})
 public class Manager extends HttpServlet {
+
+    private ServletContext context;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        this.context = config.getServletContext();
+//        super.init(config); //To change body of generated methods, choose Tools | Templates.
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AutoCompleteServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AutoCompleteServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String action = request.getParameter("action");
+            if (action.equals("changeTableStatus")) {
+                TableDO table = new TableDS().getTable(Integer.parseInt(request.getParameter("tableId")));
+                if (table.getStatus() == 1) {
+                    table.setStatus(0);
+                } else if (table.getStatus() == 0) {
+                    table.setStatus(1);
+                }
+                new TableDS().updateTable(table);
+                //response.getOutputStream().print((table.getStatus() == 1) ? "Busy" : "Available");
+                response.setContentType("text/html");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Pragma", "no-cache");
+                out.print((table.getStatus() == 1) ? "Busy" : "Available");
+            }
         };
     }
 
@@ -54,9 +70,6 @@ public class Manager extends HttpServlet {
         processRequest(request, response);
         PrintWriter out = response.getWriter();
         request.getSession().invalidate();
-        out.println("<script type=\"text/javascript\">");
-        out.println("location='managerLogin.jsp';");
-        out.println("</script>");
     }
 
     @Override
@@ -238,11 +251,11 @@ public class Manager extends HttpServlet {
             //response.getOutputStream().print((table.getStatus() == 1) ? "Busy" : "Available");
             response.setContentType("text/html");
             response.setHeader("Cache-Control", "no-cache");
-            response.getWriter().write((table.getStatus() == 1) ? "Busy" : "Available");
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Servlet');");
-            //out.println("location='tableManager.jsp';");
-            out.println("</script>");
+            out.write((table.getStatus() == 1) ? "Busy" : "Available");
+//            out.println("<script type=\"text/javascript\">");
+//            out.println("alert('Servlet');");
+//            out.println("location='tableManager.jsp';");
+//            out.println("</script>");
         }
         if (action.equals("chooseTable")) {
             int tableID = Integer.parseInt(request.getParameter("tableIdBtn"));
